@@ -3,7 +3,7 @@ require('dotenv').config() //load variables from .env
 const bcrypt = require('bcrypt') //module to run hash function
 const db = require('./index.js')
 
-const email = 'user@ga.com'
+const email = 'user@gah.com'
 const plainTextPassword = 'password'
 const saltRounds = 10;
 const sql = `INSERT INTO
