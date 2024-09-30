@@ -1,34 +1,40 @@
-require('dotenv').config() //load variables from .env 
+require('dotenv').config();
+const bcrypt = require('bcrypt');
+const db = require('./index.js');
 
-const bcrypt = require('bcrypt') //module to run hash function
-const db = require('./index.js')
-
-const email = 'user@gah.com'
-const plainTextPassword = 'password'
+const email = 'user@gah.com';
+const username = 'user1';
+const plainTextPassword = 'password';
 const saltRounds = 10;
+const seminarId = null;
+
 const sql = `INSERT INTO
  users 
- (email, password_digest) 
+ (username, email, password_digest, seminar_id) 
  VALUES  
- ($1, $2)
+ ($1, $2, $3, $4)
  RETURNING
- *;`
-//returning is a way to view whats been put into db after hashing
+ *;`;
 
-//async fn
-//1. generate salt
-bcrypt.genSalt(saltRounds,  (err, salt) => {
-    //async fn
-    //2. hash the password with salt
+bcrypt.genSalt(saltRounds, (err, salt) => {
+    if (err) {
+        console.error('Error generating salt:', err);
+        return;
+    }
+
     bcrypt.hash(plainTextPassword, salt, (err, hash) => {
-        //3. store in database
-        db.query(sql, [email, hash], (err, result) => {
-            if (err) {
-                console.log(err);
-            }
-            //4. log new user record
-            console.log(result.rows[0]);
+        if (err) {
+            console.error('Error hashing password:', err);
+            return;
+        }
 
-        })
-    })
-})
+        db.query(sql, [username, email, hash, seminarId], (err, result) => {
+            if (err) {
+                console.error('Error inserting user into the database:', err);
+                return;
+            }
+
+            console.log('New user added:', result.rows[0]);
+        });
+    });
+});
