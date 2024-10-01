@@ -1,7 +1,7 @@
 export default function Nav() {
     return (
     <header>
-        <div class="logo">
+        <div className="logo">
             <h1>ChiroOceaniaHub</h1>
         </div>
         <nav>
