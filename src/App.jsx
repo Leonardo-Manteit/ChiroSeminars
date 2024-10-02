@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Root from './components/Root/Root'
 // import Nav from './components/Nav/Nav';
 // import Footer from './components/Footer/Footer';
@@ -15,14 +15,15 @@ function App() {
   return (
     
     <Routes>
-        <Route path="/" element={<Root />} />
-        <Route path="/featured" element={<Featured />} />
-        <Route path="/seminars" element={<Seminars />} />
-        <Route path="/topics" element={<TopicList />} />
-        <Route path="/create-event" element={<CreateEvents />} />
-        <Route path="/testimonials" element={<Testimonials />} />
-        <Route path="/updates" element={<GetUpdates />} />
-      </Routes>
+        <Route path="/ChiroSeminars/" element={<Root />} />
+        <Route path="/ChiroSeminars/featured" element={<Featured />} />
+        <Route path="/ChiroSeminars/seminars" element={<Seminars />} />
+        <Route path="/ChiroSeminars/topics" element={<TopicList />} />
+        <Route path="/ChiroSeminars/create-event" element={<CreateEvents />} />
+        <Route path="/ChiroSeminars/testimonials" element={<Testimonials />} />
+        <Route path="/ChiroSeminars/updates" element={<GetUpdates />} />
+    </Routes>
+   
           
   );
 }
