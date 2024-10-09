@@ -1,5 +1,5 @@
 import styles from './CreateEvents.module.css'
-import { saveSeminar } from '../../models/seminar_router.js'
+// import { saveSeminar } from '../../models/seminar_router.js'
 
 export default function Create() {
 
@@ -16,7 +16,7 @@ export default function Create() {
             contact: e.target.contact.value
         };
 
-        saveSeminar(formData.title, formData.organizer, formData.date, formData.location, formData.description, formData.price, formData.contact)      
+        // saveSeminar(formData.title, formData.organizer, formData.date, formData.location, formData.description, formData.price, formData.contact)      
         
     }
 

@@ -6,20 +6,24 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE,
     email TEXT UNIQUE,
-    password_digest TEXT NOT NULL
+    password_digest TEXT NOT NULL,
+    seminar_id TEXT[],
 );
 
 CREATE TABLE seminars (
     id SERIAL PRIMARY KEY,
     title VARCHAR(150),
+    organizer TEXT,
+    date TEXT,
+    location TEXT,
+    description TEXT,
+    price TEXT,
+    contact TEXT,
     username_list TEXT[],
     image_url TEXT,
     featured INTEGER,
     FOREIGN KEY (featured) REFERENCES users(id) ON DELETE CASCADE
 );
-
-ALTER TABLE users
-ADD COLUMN seminar_id INTEGER;
 
 ALTER TABLE users
 ADD CONSTRAINT fk_seminar
