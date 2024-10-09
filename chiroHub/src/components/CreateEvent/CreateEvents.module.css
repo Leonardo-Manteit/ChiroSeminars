@@ -1,0 +1,12 @@
+.createEvent {
+    justify-content: center;
+    padding: 25px;
+    margin-left: 10%;
+}
+
+.createForm {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+
+}
