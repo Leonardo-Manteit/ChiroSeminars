@@ -3,15 +3,15 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const User = require('../models/User')
+const User = require('../models/Users')
 const saltRounds = 10;
 
 router.post('/api/signUp', async (req, res, next) => {
-    const { email, password } = req.body
+    const { email, password, username } = req.body
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)
     if (email.trim() !== '' || password !== '') {
-        return await User.createUser(email.trim(), hash).catch((err) => {
+        return await User.createUser(email.trim(), hash, username).catch((err) => {
             next(err)
         })
     } else {

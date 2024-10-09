@@ -1,16 +1,16 @@
 const db = require('../db')
 
-function updateSeminar(title, organizer, date, location, description, price, contact) {
+function updateSeminar(title, organizer, date, location, description, price, contact, id) {
 
     let sql = `ALTER TABLE seminars   
-    (organizer, date, location, description, price, contact)
+    (title organizer, date, location, description, price, contact)
     VALUES 
-    ($1, $2, $3, $4, $5, $6)
-    WHERE title = $7
+    ($1, $2, $3, $4, $5, $6, $7)
+    WHERE id = $8
     RETURNING *;
     `;
 
-    return db.query(sql, [organizer, date, location, description, price, contact, title])
+    return db.query(sql, [organizer, date, location, description, price, contact, title, id])
             .then(res => console.log(res.rows))
 }
 
