@@ -3,11 +3,11 @@ const db = require('../db')
 function createUser(email, username, hash) {
         let sql = `
         INSERT INTO users
-        (username, password_disgest, email) 
+        (email, username, password_digest) 
         VALUES ($1, $2, $3)
         RETURNING *;
         `
-        return db.query(sql, [username, hash, email])
+        return db.query(sql, [email, username, hash])
         .then(res=>res.rows)
 }
 

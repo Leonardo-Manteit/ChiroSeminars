@@ -7,7 +7,6 @@ const User = require('../models/Users')
 const saltRounds = 10;
 
 router.post('/api/signUp', async (req, res, next) => {
-    console.log('got to backend', req.body)
     const { email, username, password } = req.body
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)
@@ -25,7 +24,7 @@ router.post('/api/login',  async (req, res, next) => {
         // email & password required
 
         //1. get email and password from requst
-        const { email, password } = req.body
+        const { email, username, password } = req.body
 
         //2. find the existing user from the database using the email
         let user = await User.findByEmail(email)
@@ -34,9 +33,8 @@ router.post('/api/login',  async (req, res, next) => {
             err.status = 400
             throw err
         }
-
         //3.check the password for this user
-        let match = await bcrypt.compare(password, user.password_disgest)
+        let match = await bcrypt.compare(password, user.password_digest)
         if (!match) {
             let err = new Error('incorrect username or passowrd')
             err.status = 400

@@ -1,4 +1,8 @@
-export default function Nav() {
+export default function Nav({user, setUser}) {
+    console.log(user)
+    function handleLogout() {
+        setUser(null)
+    }
     return (
     <header>
         <div className="logo">
@@ -8,7 +12,7 @@ export default function Nav() {
             <ul>
                 <li><a href="/ChiroSeminars/">Home</a></li>
                 <li><a href="/ChiroSeminars/Seminars">Seminars</a></li>
-                <li><a href="/ChiroSeminars/Login">Login</a></li>
+                {user ? <a onClick={handleLogout}>Logout</a> : <li><a href="/ChiroSeminars/Login">Login</a></li>}
                 {/* <li><a href="#">Online Courses</a></li> */}
                 {/* <li><a href="#">Coaching</a></li> */}
                 <li><a href="/ChiroSeminars/AboutUs">About Us</a></li>
