@@ -4,8 +4,8 @@ CREATE DATABASE chiroseminars;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username TEXT UNIQUE,
     email TEXT UNIQUE,
+    username TEXT UNIQUE,
     password_digest TEXT NOT NULL,
     seminar_id TEXT[],
 );

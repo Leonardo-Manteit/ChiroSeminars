@@ -8,6 +8,7 @@ export default function Nav() {
             <ul>
                 <li><a href="/ChiroSeminars/">Home</a></li>
                 <li><a href="/ChiroSeminars/Seminars">Seminars</a></li>
+                <li><a href="/ChiroSeminars/Login">Login</a></li>
                 {/* <li><a href="#">Online Courses</a></li> */}
                 {/* <li><a href="#">Coaching</a></li> */}
                 <li><a href="/ChiroSeminars/AboutUs">About Us</a></li>

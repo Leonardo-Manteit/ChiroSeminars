@@ -7,11 +7,12 @@ const User = require('../models/Users')
 const saltRounds = 10;
 
 router.post('/api/signUp', async (req, res, next) => {
-    const { email, password, username } = req.body
+    console.log('got to backend', req.body)
+    const { email, username, password } = req.body
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)
     if (email.trim() !== '' || password !== '') {
-        return await User.createUser(email.trim(), hash, username).catch((err) => {
+        return await User.createUser(email.trim(), username, hash).catch((err) => {
             next(err)
         })
     } else {

@@ -12,6 +12,7 @@ import './App.css';
 import Seminars from './components/Seminars/Seminars';
 import Contact from './components/Contact/Contact';
 import AboutUs from './components/AboutUs/AboutUs';
+import Login from './components/Login/Login'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/ChiroSeminars/Updates" element={<GetUpdates />} />
         <Route path="/ChiroSeminars/Contact" element={<Contact />} />
         <Route path="/ChiroSeminars/AboutUs" element={<AboutUs />} />
+        <Route path="/ChiroSeminars/Login" element={<Login />} />
 {/* for deployment */}
         {/* <Route path="https://jesus130247.github.io/ChiroSeminars/" element={<Root />} />
         <Route path="https://jesus130247.github.io/ChiroSeminars/Featured" element={<Featured />} />

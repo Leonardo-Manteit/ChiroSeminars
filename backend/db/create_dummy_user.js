@@ -2,11 +2,11 @@ require('dotenv').config();
 const bcrypt = require('bcrypt');
 const db = require('./index.js');
 
-const email = 'user@gah.com';
-const username = 'user1';
-const plainTextPassword = 'password';
+const email = 'leo@leo';
+const username = 'leo';
+const plainTextPassword = 'leo';
 const saltRounds = 10;
-const seminarId = null;
+const seminarId = [];
 
 const sql = `INSERT INTO
  users 
@@ -28,7 +28,7 @@ bcrypt.genSalt(saltRounds, (err, salt) => {
             return;
         }
 
-        db.query(sql, [username, email, hash, seminarId], (err, result) => {
+        db.query(sql, [email, username, hash, seminarId], (err, result) => {
             if (err) {
                 console.error('Error inserting user into the database:', err);
                 return;

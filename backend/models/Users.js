@@ -1,6 +1,6 @@
 const db = require('../db')
 
-function createUser(username, email, hash) {
+function createUser(email, username, hash) {
         let sql = `
         INSERT INTO users
         (username, password_disgest, email) 
