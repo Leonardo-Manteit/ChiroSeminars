@@ -3,14 +3,25 @@ import { signUp, login } from "../../utils/auth_api"
 import styles from './Login.module.css'
 import Footer from "../Footer/Footer"
 import Nav from "../Nav/Nav"
+<<<<<<< Updated upstream
 import { useNavigate } from "react-router-dom"
+=======
+import { useNavigate } from 'react-router-dom';
+
+>>>>>>> Stashed changes
 
 export default function Login(props) {
     const [formData, setFormData] = useState({ email:'', username:'', password:''})
     const [newUser, setNewUser] = useState({ email:'', username:'', password:''})
     const [logging, setLogging] = useState(true)
     const [message, setMessage] = useState(null)
+<<<<<<< Updated upstream
     const navigate = useNavigate()
+=======
+
+    const navigate = useNavigate();
+    
+>>>>>>> Stashed changes
     async function tryLogin(e) {
         e.preventDefault()
         try {
