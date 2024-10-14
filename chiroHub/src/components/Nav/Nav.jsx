@@ -1,7 +1,12 @@
-export default function Nav({user, setUser}) {
-    console.log(user)
+
+import { useState } from 'react';
+import { getUserFromLocalStorage } from '../../utils/auth_service.js'
+
+export default function Nav() {
+    const [user, setUser] = useState(getUserFromLocalStorage())
     function handleLogout() {
         setUser(null)
+        localStorage.removeItem('token')
     }
     return (
     <header>
@@ -12,7 +17,7 @@ export default function Nav({user, setUser}) {
             <ul>
                 <li><a href="/ChiroSeminars/">Home</a></li>
                 <li><a href="/ChiroSeminars/Seminars">Seminars</a></li>
-                {user ? <a onClick={handleLogout}>Logout</a> : <li><a href="/ChiroSeminars/Login">Login</a></li>}
+                {user ? <button onClick={handleLogout}>Logout</button> : <li><a href="/ChiroSeminars/Login">Login</a></li>}
                 {/* <li><a href="#">Online Courses</a></li> */}
                 {/* <li><a href="#">Coaching</a></li> */}
                 <li><a href="/ChiroSeminars/AboutUs">About Us</a></li>

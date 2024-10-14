@@ -3,19 +3,20 @@ import { signUp, login } from "../../utils/auth_api"
 import styles from './Login.module.css'
 import Footer from "../Footer/Footer"
 import Nav from "../Nav/Nav"
+import { useNavigate } from "react-router-dom"
 
 export default function Login(props) {
     const [formData, setFormData] = useState({ email:'', username:'', password:''})
     const [newUser, setNewUser] = useState({ email:'', username:'', password:''})
     const [logging, setLogging] = useState(true)
     const [message, setMessage] = useState(null)
-
+    const navigate = useNavigate()
     async function tryLogin(e) {
         e.preventDefault()
         try {
             let token = await login(formData)
             localStorage.setItem('token', token)
-            props.onLogin(formData, true)
+            navigate('/ChiroSeminars/')
         } catch (err) {
             console.log(err)
             setMessage('ERROR: Invalid username or password')
@@ -37,7 +38,6 @@ export default function Login(props) {
     function handleChangeLogin(e) {
         setFormData({...formData, [e.target.name]: e.target.value})
         setNewUser({...newUser, [e.target.name]: e.target.value})
-        console.log(formData)
     }
     function handleChangeSignUp(e) {
         setNewUser({...newUser, [e.target.name]: e.target.value})
