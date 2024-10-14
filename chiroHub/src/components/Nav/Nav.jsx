@@ -1,16 +1,8 @@
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 import { useState } from 'react';
 import { getUserFromLocalStorage } from '../../utils/auth_service.js'
 
 export default function Nav() {
     const [user, setUser] = useState(getUserFromLocalStorage())
-<<<<<<< Updated upstream
-=======
-    console.log(user)
->>>>>>> Stashed changes
     function handleLogout() {
         setUser(null)
         localStorage.removeItem('token')
