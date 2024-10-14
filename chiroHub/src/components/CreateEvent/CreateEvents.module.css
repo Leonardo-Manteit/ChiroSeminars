@@ -1,12 +1,85 @@
+
 .createEvent {
     justify-content: center;
     padding: 25px;
-    margin-left: 10%;
+    /* min-height: 500px;
+     */
+     height: fit-content;
 }
 
 .createForm {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 2fr minmax(200px, 2fr) auto; 
+    column-gap: 50px;
+    font-weight: bold;
+    padding: 10px 10px 10px 0px;
+    background-color: rgb(178, 228, 193);
+    border-radius: 2%;
 }
+
+.createForm input {
+    color: black;
+    background-color: aliceblue;
+    display: block;
+}
+
+.createForm textarea {
+    display: flex;
+    color: black;
+    background-color: aliceblue;
+    grid-column: span 2;
+    height: 200px;  
+    width: 250px;
+    resize: none; 
+}
+
+
+.createForm section {
+    padding: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.createForm button {
+    width: 200px;   /*change later or remove to fill section*/
+    
+}
+
+/* 
+.createForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+    width: 60%;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.createForm section {
+    flex: 1 1 30%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.createForm textarea {
+    color: black;
+    background-color: aliceblue;
+    resize: vertical;
+    min-height: 150px;
+    flex: 1 1 100%; 
+}
+
+.createForm input {
+    color: black;
+    background-color: aliceblue;
+    width: 100%;
+}
+
+.createForm button {
+    width: 200px; 
+} 
+    
+*/

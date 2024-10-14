@@ -1,4 +1,5 @@
 import styles from './CreateEvents.module.css'
+import Nav from '../Nav/Nav.jsx'
 // import { saveSeminar } from '../../models/seminar_router.js'
 
 export default function Create() {
@@ -22,42 +23,55 @@ export default function Create() {
 
 
     return (
-    <section className={styles.createEvent}>
+        <>
+        <Nav />
+
+        <section className={styles.createEvent}>
         
         <h3>Create Seminar</h3>
 
         <form className={styles.createForm} onSubmit={handleSubmit}>
 
-        <label>Seminar Title</label>
-        <input type="text" name="title"
-        required />
-
-        <label>Organizer Name</label>
-        <input type="text" name="organizer"
-        required />
-
-        <label>Date and Time</label>
-        <input type="datetime-local" name="date"
-        required />
-
-        <label>Location</label>
-        <input type="text" name="location"
-        required />
-
-        <label>Description</label>
-        <textarea name="description"/>
-
+        <section className={styles.sections-parent}>
+            <label>Seminar Title</label>
+            <input type="text" name="title"
+            required />
+        </section>
+        <section>
+            <label>Organizer Name</label>
+            <input type="text" name="organizer"
+            required />
+        </section>
+        <section>
+            <label>Date and Time</label>
+            <input type="datetime-local" name="date"
+            required />
+        </section>
+        <section>
+            <label>Location</label>
+            <input type="text" name="location"
+            required />
+        </section>
+        <section>
         <label>Price</label>
-        <input type="number" name="price"
-        required />
-
-        <label>Contact</label>
-        <input type="email" name="contact"
-        required />
-
-        <br />
-        <button type='submit'>Submit</button>
-
+            <input type="number" name="price"
+            required />
+        </section>
+        <section>
+            <label>Contact</label>
+            <input type="email" name="contact"
+            required />
+        </section>
+        <section>
+            <label>Description</label>
+            <textarea name="description"/>
+        </section>
+        <section>
+        <img src="https://fakeimg.pl/600x400" alt="" />
+        </section>
+        <section>
+            <button type='submit'>Submit</button>
+        </section>
         </form>
 
 
@@ -67,5 +81,6 @@ export default function Create() {
 
 
     </section>
+    </>
     )
 }

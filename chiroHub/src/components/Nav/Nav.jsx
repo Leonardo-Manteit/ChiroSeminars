@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { getUserFromLocalStorage } from '../../utils/auth_service.js'
 
@@ -9,6 +8,8 @@ export default function Nav() {
         localStorage.removeItem('token')
     }
     return (
+    <>    
+        
     <header>
         <div className="logo">
             <h1><a href="/ChiroSeminars/">ChiroOceaniaHub</a></h1>
@@ -25,5 +26,6 @@ export default function Nav() {
             </ul>
         </nav>
     </header> 
-    )
+    </>
+)
 }
