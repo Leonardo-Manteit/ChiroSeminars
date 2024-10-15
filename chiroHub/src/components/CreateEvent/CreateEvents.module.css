@@ -2,8 +2,7 @@
 .createEvent {
     justify-content: center;
     padding: 25px;
-    /* min-height: 500px;
-     */
+    justify-items: start;
      height: fit-content;
 }
 
