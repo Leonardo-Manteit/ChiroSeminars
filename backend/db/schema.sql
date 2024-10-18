@@ -22,9 +22,11 @@ CREATE TABLE seminars (
     username_list TEXT[],
     image_url TEXT,
     featured INTEGER,
-    FOREIGN KEY (featured) REFERENCES users(id) ON DELETE CASCADE
 );
 
 ALTER TABLE users
 ADD CONSTRAINT fk_seminar
 FOREIGN KEY (seminar_id) REFERENCES seminars(id) ON DELETE CASCADE;
+
+-- removed from seminars: 
+    -- FOREIGN KEY (featured) REFERENCES users(id) ON DELETE CASCADE

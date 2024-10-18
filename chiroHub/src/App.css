@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #f8f3e4;
-  color: darkgreen;
+  color: black;
 }
 
 header {
@@ -12,6 +12,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: forestgreen;
 }
 
 .logo h1 {
@@ -25,7 +26,8 @@ nav ul {
 }
 
 a {
-  color: darkgreen;
+  color: white;
+  font-size: 1.15rem;
   text-decoration: none;
 }
 
@@ -61,7 +63,7 @@ a {
 }
 
 footer {
-  background-color: #004d66;
+  background-color: forestgreen;
   color: white;
   text-align: center;
   padding: 10px;
