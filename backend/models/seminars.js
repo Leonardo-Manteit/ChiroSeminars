@@ -11,7 +11,7 @@ function updateSeminar(title, organizer, date, location, description, price, con
     `;
 
     return db.query(sql, [organizer, date, location, description, price, contact, title, id])
-            .then(res => console.log(res.rows))
+            .then(res => res.rows)
 }
 
 function createSeminar(title, organizer, date, location, description, price, contact) {
@@ -22,15 +22,14 @@ function createSeminar(title, organizer, date, location, description, price, con
     ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *;
     `;
-
     return db.query(sql, [title, organizer, date, location, description, price, contact])
-            .then(res => console.log(res.rows))
+            .then(res => res.rows)
 
 }
 
 function deleteSeminar(seminar_id) {
     let sql = 'DELETE FROM seminars WHERE id = $1;'
-    return db.query(sql, [seminar_id]).then(res => console.log(res.rows[0]))
+    return db.query(sql, [seminar_id]).then(res => res.rows[0])
 }
 
 function featureSeminar(featured, seminar_id) {
@@ -38,7 +37,19 @@ function featureSeminar(featured, seminar_id) {
     (featured) VALUES ($1)
     WHERE id = $2
     RETURNING *;`
-    return db.query(sql, [featured, seminar_id]).then(res => console.log(res.rows))
+    return db.query(sql, [featured, seminar_id]).then(res => res.rows)
+}
+
+function getSeminars() {
+    let sql = `
+    SELECT * FROM seminars;`
+    return db.query(sql).then(res => res.rows)
+}
+
+function getSeminarsById(seminar_id) {
+    let sql = `
+    SELECT * FROM seminars WHERE id = $1;`
+    return db.query(sql, [seminar_id]).then(res => res.rows)
 }
 
 
@@ -46,7 +57,9 @@ const Seminar = {
     createSeminar,
     updateSeminar,
     deleteSeminar,
-    featureSeminar
+    featureSeminar,
+    getSeminars,
+    getSeminarsById
 }
 
 module.exports = Seminar

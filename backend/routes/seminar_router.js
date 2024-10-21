@@ -2,7 +2,6 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
-const db = require('../db')
 const Seminar = require('../models/seminars')
 
 router.get('/api/createSeminar/:title/:organizer/:date/:location/:description/:price/:contact/:img', (req,res) => {
@@ -21,6 +20,16 @@ router.delete('/api/delete/:id', (req,res) => {
 
 router.get('/api/feature/:id/:featured', (req,res) => {
     return Seminar.featureSeminar(req.params.featured, req.params.id)
+})
+
+router.get('/api/seminars/:id/', (req,res) => {
+    Seminar.getSeminarsById(req.params.id)
+    .then(seminars => res.status(200).json(seminars))
+})
+
+router.get('/api/seminars/', (req,res) => {
+    Seminar.getSeminars()
+    .then(seminars => res.status(200).json(seminars))
 })
 
 module.exports = router
