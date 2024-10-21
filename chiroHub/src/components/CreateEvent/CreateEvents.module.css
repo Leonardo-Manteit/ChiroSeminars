@@ -1,84 +1,91 @@
-
 .createEvent {
-    justify-content: center;
-    padding: 25px;
-    justify-items: start;
-    height: fit-content;
-}
-
-.createForm {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: darkgreen
+  }
+  
+  .createForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .sections-parent {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 2fr minmax(200px, 2fr) auto; 
-    column-gap: 50px;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  label {
     font-weight: bold;
-    padding: 10px 10px 10px 0px;
-    background-color: rgb(178, 228, 193);
-    border-radius: 2%;
-}
-
-.createForm input {
-    color: black;
-    background-color: aliceblue;
-    display: block;
-}
-
-.createForm textarea {
-    display: flex;
-    color: black;
-    background-color: aliceblue;
-    grid-column: span 2;
-    height: 200px;  
-    width: 250px;
-    resize: none; 
-}
-
-
-.createForm section {
-    padding: 10px;
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
-    align-items: baseline;
-}
-
-.createForm button {
-    width: 200px;   /*change later or remove to fill section*/
-    
-}
-
-/* 
-.createForm {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between; 
-    width: 60%;
-    font-weight: bold;
-    padding: 10px;
-}
-
-.createForm section {
-    flex: 1 1 30%;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.createForm textarea {
-    color: black;
-    background-color: aliceblue;
-    resize: vertical;
-    min-height: 150px;
-    flex: 1 1 100%; 
-}
-
-.createForm input {
-    color: black;
-    background-color: aliceblue;
+    margin-bottom: 5px;
+    color: var(--text-color);
+  }
+  
+  input,
+  textarea {
     width: 100%;
-}
-
-.createForm button {
-    width: 200px; 
-} 
-    
-*/
+    padding: 10px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    background-color: aliceblue;
+    color: black;
+    font-size: 1.25rem;
+  }
+  
+  input:focus,
+  textarea:focus {
+    border-color: var(--input-focus-border);
+    outline: none;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  button {
+    background-color: blue;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 2px solid white;;
+  }
+  
+  button:hover {
+    background-color: blueviolet;
+    border: 2px solid grey;
+  }
+  
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 600px) {
+    .sections-parent {
+      grid-template-columns: 1fr;
+    }
+  
+    button {
+      width: 100%;
+    }
+  }
