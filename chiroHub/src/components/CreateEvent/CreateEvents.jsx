@@ -1,5 +1,6 @@
 import styles from './CreateEvents.module.css'
 import Nav from '../Nav/Nav.jsx'
+import Footer from '../Footer/Footer.jsx';
 // import { saveSeminar } from '../../models/seminar_router.js'
 
 export default function Create() {
@@ -26,61 +27,59 @@ export default function Create() {
         <>
         <Nav />
 
-        <section className={styles.createEvent}>
+        <div className={styles.createEvent}>
         
-        <h3>Create Seminar</h3>
+            <h3>Create Seminar</h3>
 
-        <form className={styles.createForm} onSubmit={handleSubmit}>
+            <form className={styles.createForm} onSubmit={handleSubmit}>
 
-        <section className={styles.sections-parent}>
-            <label>Seminar Title</label>
-            <input type="text" name="title"
-            required />
-        </section>
-        <section>
-            <label>Organizer Name</label>
-            <input type="text" name="organizer"
-            required />
-        </section>
-        <section>
-            <label>Date and Time</label>
-            <input type="datetime-local" name="date"
-            required />
-        </section>
-        <section>
-            <label>Location</label>
-            <input type="text" name="location"
-            required />
-        </section>
-        <section>
-        <label>Price</label>
-            <input type="number" name="price"
-            required />
-        </section>
-        <section>
-            <label>Contact</label>
-            <input type="email" name="contact"
-            required />
-        </section>
-        <section>
-            <label>Description</label>
-            <textarea name="description"/>
-        </section>
-        <section>
-        <img src="https://fakeimg.pl/600x400" alt="" />
-        </section>
-        <section>
-            <button type='submit'>Submit</button>
-        </section>
-        </form>
+            <section className={styles.sections-parent}>
+                <label>Seminar Title</label>
+                <input type="text" name="title"
+                required />
+            </section>
+            <section>
+                <label>Organizer Name</label>
+                <input type="text" name="organizer"
+                required />
+            </section>
+            <section>
+                <label>Date and Time</label>
+                <input type="datetime-local" name="date"
+                required />
+            </section>
+            <section>
+                <label>Location</label>
+                <input type="text" name="location" placeholder='Address or URL'
+                required />
+            </section>
+            <section>
+            <label>Price ($AUD)</label>
+                <input type="number" name="price"
+                required />
+            </section>
+            <section>
+                <label>Contact</label>
+                <input type="email" name="contact" placeholder="Phone or Email"
+                required />
+            </section>
+            <section>
+                <label>Description</label>
+                <textarea name="description"/>
+            </section>
+            <section>
+                <label>Image</label>
+                <input type="file" accept="image/*" name="image" />
+            </section>
 
+            <section>
+                <button type='submit'>Submit</button>
+            </section>
+            </form>
 
+        </div>
 
-
-
-
-
-    </section>
+        <Footer />
     </>
     )
 }
