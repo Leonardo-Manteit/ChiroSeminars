@@ -5,21 +5,37 @@ import Footer from '../Footer/Footer.jsx';
 
 export default function Create() {
 
-    function handleSubmit(e) {
+    async function handleSubmit (e) {
         e.preventDefault()
 
-        const formData = {
-            title: e.target.title.value,
-            organizer: e.target.organizer.value,
-            date: e.target.date.value,
-            location: e.target.location.value,
-            description: e.target.description.value,
-            price: e.target.price.value,
-            contact: e.target.contact.value
-        };
+        // const formData = {
+        //     title: e.target.title.value,
+        //     organizer: e.target.organizer.value,
+        //     date: e.target.date.value,
+        //     location: e.target.location.value,
+        //     description: e.target.description.value,
+        //     price: e.target.price.value,
+        //     contact: e.target.contact.value
+        // };
 
         // saveSeminar(formData.title, formData.organizer, formData.date, formData.location, formData.description, formData.price, formData.contact)      
         
+        const formData = new FormData(e.target);
+
+        try {
+            const response = await fetch('/api/seminars', {
+                method: 'POST',
+                body: formData,
+            })
+            if (response.ok) {
+                e.target.reset()
+                console.log('formData SENT');
+            }
+        } catch (error) {
+            console.log('formData could NOT send, error: ', error);
+            
+        }
+
     }
 
 
