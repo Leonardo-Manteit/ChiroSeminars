@@ -46,14 +46,14 @@ function getFeaturedSeminars() {
 }
 
 function getSeminars() {
-    let sql = `SELECT * FROM seminars;`
+    let sql = `SELECT id, title, date, location, price FROM seminars;`
     return db.query(sql).then(res => res.rows)
 }
 
-function getSeminarsById(seminar_id) {
+function getSeminarById(seminar_id) {
     let sql = `
     SELECT * FROM seminars WHERE id = $1;`
-    return db.query(sql, [seminar_id]).then(res => res.rows)
+    return db.query(sql, [seminar_id]).then(res => res.rows[0])
 }
 
 const Seminar = {
@@ -63,7 +63,7 @@ const Seminar = {
     featureSeminar,
     getFeaturedSeminars,
     getSeminars,
-    getSeminarsById
+    getSeminarById
 }
 
 module.exports = Seminar

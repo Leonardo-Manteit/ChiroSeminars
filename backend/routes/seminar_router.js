@@ -29,7 +29,7 @@ router.get('/api/featured/', (req,res) => {
 })
 
 router.get('/api/seminars/:id/', (req,res) => {
-    Seminar.getSeminarsById(req.params.id)
+    Seminar.getSeminarById(req.params.id)
     .then(seminars => res.status(200).json(seminars))
 })
 

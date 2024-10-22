@@ -13,12 +13,12 @@ import Seminars from './components/Seminars/Seminars';
 import Contact from './components/Contact/Contact';
 import AboutUs from './components/AboutUs/AboutUs';
 import Login from './components/Login/Login'
+import DisplaySeminar from './components/DisplaySeminar/DisplaySeminar';
 
 function App() {
   return (
     
     <Routes>
-{/* for practise */}
         <Route path="/ChiroSeminars/" element={<Root />} />
         <Route path="/ChiroSeminars/Featured" element={<Featured />} />
         <Route path="/ChiroSeminars/Seminars" element={<Seminars />} />
@@ -28,17 +28,9 @@ function App() {
         <Route path="/ChiroSeminars/Updates" element={<GetUpdates />} />
         <Route path="/ChiroSeminars/Contact" element={<Contact />} />
         <Route path="/ChiroSeminars/AboutUs" element={<AboutUs />} />
-        <Route path="/ChiroSeminars/Login" element={<Login />} />
-{/* for deployment */}
-        {/* <Route path="https://jesus130247.github.io/ChiroSeminars/" element={<Root />} />
-        <Route path="https://jesus130247.github.io/ChiroSeminars/Featured" element={<Featured />} />
-        <Route path="https://jesus130247.github.io/ChiroSeminars/Seminars" element={<Seminars />} />
-        <Route path="https://jesus130247.github.io/ChiroSeminars/Topics" element={<TopicList />} />
-        <Route path="https://jesus130247.github.io/ChiroSeminars/CreateEvent" element={<CreateEvents />} />
-        <Route path="https://jesus130247.github.io/ChiroSeminars/Testimonials" element={<Testimonials />} />
-        <Route path="https://jesus130247.github.io/ChiroSeminars/Updates" element={<GetUpdates />} />
-        <Route path="https://jesus130247.github.io/ChiroSeminars/Contact" element={<Contact />} />
-        <Route path="https://jesus130247.github.io/ChiroSeminars/AboutUs" element={<AboutUs />} /> */}
+        <Route path="/ChiroSeminars/Login" element={<Login />} /> 
+        <Route path="/ChiroSeminars/DisplaySeminar/:id" element={<DisplaySeminar />} /> 
+
     </Routes>
    
           

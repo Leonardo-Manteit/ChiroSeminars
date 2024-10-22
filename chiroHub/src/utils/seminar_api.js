@@ -11,3 +11,9 @@ export async function getFeatured() {
     // console.log(res)
     return res.data
 }
+
+export async function getSeminarById(seminar_id) {
+    let res = await axios.get(`/api/seminars/${seminar_id}`)
+    console.log(res)
+    return res.data
+}
