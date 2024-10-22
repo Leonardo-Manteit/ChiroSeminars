@@ -21,6 +21,7 @@ export default function Nav() {
                         {/* <li><a href="#">Coaching</a></li> */}
                         <li><a href="/ChiroSeminars/AboutUs">About Us</a></li>
                         <li><a href="/ChiroSeminars/Contact">Contact</a></li>
+                        <li><a href="/ChiroSeminars/CreateEvent">Create Event</a></li>
                         {user ? <button onClick={handleLogout}>Logout</button> : <li><a href="/ChiroSeminars/Login">Login</a></li>}
                     </ul>
                 </nav>

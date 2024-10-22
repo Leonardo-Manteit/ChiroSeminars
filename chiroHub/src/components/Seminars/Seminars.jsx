@@ -5,14 +5,14 @@ import { getSeminars } from "../../utils/seminar_api";
 import { useEffect, useState } from "react";
 
 export default function Seminars() {
-    const navigate = useNavigate();
     const [seminars, setSeminars] = useState([]);  // Start with an empty array
     const [loading, setLoading] = useState(true);  // Track loading state
-
-    function handleNavigate(e) {
-        e.preventDefault();
-        navigate('/ChiroSeminars/CreateEvent');
-    }
+    
+    // const navigate = useNavigate();
+    // function handleNavigate(e) {
+    //     e.preventDefault();
+    //     navigate('/ChiroSeminars/CreateEvent');
+    // }
 
     useEffect(() => {
         getSeminars()
@@ -45,7 +45,6 @@ export default function Seminars() {
             ) : (
                 <p>No seminars available.</p>
             )}
-            <button onClick={handleNavigate}>Click here to create a new event</button>
             <Footer />
         </>
     );
