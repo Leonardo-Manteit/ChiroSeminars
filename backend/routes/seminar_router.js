@@ -22,6 +22,10 @@ router.get('/api/feature/:id/:featured', (req,res) => {
     return Seminar.featureSeminar(req.params.featured, req.params.id)
 })
 
+router.get('/api/featured/', (req,res) => {
+    return Seminar.getFeaturedSeminars()
+})
+
 router.get('/api/seminars/:id/', (req,res) => {
     Seminar.getSeminarsById(req.params.id)
     .then(seminars => res.status(200).json(seminars))

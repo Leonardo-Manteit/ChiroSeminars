@@ -40,10 +40,16 @@ function featureSeminar(featured, seminar_id) {
     return db.query(sql, [featured, seminar_id]).then(res => res.rows)
 }
 
+function getFeaturedSeminars() {
+    let sql = `
+    SELECT * FROM seminars WHERE featured = '1';`
+    return db.query(sql).then(res => res.rows)
+}
+
 function getSeminars() {
     let sql = `
     SELECT * FROM seminars;`
-    return db.query(sql).then(res => res.rows)
+    return db.query(sql).then(res => console.log(res.rows))
 }
 
 function getSeminarsById(seminar_id) {
@@ -52,12 +58,12 @@ function getSeminarsById(seminar_id) {
     return db.query(sql, [seminar_id]).then(res => res.rows)
 }
 
-
 const Seminar = {
     createSeminar,
     updateSeminar,
     deleteSeminar,
     featureSeminar,
+    getFeaturedSeminars,
     getSeminars,
     getSeminarsById
 }
