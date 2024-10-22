@@ -1,0 +1,10 @@
+.display {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.featured {
+    border: 1px solid black;
+    width: fit-content;
+}
