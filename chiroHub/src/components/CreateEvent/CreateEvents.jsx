@@ -6,24 +6,12 @@ import Footer from '../Footer/Footer.jsx';
 export default function Create() {
 
     async function handleSubmit (e) {
-        e.preventDefault()
-
-        // const formData = {
-        //     title: e.target.title.value,
-        //     organizer: e.target.organizer.value,
-        //     date: e.target.date.value,
-        //     location: e.target.location.value,
-        //     description: e.target.description.value,
-        //     price: e.target.price.value,
-        //     contact: e.target.contact.value
-        // };
-
-        // saveSeminar(formData.title, formData.organizer, formData.date, formData.location, formData.description, formData.price, formData.contact)      
+        e.preventDefault()   
         
         const formData = new FormData(e.target);
 
         try {
-            const response = await fetch('/api/seminars', {
+            const response = await fetch('http://localhost:8000/api/seminar', {
                 method: 'POST',
                 body: formData,
             })
@@ -35,9 +23,7 @@ export default function Create() {
             console.log('formData could NOT send, error: ', error);
             
         }
-
     }
-
 
     return (
         <>
