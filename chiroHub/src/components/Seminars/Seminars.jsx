@@ -8,23 +8,22 @@ export default function Seminars() {
     const [seminars, setSeminars] = useState([]);  // Start with an empty array
     const [loading, setLoading] = useState(true);  // Track loading state
     
+    useEffect(() => {
+        getSeminars()
+            .then(res => setSeminars(res))
+            .then(() => setLoading(false))
+            .catch(err => console.error('Direct fetch error:', err));
+    }, []);
+    
+    if (loading) {
+        return (<p>Loading seminars...</p>);
+    }
+    
     // const navigate = useNavigate();
     // function handleNavigate(e) {
     //     e.preventDefault();
     //     navigate('/ChiroSeminars/CreateEvent');
     // }
-
-    useEffect(() => {
-        getSeminars()
-            .then(data => setSeminars(data))
-            .then(() => setLoading(false))
-            .catch(err => console.error('Direct fetch error:', err));
-    }, []);
-
-    if (loading) {
-        return <p>Loading seminars...</p>;
-    }
-
     return (
         <>
             <Nav />

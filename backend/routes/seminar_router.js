@@ -20,10 +20,12 @@ router.delete('/api/delete/:id', (req,res) => {
 
 router.get('/api/feature/:id/:featured', (req,res) => {
     return Seminar.featureSeminar(req.params.featured, req.params.id)
+    .then(seminars => res.status(200).json(seminars))
 })
 
 router.get('/api/featured/', (req,res) => {
     return Seminar.getFeaturedSeminars()
+    .then(seminars => res.status(200).json(seminars))
 })
 
 router.get('/api/seminars/:id/', (req,res) => {

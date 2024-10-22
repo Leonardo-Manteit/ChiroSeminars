@@ -41,15 +41,13 @@ function featureSeminar(featured, seminar_id) {
 }
 
 function getFeaturedSeminars() {
-    let sql = `
-    SELECT * FROM seminars WHERE featured = '1';`
+    let sql = `SELECT id, title, date, location, price FROM seminars WHERE featured = '1';`
     return db.query(sql).then(res => res.rows)
 }
 
 function getSeminars() {
-    let sql = `
-    SELECT * FROM seminars;`
-    return db.query(sql).then(res => console.log(res.rows))
+    let sql = `SELECT * FROM seminars;`
+    return db.query(sql).then(res => res.rows)
 }
 
 function getSeminarsById(seminar_id) {
