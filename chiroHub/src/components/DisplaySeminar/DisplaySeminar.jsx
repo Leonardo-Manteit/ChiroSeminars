@@ -30,6 +30,9 @@ export default function DisplaySeminar() {
         navigate(`/ChiroSeminars/`);
     }
 
+    // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image}` : null;   //for deployed version
+    const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                 //for local testing
+
     return (
         <>
         <Nav />
@@ -42,7 +45,8 @@ export default function DisplaySeminar() {
                     <p><strong>Location:</strong> {seminar.location}</p>
                     <p dangerouslySetInnerHTML={{ __html: seminar.description }} />
                     <p><strong>Price:</strong> {seminar.price}</p>
-                    {/* <img src="/home/jesus/Desktop/newProjects/chiroALL/backend/1729643626519-ContagionRange1.png" alt="seminar image" /> */}
+                    {image_url && <img src={image_url} alt={`Image for ${seminar.title}`} />}
+
                 </div>
             </>
         ) : (
