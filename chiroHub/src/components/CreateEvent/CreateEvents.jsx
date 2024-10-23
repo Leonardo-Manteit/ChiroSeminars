@@ -11,7 +11,7 @@ export default function Create() {
         const formData = new FormData(e.target);
 
         try {
-            const response = await fetch('http://localhost:8000/api/seminar', {
+            const response = await fetch('/api/seminar', {
                 method: 'POST',
                 body: formData,
             })

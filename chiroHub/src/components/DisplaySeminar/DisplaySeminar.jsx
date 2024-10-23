@@ -37,6 +37,7 @@ export default function DisplaySeminar() {
                     <p><strong>Location:</strong> {seminar.location}</p>
                     <p dangerouslySetInnerHTML={{ __html: seminar.description }} />
                     <p><strong>Price:</strong> {seminar.price}</p>
+                    {/* <img src="/home/jesus/Desktop/newProjects/chiroALL/backend/1729643626519-ContagionRange1.png" alt="seminar image" /> */}
                 </div>
             </>
         ) : (
