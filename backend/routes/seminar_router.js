@@ -18,6 +18,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+router.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
+
 // router.get('/api/createSeminar/:title/:organizer/:date/:location/:description/:price/:contact/:img', (req,res) => {
 //     const [title, organizer, date, location, description, price, contact, img] = [req.params.title, req.params.organizer, req.params.date, req.params.location, req.params.description, req.params.price, req.params.contact, req.params.img]
 //     return Seminar.createSeminar(title, organizer, date, location, description, price, contact, img)
