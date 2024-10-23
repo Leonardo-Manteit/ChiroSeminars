@@ -18,25 +18,24 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get('/api/createSeminar/:title/:organizer/:date/:location/:description/:price/:contact/:img', (req,res) => {
-    const [title, organizer, date, location, description, price, contact, img] = [req.params.title, req.params.organizer, req.params.date, req.params.location, req.params.description, req.params.price, req.params.contact, req.params.img]
-    return Seminar.createSeminar(title, organizer, date, location, description, price, contact, img)
-})
+// router.get('/api/createSeminar/:title/:organizer/:date/:location/:description/:price/:contact/:img', (req,res) => {
+//     const [title, organizer, date, location, description, price, contact, img] = [req.params.title, req.params.organizer, req.params.date, req.params.location, req.params.description, req.params.price, req.params.contact, req.params.img]
+//     return Seminar.createSeminar(title, organizer, date, location, description, price, contact, img)
+// })
 
-router.post('/api/update/:id/:title/:organizer/:date/:location/:description/:price/:contact/:img', (req,res) => {
-    const [title, organizer, date, location, description, price, contact, img, id] = [req.params.title, req.params.organizer, req.params.date, req.params.location, req.params.description, req.params.price, req.params.contact, req.params.img, req.params.id]
-    return Seminar.updateSeminar(id, title, organizer, date, location, description, price, contact, img, id)
-})
+// router.post('/api/update/:id/:title/:organizer/:date/:location/:description/:price/:contact/:img', (req,res) => {
+//     const [title, organizer, date, location, description, price, contact, img, id] = [req.params.title, req.params.organizer, req.params.date, req.params.location, req.params.description, req.params.price, req.params.contact, req.params.img, req.params.id]
+//     return Seminar.updateSeminar(id, title, organizer, date, location, description, price, contact, img)
+// })
 
 router.post('/api/seminar', upload.single('image'), async (req,res) => {
     try {
         const { title, organizer, date, location, description, price, contact } = req.body
-        const image = req.file ? req.file.filename : null
+        const image = req.file ? req.file.path : null
         console.log('Received Data:', req.body);
         console.log('Uploaded Image:', req.file);
-
+        // req.file.path is the path to the unique image
         const newSeminar = await Seminar.createSeminar(title, organizer, date, location, description, price, contact, image)
-
         res.status(201).json({message: 'Seminar created', seminar: newSeminar })
         
     } catch(error) {
