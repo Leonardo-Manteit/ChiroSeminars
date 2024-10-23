@@ -9,7 +9,6 @@ export default function Create() {
         e.preventDefault()   
         
         const formData = new FormData(e.target);
-
         try {
             const response = await fetch('/api/seminar', {
                 method: 'POST',
@@ -73,7 +72,11 @@ export default function Create() {
                 <label>Image</label>
                 <input type="file" accept="image/*" name="image" />
             </section>
-
+            <section>
+                <label>Feature</label>
+                <div>Would you like to feature this seminar?</div>
+                <input type="checkbox" name="feature" className={styles.check_box}/>
+            </section>
             <section>
                 <button type='submit'>Submit</button>
             </section>

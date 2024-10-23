@@ -32,10 +32,11 @@ router.post('/api/seminar', upload.single('image'), async (req,res) => {
     try {
         const { title, organizer, date, location, description, price, contact } = req.body
         const image = req.file ? req.file.path : null
+        const feature = req.body.feature === 'on' ? 1 : 0
         console.log('Received Data:', req.body);
         console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
-        const newSeminar = await Seminar.createSeminar(title, organizer, date, location, description, price, contact, image)
+        const newSeminar = await Seminar.createSeminar(title, organizer, date, location, description, price, contact, image, feature)
         res.status(201).json({message: 'Seminar created', seminar: newSeminar })
         
     } catch(error) {

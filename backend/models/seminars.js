@@ -14,15 +14,15 @@ function updateSeminar(title, organizer, date, location, description, price, con
             .then(res => res.rows)
 }
 
-function createSeminar(title, organizer, date, location, description, price, contact, image) {
+function createSeminar(title, organizer, date, location, description, price, contact, image, featured) {
 
     let sql = `INSERT INTO seminars   
-    (title, organizer, date, location, description, price, contact, image_url)
+    (title, organizer, date, location, description, price, contact, image_url, featured)
     VALUES 
-    ($1, $2, $3, $4, $5, $6, $7, $8)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9)
     RETURNING *;
     `;
-    return db.query(sql, [title, organizer, date, location, description, price, contact, image])
+    return db.query(sql, [title, organizer, date, location, description, price, contact, image, featured])
             .then(res => res.rows)
 
 }
