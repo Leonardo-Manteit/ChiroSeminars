@@ -3,6 +3,7 @@ import Footer from "../Footer/Footer"
 import { getSeminarById } from "../../utils/seminar_api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import FeatureBtn from "../FeatureBtn/FeatureBtn";
 
 export default function DisplaySeminar() {
     const navigate = useNavigate();
@@ -21,8 +22,12 @@ export default function DisplaySeminar() {
         return <p className="events" id="events">Loading selected seminar...</p>;
     }
 
-    function handleNavigate() {
+    function navSeminars() {
         navigate(`/ChiroSeminars/Seminars`);
+    }
+
+    function navUpdate() {
+        navigate(`/ChiroSeminars/`);
     }
 
     return (
@@ -43,7 +48,8 @@ export default function DisplaySeminar() {
         ) : (
             <p>No seminars available.</p>
         )}
-        <button onClick={() => handleNavigate()}>Go back to Seminar List</button>
+        <button onClick={() => navUpdate()}>Update Seminar</button>
+        <button onClick={() => navSeminars()}>Go back to Seminar List</button>
         <Footer />
     </>
     )

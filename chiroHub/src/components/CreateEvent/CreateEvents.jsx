@@ -1,6 +1,7 @@
 import styles from './CreateEvents.module.css'
 import Nav from '../Nav/Nav.jsx'
 import Footer from '../Footer/Footer.jsx';
+import FeatureBtn from '../FeatureBtn/FeatureBtn.jsx';
 // import { saveSeminar } from '../../models/seminar_router.js'
 
 export default function Create() {
@@ -72,11 +73,7 @@ export default function Create() {
                 <label>Image</label>
                 <input type="file" accept="image/*" name="image" />
             </section>
-            <section>
-                <label>Feature</label>
-                <div>Would you like to feature this seminar?</div>
-                <input type="checkbox" name="feature" className={styles.check_box}/>
-            </section>
+            <FeatureBtn />
             <section>
                 <button type='submit'>Submit</button>
             </section>
