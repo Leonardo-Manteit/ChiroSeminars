@@ -1,6 +1,6 @@
 .loginContainer {
     display: flex;
-    background-color: #18221a;
+    background-color: #f5ebcf;
     height: 100%;
     width: 70%;
     margin: 0 auto;
@@ -16,19 +16,20 @@
     margin: 0 auto;
     color: #49d43c;
     width: fit-content;
-    background-color: #333333;
-    border-radius: 5px;
+    background-color: #f8f3e4;
+    border-radius: 25px;
     box-shadow: 5px 5px #49d43c7e;
+    top: 20px;
 }
 
 .login h1 {
     margin: 0;
     font-size: 3rem;
-    color: #49d43c;
+    color: darkgreen;
 }
 .login h2 {
     font-size: 2rem;
-    color: #49d43c;
+    color: darkgreen;
 }
 .btn {
     margin-top: 5px;
@@ -38,17 +39,19 @@
 .btnCreate, .btn {
     border: 1px solid rgb(201, 201, 201);
     border-radius: 25px;
-    background-color: #49d43c71;
+    background-color: blue;
     color: #dadada;
     padding: 0.5rem 1rem;
     font-size: medium;
     margin-bottom: 15px;
+    border: 2px solid white;
 }
 
 .btn:hover, .btnCreate:hover {
-    background-color: #5e5e5e;
     color: #e2e2e2;
     transition: 0.1s;
+    background-color: blueviolet;
+    border: 2px solid grey;
 }
 
 .btn:active, .btnCreate:active {
@@ -59,4 +62,6 @@
 .inputs {
     padding: 5px 10px;
     border-radius: 15px;
+    color: black;
+    box-shadow: 5px 5px #49d43c7e;
 }
