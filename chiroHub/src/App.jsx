@@ -3,6 +3,7 @@ import Root from './components/Root/Root'
 // import Nav from './components/Nav/Nav';
 // import Footer from './components/Footer/Footer';
 import CreateEvents from './components/CreateEvent/CreateEvents';
+import EditEvent from './components/EditEvent/EditEvent';
 import Featured from './components/Featured/Featured';
 import GetUpdates from './components/GetUpdates/GetUpdates';
 import TopicList from './components/TopicList/TopicList';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/ChiroSeminars/Seminars" element={<Seminars />} />
         <Route path="/ChiroSeminars/Topics" element={<TopicList />} />
         <Route path="/ChiroSeminars/CreateEvent" element={<CreateEvents />} />
+        <Route path="/ChiroSeminars/EditEvent/:id" element={<EditEvent />} />
         <Route path="/ChiroSeminars/Testimonials" element={<Testimonials />} />
         <Route path="/ChiroSeminars/Updates" element={<GetUpdates />} />
         <Route path="/ChiroSeminars/Contact" element={<Contact />} />

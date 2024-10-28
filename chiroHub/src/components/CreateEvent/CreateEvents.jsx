@@ -73,7 +73,7 @@ export default function Create() {
                 <label>Image</label>
                 <input type="file" accept="image/*" name="image" />
             </section>
-            <FeatureBtn />
+            <FeatureBtn preFeatured={false}/>
             <section>
                 <button type='submit'>Submit</button>
             </section>

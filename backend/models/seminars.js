@@ -1,21 +1,7 @@
 const db = require('../db')
 
-function updateSeminar(title, organizer, date, location, description, price, contact, id) {
-
-    let sql = `ALTER TABLE seminars   
-    (title organizer, date, location, description, price, contact)
-    VALUES 
-    ($1, $2, $3, $4, $5, $6, $7)
-    WHERE id = $8
-    RETURNING *;
-    `;
-
-    return db.query(sql, [organizer, date, location, description, price, contact, title, id])
-            .then(res => res.rows)
-}
-
 function createSeminar(title, organizer, date, location, description, price, contact, image, featured) {
-
+    
     let sql = `INSERT INTO seminars   
     (title, organizer, date, location, description, price, contact, image_url, featured)
     VALUES 
@@ -23,8 +9,22 @@ function createSeminar(title, organizer, date, location, description, price, con
     RETURNING *;
     `;
     return db.query(sql, [title, organizer, date, location, description, price, contact, image, featured])
-            .then(res => res.rows)
+    .then(res => res.rows)
+    
+}
 
+function updateSeminar(title, organizer, date, location, description, price, contact, image, featured, id) {
+
+    let sql = `ALTER TABLE seminars   
+    (title, organizer, date, location, description, price, contact, image_url, featured)
+    VALUES 
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    WHERE id = $10
+    RETURNING *;
+    `;
+
+    return db.query(sql, [title, organizer, date, location, description, price, contact, image, featured, id])
+            .then(res => res.rows)
 }
 
 function deleteSeminar(seminar_id) {
@@ -41,12 +41,12 @@ function featureSeminar(featured, seminar_id) {
 }
 
 function getFeaturedSeminars() {
-    let sql = `SELECT id, title, date, location, price FROM seminars WHERE featured = '1';`
+    let sql = `SELECT * FROM seminars WHERE featured = '1';`
     return db.query(sql).then(res => res.rows)
 }
 
 function getSeminars() {
-    let sql = `SELECT id, title, date, location, price FROM seminars;`
+    let sql = `SELECT * FROM seminars;`
     return db.query(sql).then(res => res.rows)
 }
 

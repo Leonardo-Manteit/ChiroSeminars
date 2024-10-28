@@ -48,6 +48,24 @@ router.post('/api/seminar', upload.single('image'), async (req,res) => {
     }  
 })
 
+router.post('/api/seminar/update/:id', upload.single('image'), async (req,res) => {
+    try {
+        const { title, organizer, date, location, description, price, contact } = req.body
+        const id = req.params.id
+        const image = req.file ? req.file.path : null
+        const feature = req.body.feature === 'on' ? 1 : 0
+        console.log('Received Data:', req.body);
+        console.log('Uploaded Image:', req.file);
+        // req.file.path is the path to the unique image
+        const newSeminar = await Seminar.updateSeminar(title, organizer, date, location, description, price, contact, image, feature, id)
+        res.status(201).json({message: 'Seminar created', seminar: newSeminar })
+        
+    } catch(error) {
+        console.log('router.post error: ', error);
+        res.status(500).json({error: 'Failed to create seminar.'})
+    }  
+})
+
 router.delete('/api/delete/:id', (req,res) => {
     return Seminar.deleteSeminar(req.params.id)
 })

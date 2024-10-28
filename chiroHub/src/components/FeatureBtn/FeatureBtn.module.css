@@ -12,10 +12,6 @@
     transition: background-color 0.2s ease;
   }
 
-  .check_box:hover {
-    background-color: #5c5c5c;
-  }
-
   .check_box:checked {
     text-align: center;
     background-color: #4CAF50;
