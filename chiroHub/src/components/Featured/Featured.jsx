@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getFeatured } from "../../utils/seminar_api"
 import styles from './Featured.module.css'
 import { useNavigate } from "react-router-dom";
+import ShortDisplaySeminar from "../ShortDisplaySeminar/ShortDisplaySeminar";
 
 
 
@@ -31,15 +32,7 @@ export default function Featured() {
         <secton className={styles.display}>
         {featured.length > 0 ? (
             <>
-                {featured.map(seminar => (
-                    <div className={styles.featured}key={seminar.id}>
-                        <h4 style={{color: 'red'}}>{seminar.title}</h4>
-                        <p><strong>Date:</strong> {seminar.date}</p>
-                        <p><strong>Location:</strong> {seminar.location}</p>
-                        <p><strong>Price:</strong> {seminar.price}</p>
-                        <button onClick={() => handleNavigate(seminar.id)}>Visit Seminar</button>
-                    </div>
-                ))}
+                {featured.map(seminar => ( <ShortDisplaySeminar seminar={seminar} />))}
             </>
             ) : (
                 <p>No Featured seminars.</p>
