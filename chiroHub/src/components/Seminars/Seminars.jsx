@@ -18,7 +18,6 @@ export default function Seminars() {
     if (loading) {
         return (<p>Loading seminars...</p>);
     }
-
     return (
         <>
             <Nav />

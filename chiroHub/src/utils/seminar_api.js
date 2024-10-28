@@ -8,7 +8,7 @@ export async function getSeminars() {
 
 export async function getFeatured() {
     let res = await axios.get(`/api/featured/`)
-    // console.log(res)
+    console.log(res)
     return res.data
 }
 
