@@ -17,3 +17,9 @@ export async function getSeminarById(seminar_id) {
     console.log(res)
     return res.data
 }
+
+export async function deleteSeminar(seminar_id) {
+    let res = await axios.delete(`/api/delete/${seminar_id}`)
+    console.log(res)
+    return res.data
+}

@@ -28,7 +28,7 @@ function createSeminar(title, organizer, date, location, description, price, con
 }
 
 function deleteSeminar(seminar_id) {
-    let sql = 'DELETE FROM seminars WHERE id = $1;'
+    let sql = 'DELETE FROM seminars WHERE id = $1 RETURNING *;'
     return db.query(sql, [seminar_id]).then(res => res.rows[0])
 }
 
