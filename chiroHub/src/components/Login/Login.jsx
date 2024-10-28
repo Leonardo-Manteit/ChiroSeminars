@@ -49,47 +49,47 @@ export default function Login(props) {
     }
     return (
     <>
-    <Nav />
-    <div className={styles.loginContainer}>
-        <section className={styles.login}>
-            <h1>Prepare for Battle</h1>
-            {logging ? <>
-            <h2>- Login -</h2>
-            <div style={{color:"red", fontSize:'1.15rem', fontWeight:'700'}}>{message}</div>
-            <form action="" onSubmit={tryLogin}>
-                <label htmlFor="" > Email: </label>
-                <input className={styles.inputs} type="Email" onChange={handleChangeLogin} name="email"/>
-                <br />
-                <label htmlFor="" >Username: </label>
-                <input className={styles.inputs} type="text" onChange={handleChangeLogin} name="username"/>
-                <br />
-                <label htmlFor="" > Password: </label>
-                <input className={styles.inputs} type="password" onChange={handleChangeLogin} name="password"/> 
-                <br /><button className={styles.btn}>Login</button>
-            </form>
-            <p>Don't have an account? <button className={styles.btnCreate} onClick={handleSwitch}>Sign Up</button></p>
-            </>
-            : <>
-            <h2>- Sign Up -</h2>
-            <div style={{color:"red", fontSize:'1.15rem', fontWeight:'700'}} >{message}</div>
-            <form action="" onSubmit={trySignUp}>
-                <label htmlFor="" > Email: </label>
-                <input className={styles.inputs} type="Email" onChange={handleChangeSignUp} name="email"/>
-                <br />
-                <label htmlFor="" >Username: </label>
-                <input className={styles.inputs} type="text" onChange={handleChangeSignUp} name="username"/>
-                <br />
-                <label htmlFor="" > Password: </label>
-                <input className={styles.inputs} type="password" onChange={handleChangeSignUp} name="password"/>
-                <br /> <button className={styles.btn}>Sign Up</button>
-            </form> 
-            <p>Have an account? <button className={styles.btnCreate} onClick={handleSwitch}>Login</button></p>
-            </> }
-        {/* <p>Just want to try? <DemoBtn setFormData={setFormData} formData={formData} props={props}/></p> */}
-        </section>
-        <br />
+        <Nav />
+        <div className={styles.loginContainer}>
+            <section className={styles.login}>
+                <h1>- Login -</h1>
+                {logging ? <>
+                <h2>enter details</h2>
+                <div style={{color:"red", fontSize:'1.15rem', fontWeight:'700'}}>{message}</div>
+                <form action="" onSubmit={tryLogin}>
+                    <label htmlFor="" > Email: </label>
+                    <input className={styles.inputs} type="Email" onChange={handleChangeLogin} name="email"/>
+                    <br />
+                    <label htmlFor="" >Username: </label>
+                    <input className={styles.inputs} type="text" onChange={handleChangeLogin} name="username"/>
+                    <br />
+                    <label htmlFor="" > Password: </label>
+                    <input className={styles.inputs} type="password" onChange={handleChangeLogin} name="password"/> 
+                    <br /><button className={styles.btn}>Login</button>
+                </form>
+                <p>Don't have an account? <button className={styles.btnCreate} onClick={handleSwitch}>Sign Up</button></p>
+                </>
+                : <>
+                <h2>- Sign Up -</h2>
+                <div style={{color:"red", fontSize:'1.15rem', fontWeight:'700'}} >{message}</div>
+                <form action="" onSubmit={trySignUp}>
+                    <label htmlFor="" > Email: </label>
+                    <input className={styles.inputs} type="Email" onChange={handleChangeSignUp} name="email"/>
+                    <br />
+                    <label htmlFor="" >Username: </label>
+                    <input className={styles.inputs} type="text" onChange={handleChangeSignUp} name="username"/>
+                    <br />
+                    <label htmlFor="" > Password: </label>
+                    <input className={styles.inputs} type="password" onChange={handleChangeSignUp} name="password"/>
+                    <br /> <button className={styles.btn}>Sign Up</button>
+                </form> 
+                <p>Have an account? <button className={styles.btnCreate} onClick={handleSwitch}>Login</button></p>
+                </> }
+            {/* <p>Just want to try? <DemoBtn setFormData={setFormData} formData={formData} props={props}/></p> */}
+            </section>
+            <br />
+        </div>
         <Footer />
-    </div>
     </>
     )
 } 
