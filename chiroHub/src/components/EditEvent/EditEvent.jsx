@@ -9,27 +9,19 @@ export default function EditEvent() {
     const location = useLocation();
     const { seminar } = location.state || {};
     const [formData, setFormData] = useState(seminar);
-    // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image}` : null;   //for deployed version
-    const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                 //for local testing
+    const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null; // for local testing
     const [previewImage, setPreviewImage] = useState(image_url); // Initial image preview
+
     function handleChange(e) {
-        console.log(e.target.checked)
-        if (e.target.name === 'featured') {
-            e.target.checked
-            ? 
+        const { name, value, files, checked } = e.target; // Destructure checked state
+
+        if (name === 'featured') {
+            // Directly set featured based on checkbox state
             setFormData((prevFormData) => ({
                 ...prevFormData,
-                'featured': 'off'
-            })) 
-            :
-            setFormData((prevFormData) => ({
-                ...prevFormData,
-                'featured': 'on'
-            })) 
-        }
-        const { name, value, files } = e.target;
-        // Check if it's the file input
-        if (name === 'image' && files.length > 0) {
+                'featured': checked ? 'on' : 'off', // Use checked here
+            }));
+        } else if (name === 'image' && files.length > 0) {
             const file = files[0];
             setFormData((prevFormData) => ({
                 ...prevFormData,
@@ -47,7 +39,6 @@ export default function EditEvent() {
     async function handleSubmit(e) {
         e.preventDefault();
         const newFormData = new FormData();
-        console.log(newFormData)
         
         // Append all fields to FormData
         Object.entries(formData).forEach(([key, value]) => {
@@ -77,7 +68,6 @@ export default function EditEvent() {
             console.log('formData could NOT send, error: ', error);
         }
         navigate(`/ChiroSeminars/DisplaySeminar/${seminar.id}`);
-
     }
 
     return (
@@ -124,7 +114,13 @@ export default function EditEvent() {
                     <section>
                         <label>Feature</label>
                         <div>Would you like to feature this seminar?</div>
-                        <input checked={formData.featured === 'on' ? true : false} type="checkbox" name="featured" className='check_box' onClick={handleChange}/>
+                        <input 
+                            checked={formData.featured === 'on'} 
+                            type="checkbox" 
+                            name="featured" 
+                            className='check_box' 
+                            onChange={handleChange}
+                        />
                     </section>
                     <section>
                         <button type="submit">Update</button>
