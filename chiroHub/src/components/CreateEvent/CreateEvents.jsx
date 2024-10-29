@@ -1,7 +1,6 @@
 import styles from './CreateEvents.module.css';
 import Nav from '../Nav/Nav.jsx';
 import Footer from '../Footer/Footer.jsx';
-import FeatureBtn from '../FeatureBtn/FeatureBtn.jsx';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 
@@ -94,7 +93,11 @@ export default function Create() {
                             <img src={imagePreview} alt="Image Preview" className={styles.imagePreview} style={{ width: '100px', height: 'auto', marginBottom: '10px' }}/>
                         </section>
                     )}
-                    <FeatureBtn preFeatured={false} />
+                   <section>
+                        <label>Feature</label>
+                        <div>Would you like to feature this seminar?</div>
+                        <input type="checkbox" name="featured" className='check_box' />
+                    </section>
                     <section>
                         <button type='submit'>Submit</button>
                     </section>

@@ -1,7 +1,6 @@
 import styles from '../CreateEvent/CreateEvents.module.css';
 import Nav from '../Nav/Nav.jsx';
 import Footer from '../Footer/Footer.jsx';
-import FeatureBtn from '../FeatureBtn/FeatureBtn.jsx';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -13,10 +12,22 @@ export default function EditEvent() {
     // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image}` : null;   //for deployed version
     const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                 //for local testing
     const [previewImage, setPreviewImage] = useState(image_url); // Initial image preview
-
     function handleChange(e) {
+        console.log(e.target.checked)
+        if (e.target.name === 'featured') {
+            e.target.checked
+            ? 
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                'featured': 'off'
+            })) 
+            :
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                'featured': 'on'
+            })) 
+        }
         const { name, value, files } = e.target;
-        
         // Check if it's the file input
         if (name === 'image' && files.length > 0) {
             const file = files[0];
@@ -36,7 +47,8 @@ export default function EditEvent() {
     async function handleSubmit(e) {
         e.preventDefault();
         const newFormData = new FormData();
-
+        console.log(newFormData)
+        
         // Append all fields to FormData
         Object.entries(formData).forEach(([key, value]) => {
             newFormData.append(key, value);
@@ -109,7 +121,11 @@ export default function EditEvent() {
                         )}
                         <input type="file" accept="image/*" name="image" onChange={handleChange} />
                     </section>
-                    <FeatureBtn preFeatured={formData.featured === 'on' ? true : false} />
+                    <section>
+                        <label>Feature</label>
+                        <div>Would you like to feature this seminar?</div>
+                        <input checked={formData.featured === 'on' ? true : false} type="checkbox" name="featured" className='check_box' onClick={handleChange}/>
+                    </section>
                     <section>
                         <button type="submit">Update</button>
                     </section>
