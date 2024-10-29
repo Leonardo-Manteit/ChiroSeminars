@@ -17,9 +17,9 @@ export default function Footer() {
         <section className={styles.footerReading}>
             <ul>
                 <h4>External refs</h4>
-                <li><a href="https://chirohubseminars.com/">ChiroHub</a></li>
-                <li><a href="">Dr. Manteite</a></li>
-                <li><a href="">Partner Practice</a></li>
+                <li><a href="https://chirohubseminars.com/" target='_blank'>ChiroHub</a></li>
+                <li><a href="" target='_blank'>Dr. Manteite</a></li>
+                <li><a href="" target='_blank'>Partner Practice</a></li>
             </ul>
         </section>
 
