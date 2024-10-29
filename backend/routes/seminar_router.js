@@ -33,12 +33,12 @@ router.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 router.post('/api/seminar', upload.single('image'), async (req,res) => {
     try {
-        const { title, organizer, date, location, description, price, contact, feature } = req.body
+        const { title, organizer, date, location, description, price, contact, featured } = req.body
         const image = req.file ? req.file.path : null
         console.log('Received Data:', req.body);
         console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
-        const newSeminar = await Seminar.createSeminar(title, organizer, date, location, description, price, contact, image, feature)
+        const newSeminar = await Seminar.createSeminar(title, organizer, date, location, description, price, contact, image, featured)
         res.status(201).json({message: 'Seminar created', seminar: newSeminar })
         
     } catch(error) {
@@ -49,13 +49,13 @@ router.post('/api/seminar', upload.single('image'), async (req,res) => {
 
 router.post('/api/seminar/update/:id', upload.single('image'), async (req,res) => {
     try {
-        const { title, organizer, date, location, description, price, contact, feature } = req.body
+        const { title, organizer, date, location, description, price, contact, featured } = req.body
         const id = req.params.id
         const image = req.file ? req.file.path : req.body.image_url
         console.log('Received Data:', req.body);
         console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
-        const newSeminar = await Seminar.updateSeminar(title, organizer, date, location, description, price, contact, image, feature, id)
+        const newSeminar = await Seminar.updateSeminar(title, organizer, date, location, description, price, contact, image, featured, id)
         res.status(201).json({message: 'Seminar created', seminar: newSeminar })
         
     } catch(error) {
