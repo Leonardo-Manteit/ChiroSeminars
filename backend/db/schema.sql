@@ -21,7 +21,7 @@ CREATE TABLE seminars (
     contact TEXT,
     username_list TEXT[],
     image_url TEXT,
-    featured INTEGER
+    featured TEXT
 );
 
 ALTER TABLE users

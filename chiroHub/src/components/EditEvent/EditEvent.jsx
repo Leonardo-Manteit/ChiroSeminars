@@ -10,7 +10,9 @@ export default function EditEvent() {
     const location = useLocation();
     const { seminar } = location.state || {};
     const [formData, setFormData] = useState(seminar);
-    const [previewImage, setPreviewImage] = useState(seminar.image_url); // Initial image preview
+    // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image}` : null;   //for deployed version
+    const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                 //for local testing
+    const [previewImage, setPreviewImage] = useState(image_url); // Initial image preview
 
     function handleChange(e) {
         const { name, value, files } = e.target;
@@ -41,8 +43,13 @@ export default function EditEvent() {
         });
 
         // If no new image is selected, append the existing image_url instead
-        if (!formData.image) {
+        if (!formData.image_url) {
             newFormData.append('image_url', seminar.image_url);
+        }
+
+        // If no new feature setting is selected, keep original feature setting
+        if (!formData.featured) {
+            newFormData.append('featured', seminar.featured);
         }
 
         try {
@@ -89,7 +96,7 @@ export default function EditEvent() {
                     </section>
                     <section>
                         <label>Contact</label>
-                        <input type="email" name="contact" placeholder="Phone or Email" value={formData.contact} onChange={handleChange} required />
+                        <input type="email" name="contact" placeholder="Email" value={formData.contact} onChange={handleChange} required />
                     </section>
                     <section>
                         <label>Description</label>
@@ -102,7 +109,7 @@ export default function EditEvent() {
                         )}
                         <input type="file" accept="image/*" name="image" onChange={handleChange} />
                     </section>
-                    <FeatureBtn preFeatured={formData.featured ? true : false} />
+                    <FeatureBtn preFeatured={formData.featured === 'on' ? true : false} />
                     <section>
                         <button type="submit">Update</button>
                     </section>

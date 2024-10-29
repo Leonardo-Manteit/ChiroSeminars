@@ -33,9 +33,8 @@ router.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 router.post('/api/seminar', upload.single('image'), async (req,res) => {
     try {
-        const { title, organizer, date, location, description, price, contact } = req.body
+        const { title, organizer, date, location, description, price, contact, feature } = req.body
         const image = req.file ? req.file.path : null
-        const feature = req.body.feature === 'on' ? 1 : 0
         console.log('Received Data:', req.body);
         console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
@@ -50,10 +49,9 @@ router.post('/api/seminar', upload.single('image'), async (req,res) => {
 
 router.post('/api/seminar/update/:id', upload.single('image'), async (req,res) => {
     try {
-        const { title, organizer, date, location, description, price, contact } = req.body
+        const { title, organizer, date, location, description, price, contact, feature } = req.body
         const id = req.params.id
-        const image = req.file ? req.file.path : null
-        const feature = req.body.feature === 'on' ? 1 : 0
+        const image = req.file ? req.file.path : req.body.image_url
         console.log('Received Data:', req.body);
         console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
