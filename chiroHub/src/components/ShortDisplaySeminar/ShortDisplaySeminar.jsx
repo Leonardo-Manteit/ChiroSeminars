@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { deleteSeminar } from "../../utils/seminar_api";
 import { useState } from "react";
+import EditBtn from "../EditBtn/EditBtn";
 
 export default function ShortDisplaySeminar({seminar}) {
     const navigate = useNavigate();
@@ -15,11 +16,6 @@ export default function ShortDisplaySeminar({seminar}) {
         deleteSeminar(id)
     }
 
-    function handleEdit(seminar) {
-        navigate(`/ChiroSeminars/EditEvent/${seminar.id}`, {
-            state: {seminar},
-        });
-    }
 
     return (
         <div key={seminar.id} style={{display: deleted}}>
@@ -29,7 +25,7 @@ export default function ShortDisplaySeminar({seminar}) {
             <p><strong>Price:</strong> {seminar.price}</p>
             <button onClick={() => handleNavigate(seminar.id)}>Visit Seminar</button>
             <button onClick={() => handleDelete(seminar.id)}>Delete Seminar</button>
-            <button onClick={() => handleEdit(seminar)}>Edit Seminar</button>
+            <EditBtn seminar={seminar}/>
         </div>
     )
 }
