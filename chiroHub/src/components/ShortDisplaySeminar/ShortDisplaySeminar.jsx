@@ -15,10 +15,11 @@ export default function ShortDisplaySeminar({seminar}) {
         setDeleted('none')
         deleteSeminar(id)
     }
-
+    console.log(seminar)
 
     return (
-        <div key={seminar.id} style={{display: deleted}}>
+        <div key={seminar.id} 
+        style={{display: deleted ? 'none' : 'block'}}>
             <h4 style={{color: 'red'}}>{seminar.title}</h4>
             <p><strong>Date:</strong> {seminar.date}</p>
             <p><strong>Location:</strong> {seminar.location}</p>

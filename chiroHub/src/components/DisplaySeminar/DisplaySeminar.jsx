@@ -3,7 +3,6 @@ import Footer from "../Footer/Footer"
 import { getSeminarById } from "../../utils/seminar_api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import FeatureBtn from "../FeatureBtn/FeatureBtn";
 import EditBtn from "../EditBtn/EditBtn";
 
 export default function DisplaySeminar() {
@@ -42,7 +41,7 @@ export default function DisplaySeminar() {
                     <p><strong>Location:</strong> {seminar.location}</p>
                     <p dangerouslySetInnerHTML={{ __html: seminar.description }} />
                     <p><strong>Price:</strong> {seminar.price}</p>
-                    {image_url && <img src={image_url} alt={`Image for ${seminar.title}`} />}
+                    {image_url && <img src={image_url} style={{height: '100px', width: '100px'}}alt={`Image for ${seminar.title}`} />}
 
                 </div>
             </>
