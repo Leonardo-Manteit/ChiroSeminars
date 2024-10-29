@@ -3,10 +3,12 @@ import Nav from '../Nav/Nav.jsx';
 import Footer from '../Footer/Footer.jsx';
 import FeatureBtn from '../FeatureBtn/FeatureBtn.jsx';
 import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
 
 export default function Create() {
-
+    const [imagePreview, setImagePreview] = useState(null); // State for image preview
     const navigate = useNavigate();
+
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -18,6 +20,7 @@ export default function Create() {
             });
             if (response.ok) {
                 e.target.reset();
+                setImagePreview(null); // Reset image preview after submission
                 console.log('formData SENT');
             }
         } catch (error) {
@@ -25,6 +28,19 @@ export default function Create() {
         }
 
         navigate(`/ChiroSeminars/Seminars`);
+    }
+
+    function handleImageChange(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result); // Set the image preview URL
+            };
+            reader.readAsDataURL(file); // Read the file as a data URL
+        } else {
+            setImagePreview(null); // Reset if no file is selected
+        }
     }
 
     return (
@@ -57,7 +73,7 @@ export default function Create() {
                     </section>
                     <section>
                         <label>Contact</label>
-                        <input type="email" name="contact" placeholder="Phone or Email" required />
+                        <input type="email" name="contact" placeholder="Email" required />
                     </section>
                     <section>
                         <label>Description</label>
@@ -65,8 +81,19 @@ export default function Create() {
                     </section>
                     <section>
                         <label>Image</label>
-                        <input type="file" accept="image/*" name="image" />
+                        <input 
+                            type="file" 
+                            accept="image/*" 
+                            name="image" 
+                            onChange={handleImageChange} // Handle image change
+                        />
                     </section>
+                    {imagePreview && ( // Display preview if an image is selected
+                        <section>
+                            <h4>Image Preview:</h4>
+                            <img src={imagePreview} alt="Image Preview" className={styles.imagePreview} style={{ width: '100px', height: 'auto', marginBottom: '10px' }}/>
+                        </section>
+                    )}
                     <FeatureBtn preFeatured={false} />
                     <section>
                         <button type='submit'>Submit</button>
