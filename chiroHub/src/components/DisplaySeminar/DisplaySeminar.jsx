@@ -4,6 +4,7 @@ import { getSeminarById } from "../../utils/seminar_api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import FeatureBtn from "../FeatureBtn/FeatureBtn";
+import EditBtn from "../EditBtn/EditBtn";
 
 export default function DisplaySeminar() {
     const navigate = useNavigate();
@@ -17,17 +18,13 @@ export default function DisplaySeminar() {
             .then(() => setLoading(false))
             .catch(err => console.error('Direct fetch error:', err));
     }, []);
-    console.log(seminar)
+    
     if (loading) {
         return <p className="events" id="events">Loading selected seminar...</p>;
     }
 
     function navSeminars() {
         navigate(`/ChiroSeminars/Seminars`);
-    }
-
-    function navUpdate() {
-        navigate(`/ChiroSeminars/`);
     }
 
     // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image}` : null;   //for deployed version
@@ -52,7 +49,7 @@ export default function DisplaySeminar() {
         ) : (
             <p>No seminars available.</p>
         )}
-        <button onClick={() => navUpdate()}>Update Seminar</button>
+        <EditBtn seminar={seminar}/>
         <button onClick={() => navSeminars()}>Go back to Seminar List</button>
         <Footer />
     </>

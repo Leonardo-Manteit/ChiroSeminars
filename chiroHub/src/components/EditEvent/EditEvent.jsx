@@ -12,19 +12,20 @@ export default function EditEvent() {
     const [formData, setFormData] = useState(seminar)
 
     function handleChange(e) {
-
-        setFormData(formData[e.target.name] = e.target.value)
-
-        console.log(formData)
+        const { name, value } = e.target;
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: value
+        }));
     }
 
     async function handleSubmit (e) {
         e.preventDefault()
-        console.log('attempting to edit', formData)
+        const newFormData = new FormData(e.target);
         try {
             const response = await fetch(`/api/seminar/update/${seminar.id}`, {
                 method: 'POST',
-                body: formData,
+                body: newFormData,
             })
             if (response.ok) {
                 e.target.reset()
