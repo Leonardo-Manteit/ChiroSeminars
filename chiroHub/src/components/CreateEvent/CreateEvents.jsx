@@ -6,12 +6,38 @@ import { useState } from 'react';
 
 export default function Create() {
     const [imagePreview, setImagePreview] = useState(null); // State for image preview
+    const [selectedTopics, setSelectedTopics] = useState([]); // State for selected topics
     const navigate = useNavigate();
+
+    const availableTopics = [
+        'Adjustment Technique',
+        'Communication',
+        'General Chiropractic',
+        'Neurology',
+        'Nutrition',
+        'Other',
+        'Paediatric',
+        'Practice Growth',
+        'Pregnancy',
+        'Sports/Soft Tissue'
+    ];
+
+    function toggleTopic(topic) {
+        setSelectedTopics((prevTopics) =>
+            prevTopics.includes(topic)
+                ? prevTopics.filter((t) => t !== topic)
+                : [...prevTopics, topic]
+        );
+    }
 
     async function handleSubmit(e) {
         e.preventDefault();
+        console.log('Submitting form with selected topics:', selectedTopics); // Debugging line
 
         const formData = new FormData(e.target);
+        formData.append('topics', JSON.stringify(selectedTopics)); // Append selected topics as JSON
+        console.log('FormData to be sent:', [...formData]); // Debugging line
+
         try {
             const response = await fetch('/api/seminar', {
                 method: 'POST',
@@ -20,10 +46,13 @@ export default function Create() {
             if (response.ok) {
                 e.target.reset();
                 setImagePreview(null); // Reset image preview after submission
+                setSelectedTopics([]); // Clear selected topics
                 console.log('formData SENT');
+            } else {
+                console.error('Failed to send formData:', response.statusText); // Error handling
             }
         } catch (error) {
-            console.log('formData could NOT send, error: ', error);
+            console.error('formData could NOT send, error: ', error); // Error handling
         }
 
         navigate(`/ChiroSeminars/Seminars`);
@@ -45,12 +74,10 @@ export default function Create() {
     return (
         <>
             <Nav />
-
             <div className={styles.createEvent}>
                 <h3>Create Seminar</h3>
-
                 <form className={styles.createForm} onSubmit={handleSubmit}>
-                    <section className={styles.sections-parent}>
+                    <section className={styles.sectionsParent}>
                         <label>Seminar Title</label>
                         <input type="text" name="title" placeholder="Enter seminar title" required />
                     </section>
@@ -87,23 +114,40 @@ export default function Create() {
                             onChange={handleImageChange} // Handle image change
                         />
                     </section>
-                    {imagePreview && ( // Display preview if an image is selected
+                    {imagePreview && (
                         <section>
                             <h4>Image Preview:</h4>
                             <img src={imagePreview} alt="Image Preview" className={styles.imagePreview} style={{ width: '100px', height: 'auto', marginBottom: '10px' }}/>
                         </section>
                     )}
-                   <section>
+
+                    {/* Topic selection section */}
+                    <section>
+                        <label>Select Topics</label>
+                        <div className={styles.topicsContainer}>
+                            {availableTopics.map((topic) => (
+                                <div
+                                    key={topic}
+                                    className={`${styles.topicItem} ${selectedTopics.includes(topic) ? styles.selected : ''}`}
+                                    onClick={() => toggleTopic(topic)}
+                                >
+                                    {topic}
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+                    
+                    <section>
                         <label>Feature</label>
                         <div>Would you like to feature this seminar?</div>
                         <input type="checkbox" name="featured" className='check_box' />
                     </section>
+
                     <section>
                         <button type='submit'>Submit</button>
                     </section>
                 </form>
             </div>
-
             <Footer />
         </>
     );

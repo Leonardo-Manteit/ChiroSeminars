@@ -3,6 +3,7 @@ import Footer from "../Footer/Footer";
 import { getSeminars } from "../../utils/seminar_api";
 import { useEffect, useState } from "react";
 import ShortDisplaySeminar from "../ShortDisplaySeminar/ShortDisplaySeminar";
+import TopicFilter from "../TopicFilter/TopicFilter";
 
 export default function Seminars() {
     const [seminars, setSeminars] = useState([]);  // Start with an empty array
@@ -21,6 +22,7 @@ export default function Seminars() {
     return (
         <>
             <Nav />
+            <TopicFilter />
             <h2>Seminar List</h2>
             {seminars.length > 0 ? seminars.map(seminar => <ShortDisplaySeminar seminar={seminar} />) : (<p>No seminars available.</p>)}
             <Footer />;

@@ -23,7 +23,7 @@ export default function Featured() {
     return (
     <section className="events" id="events">
         <p>Featured Events</p>
-        <secton className={styles.display}>
+        <section className={styles.display}>
         {featured.length > 0 ? (
             <>
                 {featured.map(seminar => ( <ShortDisplaySeminar seminar={seminar} />))}
@@ -31,7 +31,7 @@ export default function Featured() {
             ) : (
                 <p>No Featured seminars.</p>
                 )}
-        </secton>
+        </section>
     </section>
     )
 }

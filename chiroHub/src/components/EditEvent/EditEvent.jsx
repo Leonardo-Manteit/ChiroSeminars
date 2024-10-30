@@ -11,23 +11,33 @@ export default function EditEvent() {
     const [formData, setFormData] = useState(seminar);
     const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null; // for local testing
     const [previewImage, setPreviewImage] = useState(image_url); // Initial image preview
+    // Topic selection state
+    const [selectedTopics, setSelectedTopics] = useState(seminar.topics || []);
+
+    // Function to toggle topic selection
+    function toggleTopic(topic) {
+        setSelectedTopics((prevTopics) =>
+            prevTopics.includes(topic)
+                ? prevTopics.filter((t) => t !== topic)
+                : [...prevTopics, topic]
+        );
+    }
 
     function handleChange(e) {
-        const { name, value, files, checked } = e.target; // Destructure checked state
+        const { name, value, files, checked } = e.target;
 
         if (name === 'featured') {
-            // Directly set featured based on checkbox state
             setFormData((prevFormData) => ({
                 ...prevFormData,
-                'featured': checked ? 'on' : 'off', // Use checked here
+                'featured': checked ? 'on' : 'off',
             }));
         } else if (name === 'image' && files.length > 0) {
             const file = files[0];
             setFormData((prevFormData) => ({
                 ...prevFormData,
-                image: file // Store the new file
+                image: file
             }));
-            setPreviewImage(URL.createObjectURL(file)); // Create preview URL for new image
+            setPreviewImage(URL.createObjectURL(file));
         } else {
             setFormData((prevFormData) => ({
                 ...prevFormData,
@@ -39,18 +49,18 @@ export default function EditEvent() {
     async function handleSubmit(e) {
         e.preventDefault();
         const newFormData = new FormData();
-        
-        // Append all fields to FormData
+
         Object.entries(formData).forEach(([key, value]) => {
             newFormData.append(key, value);
         });
 
-        // If no new image is selected, append the existing image_url instead
+        // Append topics
+        newFormData.append('topics', JSON.stringify(selectedTopics));
+
         if (!formData.image_url) {
             newFormData.append('image_url', seminar.image_url);
         }
 
-        // If no new feature setting is selected, keep original feature setting
         if (!formData.featured) {
             newFormData.append('featured', seminar.featured);
         }
@@ -69,6 +79,10 @@ export default function EditEvent() {
         }
         navigate(`/ChiroSeminars/DisplaySeminar/${seminar.id}`);
     }
+
+    // List of available topics
+    const availableTopics = ['Adjustment Technique', 'Communication', 'General Chiropractic',
+        'Neurology', 'Nutrition', 'Paediatric', 'Practice Growth', 'Pregnancy', 'Sports/Soft Tissue', 'Other' ];
 
     return (
         <>
@@ -111,6 +125,23 @@ export default function EditEvent() {
                         )}
                         <input type="file" accept="image/*" name="image" onChange={handleChange} />
                     </section>
+  
+                    {/* Topic selection section */}
+                    <section>
+                        <label>Select Topics</label>
+                        <div className={styles.topicsContainer}>
+                            {availableTopics.map((topic) => (
+                                <div
+                                    key={topic}
+                                    className={`${styles.topicItem} ${selectedTopics.includes(topic) ? styles.selected : ''}`}
+                                    onClick={() => toggleTopic(topic)}
+                                >
+                                    {topic}
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
                     <section>
                         <label>Feature</label>
                         <div>Would you like to feature this seminar?</div>
@@ -122,6 +153,7 @@ export default function EditEvent() {
                             onChange={handleChange}
                         />
                     </section>
+
                     <section>
                         <button type="submit">Update</button>
                     </section>

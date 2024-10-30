@@ -23,10 +23,13 @@ CREATE TABLE seminars (
     image_url TEXT,
     featured TEXT
 );
+ALTER TABLE seminars
+ADD COLUMN topics TEXT[];
 
 ALTER TABLE users
 ADD CONSTRAINT fk_seminar
 FOREIGN KEY (seminar_id) REFERENCES seminars(id) ON DELETE CASCADE;
 
+ALTER TABLE seminars 
 -- removed from seminars: 
     -- FOREIGN KEY (featured) REFERENCES users(id) ON DELETE CASCADE
