@@ -1,0 +1,68 @@
+.root {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Container for the waves */
+.waveContainer {
+  position: absolute;
+  top: 25%;               /* Position 25% down from the top */
+  left: 0;
+  width: 100%;            /* Full screen width */
+  height: 100px;          /* Height to fit the waves */
+  overflow: hidden;       /* Ensure no overflow is visible */
+  pointer-events: none;   /* Prevent blocking interactions */
+}
+
+/* Common wave styles */
+.wave {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;            /* Extend beyond the screen for looping */
+  height: 100px;
+  animation: moveWave 12s ease-in-out infinite;  /* Smooth infinite animation */
+  opacity: 0.7;
+  pointer-events: none;   /* Prevent blocking interactions */
+}
+
+/* Unique delays for each wave */
+.wave1 { animation-delay: 0s; }
+.wave2 { animation-delay: 2s; }
+.wave3 { animation-delay: 4s; }
+.wave4 { animation-delay: 6s; }
+
+/* Keyframes for seamless movement */
+@keyframes moveWave {
+  0% {
+      transform: translateX(0);      /* Start at the initial position */
+  }
+  50% {
+    transform: translateX(-50%);   /* Move left by half its width */
+}
+  100% {
+      transform: translateX(0%);   /* Move left by half its width */
+  }
+
+}
+  /* @keyframes moveWave {
+    0% {
+      transform: translateX(-600px) scaleX(3);
+    }
+    25% {
+      transform: translateX(-100) scaleX(2.5);
+    }
+    50% {
+      transform: translateX(0) scaleX(3);
+    }
+    75% {
+      transform: translateX(100) scaleX(2.5);
+    }
+    100% {
+      transform: translateX(600px) scaleX(3);
+    }
+ } */
+  
