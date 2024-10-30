@@ -4,6 +4,7 @@ import { getSeminars } from "../../utils/seminar_api";
 import { useEffect, useState } from "react";
 import ShortDisplaySeminar from "../ShortDisplaySeminar/ShortDisplaySeminar";
 import TopicFilter from "../TopicFilter/TopicFilter";
+import styles from '../Featured/Featured.module.css'
 
 export default function Seminars() {
     const [seminars, setSeminars] = useState([]);  // Start with an empty array
@@ -19,13 +20,19 @@ export default function Seminars() {
     if (loading) {
         return (<p>Loading seminars...</p>);
     }
-    return (
-        <>
-            <Nav />
-            <TopicFilter />
-            <h2>Seminar List</h2>
-            {seminars.length > 0 ? seminars.map(seminar => <ShortDisplaySeminar seminar={seminar} />) : (<p>No seminars available.</p>)}
-            <Footer />;
-        </>
-        )
+    return (<>
+        <Nav />
+        <TopicFilter />
+        <h2>Seminar List</h2>
+        <section className={styles.display}>
+        {seminars.length > 0 ? (
+            <>
+                {seminars.map(seminar => ( <ShortDisplaySeminar seminar={seminar} />))}
+            </>
+            ) : (
+                <p>No Seminars.</p>
+                )}
+        </section>
+        <Footer />;
+    </>)
 }

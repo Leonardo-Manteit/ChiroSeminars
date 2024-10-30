@@ -25,12 +25,16 @@ export default function ShortDisplaySeminar({ seminar }) {
             style={{
                 display: deleted ? 'none' : 'block',
                 backgroundImage: `url(${image})`,
+                border: 'black solid 1px',
+                borderRadius: '50px',
                 backgroundSize: 'cover',
+                padding: '15px 50px',
                 backgroundPosition: 'center',
                 width: '40%',          // or specify the width you want
                 height: 'auto'          // specify height as needed
             }}
         >
+            
             <h4 style={{ color: 'red' }}>{seminar.title}</h4>
             <p><strong>Date:</strong> {seminar.date}</p>
             <p><strong>Location:</strong> {seminar.location}</p>
