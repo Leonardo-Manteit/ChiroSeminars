@@ -126,3 +126,8 @@ footer {
   background-color: #007BFF;
   color: white;
 }
+
+#seminar_list {
+  display: flex;
+  flex-wrap: wrap;
+}
