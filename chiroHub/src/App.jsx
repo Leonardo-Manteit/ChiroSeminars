@@ -18,7 +18,6 @@ import DisplaySeminar from './components/DisplaySeminar/DisplaySeminar';
 
 function App() {
   return (
-    
     <Routes>
         <Route path="/ChiroSeminars/" element={<Root />} />
         <Route path="/ChiroSeminars/Featured" element={<Featured />} />
@@ -32,11 +31,8 @@ function App() {
         <Route path="/ChiroSeminars/AboutUs" element={<AboutUs />} />
         <Route path="/ChiroSeminars/Login" element={<Login />} /> 
         <Route path="/ChiroSeminars/DisplaySeminar/:id" element={<DisplaySeminar />} /> 
-
     </Routes>
-   
-          
-  );
+   );
 }
 
 export default App;
