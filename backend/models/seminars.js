@@ -1,20 +1,19 @@
 const db = require('../db')
 
-function createSeminar(title, organizer, date, location, description, price, contact, image, featured) {
+function createSeminar(title, organizer, date, location, description, price, contact, image, featured, topics) {
     
     let sql = `INSERT INTO seminars   
-    (title, organizer, date, location, description, price, contact, image_url, featured)
+    (title, organizer, date, location, description, price, contact, image_url, featured, topics)
     VALUES 
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
     RETURNING *;
     `
-    return db.query(sql, [title, organizer, date, location, description, price, contact, image, featured])
+    console.log(sql, [title, organizer, date, location, description, price, contact, image, featured, topics])
+    return db.query(sql, [title, organizer, date, location, description, price, contact, image, featured, topics])
     .then(res => res.rows)
-    
 }
 
-function updateSeminar(title, organizer, date, location, description, price, contact, image, featured, id) {
-
+function updateSeminar(title, organizer, date, location, description, price, contact, image, featured, topics, id) {
     let sql = `UPDATE seminars
     SET 
         title = $1,
@@ -25,11 +24,12 @@ function updateSeminar(title, organizer, date, location, description, price, con
         price = $6,
         contact = $7,
         image_url = $8,
-        featured = $9
-    WHERE id = $10
+        featured = $9,
+        topics = $10
+    WHERE id = $11
     RETURNING *;
     `
-    return db.query(sql, [title, organizer, date, location, description, price, contact, image, featured, id])
+    return db.query(sql, [title, organizer, date, location, description, price, contact, image, featured, topics, id])
             .then(res => res.rows)
 }
 

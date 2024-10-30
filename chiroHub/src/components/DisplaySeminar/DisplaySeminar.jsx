@@ -39,8 +39,9 @@ export default function DisplaySeminar() {
                     <p><strong>Organizer:</strong> {seminar.organizer}</p>
                     <p><strong>Date:</strong> {seminar.date}</p>
                     <p><strong>Location:</strong> {seminar.location}</p>
-                    <p dangerouslySetInnerHTML={{ __html: seminar.description }} />
+                    <p><strong>Description:</strong> {seminar.location}<span dangerouslySetInnerHTML={{ __html: seminar.description }} /></p>
                     <p><strong>Price:</strong> {seminar.price}</p>
+                    <p><strong>Contact:</strong> {seminar.contact}</p>
                     {image_url && <img src={image_url} style={{height: '100px', width: '100px'}}alt={`Image for ${seminar.title}`} />}
 
                 </div>

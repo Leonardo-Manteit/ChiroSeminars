@@ -6,7 +6,7 @@ import CreateEvents from './components/CreateEvent/CreateEvents';
 import EditEvent from './components/EditEvent/EditEvent';
 import Featured from './components/Featured/Featured';
 import GetUpdates from './components/GetUpdates/GetUpdates';
-import TopicList from './components/TopicList/TopicList';
+import TopicFilter from './components/TopicFilter/TopicFilter';
 import Testimonials from './components/Testimonials/Testimonials';
 // import SearchBar from './components/SearchBar/SearchBar';
 import './App.css';
@@ -23,7 +23,7 @@ function App() {
         <Route path="/ChiroSeminars/" element={<Root />} />
         <Route path="/ChiroSeminars/Featured" element={<Featured />} />
         <Route path="/ChiroSeminars/Seminars" element={<Seminars />} />
-        <Route path="/ChiroSeminars/Topics" element={<TopicList />} />
+        <Route path="/ChiroSeminars/Topics" element={<TopicFilter />} />
         <Route path="/ChiroSeminars/CreateEvent" element={<CreateEvents />} />
         <Route path="/ChiroSeminars/EditEvent/:id" element={<EditEvent />} />
         <Route path="/ChiroSeminars/Testimonials" element={<Testimonials />} />
