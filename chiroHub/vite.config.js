@@ -4,10 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  build: {
-    target: ['esnext'],
-    assetsDir: 'assets', 
-  },
+  base: '/',  
   server: {
     proxy: {
       '/api': 'http://localhost:8000'
