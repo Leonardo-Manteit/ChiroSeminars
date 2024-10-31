@@ -9,8 +9,8 @@ export default function EditEvent() {
     const location = useLocation();
     const { seminar } = location.state || {};
     const [formData, setFormData] = useState(seminar);
-    const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null; // for local testing
-    // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image}` : null;   //for deployed version
+    // const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null; // for local testing
+    const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}` : null;   //for deployed version
     const [previewImage, setPreviewImage] = useState(image_url); // Initial image preview
     // Topic selection state
     const [selectedTopics, setSelectedTopics] = useState(seminar.topics || []);
