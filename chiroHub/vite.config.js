@@ -3,8 +3,11 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/ChiroSeminars/', // Use the path relevant to your deployment
   plugins: [react()],
+  build: {
+    target: ['esnext'],
+    assetsDir: 'assets', 
+  },
   server: {
     proxy: {
       '/api': 'http://localhost:8000'
