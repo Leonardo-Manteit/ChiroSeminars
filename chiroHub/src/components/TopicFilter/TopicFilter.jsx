@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function topicFilter() {
+export default function topicFilter({selectedTopic, setSelectedTopic}) {
     const topics = [
         'Adjustment Technique',
         'Communication',
@@ -14,7 +14,6 @@ export default function topicFilter() {
         'Other'
     ];
 
-    const [selectedTopic, setSelectedTopic] = useState(null);
 
     function handleTopicClick(topic) {
         setSelectedTopic(prevSelected => (prevSelected === topic ? null : topic));
