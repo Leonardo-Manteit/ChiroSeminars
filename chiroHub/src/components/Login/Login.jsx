@@ -6,11 +6,13 @@ import Nav from "../Nav/Nav"
 import { useNavigate } from "react-router-dom"
 
 export default function Login(props) {
-    const [formData, setFormData] = useState({ email:'', username:'', password:''})
-    const [newUser, setNewUser] = useState({ email:'', username:'', password:''})
+    const [formData, setFormData] = useState({ email:'', username:'', password:'', role: 'user'})
+    const [newUser, setNewUser] = useState({ email:'', username:'', password:'', role: 'user'})
     const [logging, setLogging] = useState(true)
     const [message, setMessage] = useState(null)
+
     const navigate = useNavigate()
+
     async function tryLogin(e) {
         e.preventDefault()
         try {
@@ -47,6 +49,11 @@ export default function Login(props) {
         setLogging(!logging)
         setMessage(null)
     }
+
+    function handleRoleChange(e) {
+        setNewUser({ ...newUser, role: e.target.value });
+    }
+
     return (
     <>
         <Nav />
@@ -81,6 +88,29 @@ export default function Login(props) {
                     <br />
                     <label htmlFor="" > Password: </label>
                     <input className={styles.inputs} type="password" onChange={handleChangeSignUp} name="password"/>
+
+                    <label>Role:</label>
+                                <div>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="user"
+                                            checked={newUser.role === 'user'}
+                                            onChange={handleRoleChange}
+                                        />
+                                        User
+                                    </label>
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            value="org"
+                                            checked={newUser.role === 'org'}
+                                            onChange={handleRoleChange}
+                                        />
+                                        Organizer
+                                    </label>
+                                </div>
+
                     <br /> <button className={styles.btn}>Sign Up</button>
                 </form> 
                 <p>Have an account? <button className={styles.btnCreate} onClick={handleSwitch}>Login</button></p>
