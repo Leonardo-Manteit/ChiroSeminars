@@ -7,15 +7,15 @@ const User = require('../models/Users')
 const saltRounds = 10;
 
 router.post('/api/signUp', async (req, res, next) => {
-    const { email, username, password } = req.body
+    const { email, username, password, role } = req.body
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)
     if (email.trim() !== '' || password !== '') {
-        return await User.createUser(email.trim(), username, hash).catch((err) => {
+        return await User.createUser(email.trim(), username, hash, role).catch((err) => {
             next(err)
         })
     } else {
-        throw new Error
+        throw new Error('Email or password missing')
     }
 })
 
@@ -23,7 +23,7 @@ router.post('/api/login',  async (req, res, next) => {
     try {
         // email & password required
 
-        //1. get email and password from requst
+        //1. get email and password from request
         const { email, username, password } = req.body
 
         //2. find the existing user from the database using the email
