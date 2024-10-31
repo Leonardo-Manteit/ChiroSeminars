@@ -6,8 +6,8 @@ import EditBtn from "../EditBtn/EditBtn";
 export default function ShortDisplaySeminar({ seminar }) {
     const navigate = useNavigate();
     const [deleted, setDeleted] = useState('');
-    // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image}` : null;   //for deployed version
-    const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                 //for local testing
+    const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image}` : null;   //for deployed version
+    // const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                 //for local testing
     const [image, setImage] = useState(image_url);
 
     function handleNavigate(id) {
