@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function topicFilter() {
+    const navigate = useNavigate();
     const topics = [
         'Adjustment Technique',
         'Communication',
@@ -24,7 +26,7 @@ export default function topicFilter() {
     function searchByTopic() {
         if (selectedTopic) {
             console.log('Searching seminars for topic:', selectedTopic);
-            // Add your search logic here
+            navigate('/seminars', { state: { topic: selectedTopic } });
         } else {
             console.log('No topic selected');
         }
