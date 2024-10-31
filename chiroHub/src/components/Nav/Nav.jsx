@@ -1,31 +1,38 @@
 import { useState } from 'react';
-import { getUserFromLocalStorage } from '../../utils/auth_service.js'
+import { Link } from 'react-router-dom';
+import { getUserFromLocalStorage } from '../../utils/auth_service.js';
 
 export default function Nav() {
-    const [user, setUser] = useState(getUserFromLocalStorage())
+    const [user, setUser] = useState(getUserFromLocalStorage());
+    
     function handleLogout() {
-        setUser(null)
-        localStorage.removeItem('token')
+        setUser(null);
+        localStorage.removeItem('token');
     }
+    
     return (
         <>      
             <header>
                 <div className="logo">
-                    <h1><a href="/">ChiroOceaniaHub</a></h1>
+                    <h1><Link to="/">ChiroOceaniaHub</Link></h1>
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/Seminars">Seminars</a></li>
-                        {/* <li><a href="#">Online Courses</a></li> */}
-                        {/* <li><a href="#">Coaching</a></li> */}
-                        <li><a href="/AboutUs">About Us</a></li>
-                        <li><a href="/Contact">Contact</a></li>
-                        <li><a href="/CreateEvent">Create Event</a></li>
-                        {user ? <button onClick={handleLogout}>Logout</button> : <li><a href="/Login">Login</a></li>}
+                        <li><Link to="/">Home</Link></li>
+                        <li><Link to="/Seminars">Seminars</Link></li>
+                        {/* <li><Link to="#">Online Courses</Link></li> */}
+                        {/* <li><Link to="#">Coaching</Link></li> */}
+                        <li><Link to="/AboutUs">About Us</Link></li>
+                        <li><Link to="/Contact">Contact</Link></li>
+                        <li><Link to="/CreateEvent">Create Event</Link></li>
+                        {user ? (
+                            <button onClick={handleLogout}>Logout</button>
+                        ) : (
+                            <li><Link to="/Login">Login</Link></li>
+                        )}
                     </ul>
                 </nav>
             </header> 
         </>
-    )
+    );
 }
