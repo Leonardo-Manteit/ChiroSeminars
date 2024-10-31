@@ -32,6 +32,7 @@ export default function DisplaySeminar() {
     return (
         <>
         <Nav />
+        <button style={{fontWeight: "bolder"}} onClick={() => navSeminars()}>← </button>
         {seminar ? (
             <>
             <h2 style={{color: 'red'}}>{seminar.title}</h2>
