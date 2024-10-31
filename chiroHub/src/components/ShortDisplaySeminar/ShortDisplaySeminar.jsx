@@ -11,7 +11,7 @@ export default function ShortDisplaySeminar({ seminar }) {
     const [image, setImage] = useState(image_url);
 
     function handleNavigate(id) {
-        navigate(`/ChiroSeminars/DisplaySeminar/${id}`);
+        navigate(`/DisplaySeminar/${id}`);
     }
 
     function handleDelete(id) {

@@ -16,7 +16,7 @@ export default function Login(props) {
         try {
             let token = await login(formData)
             localStorage.setItem('token', token)
-            navigate('/ChiroSeminars/')
+            navigate('/')
         } catch (err) {
             console.log(err)
             setMessage('ERROR: Invalid username or password')
