@@ -23,7 +23,7 @@ export default function DisplaySeminar() {
     }
 
     function navSeminars() {
-        navigate(`/ChiroSeminars/Seminars`);
+        navigate(`/Seminars`);
     }
 
     // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image}` : null;   //for deployed version

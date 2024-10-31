@@ -77,7 +77,7 @@ export default function EditEvent() {
         } catch (error) {
             console.log('formData could NOT send, error: ', error);
         }
-        navigate(`/ChiroSeminars/DisplaySeminar/${seminar.id}`);
+        navigate(`/DisplaySeminar/${seminar.id}`);
     }
 
     // List of available topics

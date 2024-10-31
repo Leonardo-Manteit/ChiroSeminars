@@ -19,18 +19,18 @@ import DisplaySeminar from './components/DisplaySeminar/DisplaySeminar';
 function App() {
   return (
     <Routes>
-        <Route path="/ChiroSeminars/" element={<Root />} />
-        <Route path="/ChiroSeminars/Featured" element={<Featured />} />
-        <Route path="/ChiroSeminars/Seminars" element={<Seminars />} />
-        <Route path="/ChiroSeminars/Topics" element={<TopicFilter />} />
-        <Route path="/ChiroSeminars/CreateEvent" element={<CreateEvents />} />
-        <Route path="/ChiroSeminars/EditEvent/:id" element={<EditEvent />} />
-        <Route path="/ChiroSeminars/Testimonials" element={<Testimonials />} />
-        <Route path="/ChiroSeminars/Updates" element={<GetUpdates />} />
-        <Route path="/ChiroSeminars/Contact" element={<Contact />} />
-        <Route path="/ChiroSeminars/AboutUs" element={<AboutUs />} />
-        <Route path="/ChiroSeminars/Login" element={<Login />} /> 
-        <Route path="/ChiroSeminars/DisplaySeminar/:id" element={<DisplaySeminar />} /> 
+        <Route path="/" element={<Root />} />
+        <Route path="/Featured" element={<Featured />} />
+        <Route path="/Seminars" element={<Seminars />} />
+        <Route path="/Topics" element={<TopicFilter />} />
+        <Route path="/CreateEvent" element={<CreateEvents />} />
+        <Route path="/EditEvent/:id" element={<EditEvent />} />
+        <Route path="/Testimonials" element={<Testimonials />} />
+        <Route path="/Updates" element={<GetUpdates />} />
+        <Route path="/Contact" element={<Contact />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
+        <Route path="/Login" element={<Login />} /> 
+        <Route path="/DisplaySeminar/:id" element={<DisplaySeminar />} /> 
     </Routes>
    );
 }

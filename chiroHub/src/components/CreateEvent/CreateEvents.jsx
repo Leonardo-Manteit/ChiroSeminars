@@ -55,7 +55,7 @@ export default function Create() {
             console.error('formData could NOT send, error: ', error); // Error handling
         }
 
-        navigate(`/ChiroSeminars/Seminars`);
+        navigate(`/Seminars`);
     }
 
     function handleImageChange(e) {

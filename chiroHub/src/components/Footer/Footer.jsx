@@ -8,9 +8,9 @@ export default function Footer() {
         <section className={styles.footerReading}>
             <ul>
                 <h4>Internal refs</h4>
-                <li><a href="/ChiroSeminars/">Home</a></li>
-                <li><a href="/ChiroSeminars/Contact">Contact</a></li>
-                <li><a href="/ChiroSeminars/AboutUs">FAQ's</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/Contact">Contact</a></li>
+                <li><a href="/AboutUs">FAQ's</a></li>
             </ul>
         </section>
 
