@@ -4,7 +4,7 @@ const router = express.Router()
 const Seminar = require('../models/seminars')
 const multer = require('multer');
 const path = require('path');
-
+const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -67,9 +67,36 @@ router.post('/api/seminar/update/:id', upload.single('image'), async (req,res) =
     }  
 })
 
-router.delete('/api/delete/:id', (req,res) => {
-    return Seminar.deleteSeminar(req.params.id)
-})
+router.delete('/api/delete/:id', async (req, res) => {
+    const seminarId = req.params.id; 
+
+    try {
+     
+        const seminar = await Seminar.getSeminarById(seminarId);
+
+        if (seminar && seminar.image_url) {
+           
+            fs.unlink(seminar.image_url, (err) => {
+                if (err) {
+                    console.log('Failed to delete image:', err.message);
+                } else {
+                    console.log('Image deleted:', seminar.image_url);
+                }
+            });
+        }
+        
+        const deletedSeminar = await Seminar.deleteSeminar(seminarId);
+        
+        if (deletedSeminar) {
+            res.status(200).json({ message: 'Seminar and associated image deleted successfully' });
+        } else {
+            res.status(404).json({ error: 'Seminar not found' });
+        }
+    } catch (error) {
+        console.log('Delete error:', error);
+        res.status(500).json({ error: 'Failed to delete seminar.' });
+    }
+});
 
 router.get('/api/feature/:id/:featured', (req,res) => {
     return Seminar.featureSeminar(req.params.featured, req.params.id)
