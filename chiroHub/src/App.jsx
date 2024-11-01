@@ -1,7 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import Root from './components/Root/Root'
-// import Nav from './components/Nav/Nav';
-// import Footer from './components/Footer/Footer';
 import CreateEvents from './components/CreateEvent/CreateEvents';
 import EditEvent from './components/EditEvent/EditEvent';
 import Featured from './components/Featured/Featured';
@@ -15,6 +13,7 @@ import Contact from './components/Contact/Contact';
 import AboutUs from './components/AboutUs/AboutUs';
 import Login from './components/Login/Login'
 import DisplaySeminar from './components/DisplaySeminar/DisplaySeminar';
+import Dashboard from './components/Dashboard/Dashboard';
 
 function App() {
   return (
@@ -31,6 +30,7 @@ function App() {
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/Login" element={<Login />} /> 
         <Route path="/DisplaySeminar/:id" element={<DisplaySeminar />} /> 
+        <Route path="/Dashboard/:id" element={<Dashboard />} />
     </Routes>
    );
 }

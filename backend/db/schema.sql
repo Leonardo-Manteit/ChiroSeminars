@@ -33,3 +33,5 @@ FOREIGN KEY (seminar_id) REFERENCES seminars(id) ON DELETE CASCADE;
 ALTER TABLE seminars 
 -- removed from seminars: 
     -- FOREIGN KEY (featured) REFERENCES users(id) ON DELETE CASCADE
+
+ALTER TABLE users ADD COLUMN profile_pic_url TEXT;
