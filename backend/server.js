@@ -9,18 +9,21 @@ const userRouter = require('./routes/user_router');
 const errorHandler = require('./middlewares/error_hander');
 const expressListRoutes = require('express-list-routes');
 
-
 app.use('/uploads', express.static(path.join(__dirname, 'backend/uploads')));
-
 app.use('/', express.static('./public/dist'));
 app.use(express.json());
 
-app.use(authRouter)
-app.use(seminarRouter)
-app.use(userRouter)
-app.use(errorHandler)
-expressListRoutes(app)
+app.use(authRouter);
+app.use(seminarRouter);
+app.use(userRouter);
+app.use(errorHandler);
+expressListRoutes(app);
 
-app.listen(port, ()=>{
-    console.log('server listeneing on port', port)
-})
+// Catch-all route to handle client-side routing
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'public/dist', 'index.html'));
+});
+
+app.listen(port, () => {
+  console.log('server listening on port', port);
+});

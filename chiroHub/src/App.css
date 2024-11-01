@@ -111,6 +111,7 @@ footer {
   cursor: pointer;
   padding: 10px;
   border-radius: 5px;
+  border: 0;
   text-align: center;
   flex: 1 0 21%; /* Allows four items per row */
   background-color: #f0f0f0;
@@ -119,11 +120,12 @@ footer {
 }
 
 .topic-item:hover {
-  background-color: #e0e0e0;
+  background-color: #007BFF;
+  color: white;
 }
 
 .topic-item.selected {
-  background-color: #007BFF;
+  background-color: #003c7c;
   color: white;
 }
 

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-export default function topicFilter() {
+export default function TopicList() {
     const navigate = useNavigate();
     const topics = [
         'Adjustment Technique',
@@ -18,18 +17,15 @@ export default function topicFilter() {
 
     const [selectedTopic, setSelectedTopic] = useState(null);
 
-    function handleTopicClick(topic) {
-        setSelectedTopic(prevSelected => (prevSelected === topic ? null : topic));
-        searchByTopic()
-    }
-
-    function searchByTopic() {
+    useEffect(() => {
         if (selectedTopic) {
             console.log('Searching seminars for topic:', selectedTopic);
             navigate('/seminars', { state: { topic: selectedTopic } });
-        } else {
-            console.log('No topic selected');
         }
+    }, [selectedTopic, navigate]);
+
+    function handleTopicClick(topic) {
+        setSelectedTopic(prevSelected => (prevSelected === topic ? null : topic));
     }
 
     return (
@@ -38,13 +34,13 @@ export default function topicFilter() {
             <p>We offer a wide variety of topics/subjects.</p>
             <div className="topics-container">
                 {topics.map((topic) => (
-                    <div
+                    <button
                         key={topic}
                         className={`topic-item ${selectedTopic === topic ? 'selected' : ''}`}
                         onClick={() => handleTopicClick(topic)}
                     >
                         {topic}
-                    </div>
+                    </button>
                 ))}
             </div>
         </div>
