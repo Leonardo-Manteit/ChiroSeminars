@@ -25,6 +25,7 @@ export default function Nav() {
                         <li><Link to="/AboutUs">About Us</Link></li>
                         <li><Link to="/Contact">Contact</Link></li>
                         <li><Link to="/CreateEvent">Create Event</Link></li>
+                        <li><Link to="/Dashboard/:id">Dashboard</Link></li>
                         {user ? (
                             <button onClick={handleLogout}>Logout</button>
                         ) : (
