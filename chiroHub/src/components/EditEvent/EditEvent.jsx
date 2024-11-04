@@ -67,7 +67,7 @@ export default function EditEvent() {
         }
 
         try {
-            const response = await fetch(`/api/seminar/update/${seminar.id}`, {
+            const response = await fetch(`/chiro/seminar/update/${seminar.id}`, {
                 method: 'POST',
                 body: newFormData,
             });
