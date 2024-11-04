@@ -39,7 +39,7 @@ export default function Create() {
         console.log('FormData to be sent:', [...formData]); // Debugging line
 
         try {
-            const response = await fetch('/api/seminar', {
+            const response = await fetch('/chiro/seminar', {
                 method: 'POST',
                 body: formData,
             });
