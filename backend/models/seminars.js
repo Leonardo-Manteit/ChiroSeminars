@@ -2,7 +2,7 @@ const db = require('../db')
 
 function createSeminar(title, organizer, date, location, description, price, contact, image, featured, topics) {
     
-    let sql = `INSERT INTO seminars   
+    let sql = `INSERT INTO chiro_seminars   
     (title, organizer, date, location, description, price, contact, image_url, featured, topics)
     VALUES 
     ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
@@ -14,7 +14,7 @@ function createSeminar(title, organizer, date, location, description, price, con
 }
 
 function updateSeminar(title, organizer, date, location, description, price, contact, image, featured, topics, id) {
-    let sql = `UPDATE seminars
+    let sql = `UPDATE chiro_seminars
     SET 
         title = $1,
         organizer = $2,
@@ -34,12 +34,12 @@ function updateSeminar(title, organizer, date, location, description, price, con
 }
 
 function deleteSeminar(seminar_id) {
-    let sql = 'DELETE FROM seminars WHERE id = $1 RETURNING *;'
+    let sql = 'DELETE FROM chiro_seminars WHERE id = $1 RETURNING *;'
     return db.query(sql, [seminar_id]).then(res => res.rows[0])
 }
 
 function featureSeminar(featured, seminar_id) {
-    let sql = `UPDATE seminars
+    let sql = `UPDATE chiro_seminars
     SET 
     featured = $1
     WHERE id = $2
@@ -48,18 +48,18 @@ function featureSeminar(featured, seminar_id) {
 }
 
 function getFeaturedSeminars() {
-    let sql = `SELECT * FROM seminars WHERE featured = 'on';`
+    let sql = `SELECT * FROM chiro_seminars WHERE featured = 'on';`
     return db.query(sql).then(res => res.rows)
 }
 
 function getSeminars() {
-    let sql = `SELECT * FROM seminars;`
+    let sql = `SELECT * FROM chiro_seminars;`
     return db.query(sql).then(res => res.rows)
 }
 
 function getSeminarById(seminar_id) {
     let sql = `
-    SELECT * FROM seminars WHERE id = $1;`
+    SELECT * FROM chiro_seminars WHERE id = $1;`
     return db.query(sql, [seminar_id]).then(res => res.rows[0])
 }
 

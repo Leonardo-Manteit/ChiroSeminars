@@ -2,15 +2,17 @@ CREATE DATABASE chiroseminars;
 
 \c chiroseminars
 
-CREATE TABLE users (
+CREATE TABLE chiro_users (
     id SERIAL PRIMARY KEY,
     email TEXT UNIQUE,
     username TEXT UNIQUE,
     password_digest TEXT NOT NULL,
     seminar_id TEXT[],
+    roles TEXT,
+    profile_pic_url TEXT
 );
 
-CREATE TABLE seminars (
+CREATE TABLE chiro_seminars (
     id SERIAL PRIMARY KEY,
     title VARCHAR(150),
     organizer TEXT,
@@ -21,24 +23,14 @@ CREATE TABLE seminars (
     contact TEXT,
     username_list TEXT[],
     image_url TEXT,
-    featured TEXT
+    featured TEXT,
+    topics TEXT[]
 );
 
-ALTER TABLE seminars
-ADD COLUMN topics TEXT[];
-
-ALTER TABLE users
-ADD COLUMN roles TEXT;
-
-ALTER TABLE users
-ADD COLUMN profile_pic_url TEXT;
-
-ALTER TABLE users
-ADD CONSTRAINT fk_seminar
-FOREIGN KEY (seminar_id) REFERENCES seminars(id) ON DELETE CASCADE;
+-- ALTER TABLE chiro_users
+-- ADD CONSTRAINT fk_seminar
+-- FOREIGN KEY (seminar_id) REFERENCES chiro_seminars(id) ON DELETE CASCADE;
 
 -- ALTER TABLE seminars 
 -- removed from seminars: 
     -- FOREIGN KEY (featured) REFERENCES users(id) ON DELETE CASCADE
-
-ALTER TABLE users ADD COLUMN profile_pic_url TEXT;

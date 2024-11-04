@@ -2,7 +2,7 @@ const db = require('../db')
 
 function createUser(email, username, hash, role = 'user') {
         let sql = `
-        INSERT INTO users
+        INSERT INTO chiro_users
         (email, username, password_digest, role) 
         VALUES ($1, $2, $3, $4)
         RETURNING *;
@@ -13,7 +13,7 @@ function createUser(email, username, hash, role = 'user') {
 
 function findByEmail(email) {
     let sql = `
-    SELECT * FROM users WHERE email = $1;
+    SELECT * FROM chiro_users WHERE email = $1;
     `
     return db.query(sql, [email])
             .then(result => {
@@ -28,7 +28,7 @@ function findByEmail(email) {
 
 function findByUsername(username) {
     let sql = `
-    SELECT * FROM users WHERE username = $1;
+    SELECT * FROM chiro_users WHERE username = $1;
     `
     return db.query(sql, [username])
             .then(result => {
@@ -43,7 +43,7 @@ function findByUsername(username) {
 
 function saveSeminarToUser(seminar_id, email) {
     let sql = `
-    UPDATE users SET seminar_id = ARRAY_APPEND(seminar_id, $1) where email = $2;
+    UPDATE chiro_users SET seminar_id = ARRAY_APPEND(seminar_id, $1) where email = $2;
     `
     return db.query(sql, [seminar_id, email])
             .then(result => result.rows)
@@ -51,7 +51,7 @@ function saveSeminarToUser(seminar_id, email) {
 
 function deleteSeminarFromUser(seminar_id, email) {
     let sql = `
-    UPDATE users SET seminar_id = ARRAY_REMOVE($1) where email = $2;
+    UPDATE chiro_users SET seminar_id = ARRAY_REMOVE($1) where email = $2;
     `
     return db.query(sql, [seminar_id, email])
             .then(result => result.rows)
