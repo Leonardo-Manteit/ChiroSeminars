@@ -3,8 +3,9 @@ import Nav from '../Nav/Nav.jsx';
 import Footer from '../Footer/Footer.jsx';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { getUserFromLocalStorage } from '../../utils/auth_service.js';
 
-export default function Create({user}) {
+export default function Create({user=getUserFromLocalStorage()}) {
     const [imagePreview, setImagePreview] = useState(null); // State for image preview
     const [selectedTopics, setSelectedTopics] = useState([]); // State for selected topics
     const navigate = useNavigate();
@@ -15,14 +16,12 @@ export default function Create({user}) {
         'General Chiropractic',
         'Neurology',
         'Nutrition',
-        'Other',
         'Paediatric',
         'Practice Growth',
         'Pregnancy',
-        'Sports/Soft Tissue'
+        'Sports/Soft Tissue',
+        'Other'
     ];
-
-    console.log(user)
 
     function toggleTopic(topic) {
         setSelectedTopics((prevTopics) =>
