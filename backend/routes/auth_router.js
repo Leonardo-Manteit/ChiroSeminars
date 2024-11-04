@@ -7,6 +7,7 @@ const User = require('../models/Users')
 const saltRounds = 10;
 
 router.post('/chiro/signUp', async (req, res, next) => {
+    console.log(req.body)
     const { email, username, password, role } = req.body
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)

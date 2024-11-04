@@ -1,6 +1,7 @@
 const db = require('../db')
 
 function createUser(email, username, hash, role = 'user') {
+    console.log(email, username, hash, role)
         let sql = `
         INSERT INTO chiro_users
         (email, username, password_digest, role) 

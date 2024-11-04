@@ -8,7 +8,7 @@ CREATE TABLE chiro_users (
     username TEXT UNIQUE,
     password_digest TEXT NOT NULL,
     seminar_id TEXT[],
-    roles TEXT,
+    role TEXT,
     profile_pic_url TEXT
 );
 
