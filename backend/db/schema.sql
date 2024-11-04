@@ -14,7 +14,7 @@ CREATE TABLE chiro_users (
 
 CREATE TABLE chiro_seminars (
     id SERIAL PRIMARY KEY,
-    user_id INT,
+    user_id INT REFERENCES chiro_users(id) ON DELETE CASCADE,
     title VARCHAR(150),
     organizer TEXT,
     date TEXT,
@@ -27,11 +27,3 @@ CREATE TABLE chiro_seminars (
     featured TEXT,
     topics TEXT[]
 );
-
--- ALTER TABLE chiro_users
--- ADD CONSTRAINT fk_seminar
--- FOREIGN KEY (seminar_id) REFERENCES chiro_seminars(id) ON DELETE CASCADE;
-
--- ALTER TABLE seminars 
--- removed from seminars: 
-    -- FOREIGN KEY (featured) REFERENCES users(id) ON DELETE CASCADE
