@@ -33,13 +33,13 @@ router.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 router.post('/chiro/seminar', upload.single('image'), async (req,res) => {
     try {
-        const { title, organizer, date, location, description, price, contact, featured, topics } = req.body
+        const { user_id, title, organizer, date, location, description, price, contact, featured, topics } = req.body
         const image = req.file ? req.file.path : null
         const topicsArray = JSON.parse(topics)
         console.log('Received Data:', req.body);
         console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
-        const newSeminar = await Seminar.createSeminar(title, organizer, date, location, description, price, contact, image, featured, topicsArray)
+        const newSeminar = await Seminar.createSeminar(user_id, title, organizer, date, location, description, price, contact, image, featured, topicsArray)
         res.status(201).json({message: 'Seminar created', seminar: newSeminar })
         
     } catch(error) {

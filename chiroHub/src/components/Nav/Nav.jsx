@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUserFromLocalStorage } from '../../utils/auth_service.js';
+import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
 export default function Nav() {
+    const navigate = useNavigate()
+    const currentLocation = useLocation();
     const [user, setUser] = useState(getUserFromLocalStorage());
     
     function handleLogout() {
         setUser(null);
         localStorage.removeItem('token');
+        currentLocation.pathname === '/' ? location.reload() : navigate('/')
     }
     
     return (
@@ -24,8 +29,8 @@ export default function Nav() {
                         {/* <li><Link to="#">Coaching</Link></li> */}
                         <li><Link to="/AboutUs">About Us</Link></li>
                         <li><Link to="/Contact">Contact</Link></li>
-                        <li><Link to="/CreateEvent">Create Event</Link></li>
-                        <li><Link to="/Dashboard/:id">Dashboard</Link></li>
+                        {user ? <li><Link to="/CreateEvent">Create Event</Link></li> : null }
+                        {user ? <li><Link to="/Dashboard/:id">Dashboard</Link></li> : null }
                         {user ? (
                             <button onClick={handleLogout}>Logout</button>
                         ) : (

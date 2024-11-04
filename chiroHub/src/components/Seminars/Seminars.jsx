@@ -19,8 +19,16 @@ export default function Seminars({topicFromHome=null}) {
             .then(() => setLoading(false))
             .catch(err => console.error('Direct fetch error:', err));
     }, []);
+
     if (loading) {
-        return (<p>Loading seminars...</p>);
+        return (
+            <>
+            <Nav />
+            <TopicFilter selectedTopic={selectedTopic} setSelectedTopic={setSelectedTopic} />
+            <p className="events" id="events">Loading seminars...</p>;
+            <Footer />
+            </>
+        )
     }
     return (<>
         <Nav />
@@ -28,11 +36,9 @@ export default function Seminars({topicFromHome=null}) {
         <h2>Seminar List</h2>
         <section className={styles.display}>
         {seminars.length > 0 ? (
-            <>
-                {seminars.filter(seminar => !selectedTopic || seminar?.topics?.includes(selectedTopic)).map(seminar => ( <ShortDisplaySeminar seminar={seminar} />))}
-            </>
+            seminars.filter(seminar => !selectedTopic || seminar?.topics?.includes(selectedTopic)).map(seminar => ( <ShortDisplaySeminar seminar={seminar} />))
             ) : (
-                <p>No Seminars.</p>
+                <p className="events" id="events">No Seminars.</p>
                 )}
         </section>
         <Footer />;

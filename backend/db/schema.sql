@@ -14,6 +14,7 @@ CREATE TABLE chiro_users (
 
 CREATE TABLE chiro_seminars (
     id SERIAL PRIMARY KEY,
+    user_id INT,
     title VARCHAR(150),
     organizer TEXT,
     date TEXT,

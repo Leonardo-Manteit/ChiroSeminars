@@ -4,7 +4,7 @@ import Footer from '../Footer/Footer.jsx';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 
-export default function Create() {
+export default function Create({user}) {
     const [imagePreview, setImagePreview] = useState(null); // State for image preview
     const [selectedTopics, setSelectedTopics] = useState([]); // State for selected topics
     const navigate = useNavigate();
@@ -22,6 +22,8 @@ export default function Create() {
         'Sports/Soft Tissue'
     ];
 
+    console.log(user)
+
     function toggleTopic(topic) {
         setSelectedTopics((prevTopics) =>
             prevTopics.includes(topic)
@@ -36,6 +38,7 @@ export default function Create() {
 
         const formData = new FormData(e.target);
         formData.append('topics', JSON.stringify(selectedTopics)); // Append selected topics as JSON
+        formData.append('user_id', user.id); // Append user
         console.log('FormData to be sent:', [...formData]); // Debugging line
 
         try {

@@ -1,15 +1,14 @@
 const db = require('../db')
 
-function createSeminar(title, organizer, date, location, description, price, contact, image, featured, topics) {
+function createSeminar(user_id, title, organizer, date, location, description, price, contact, image, featured, topics) {
     
     let sql = `INSERT INTO chiro_seminars   
-    (title, organizer, date, location, description, price, contact, image_url, featured, topics)
+    (user_id, title, organizer, date, location, description, price, contact, image_url, featured, topics)
     VALUES 
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
     RETURNING *;
     `
-    console.log(sql, [title, organizer, date, location, description, price, contact, image, featured, topics])
-    return db.query(sql, [title, organizer, date, location, description, price, contact, image, featured, topics])
+    return db.query(sql, [user_id, title, organizer, date, location, description, price, contact, image, featured, topics])
     .then(res => res.rows)
 }
 

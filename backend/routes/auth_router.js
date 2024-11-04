@@ -21,6 +21,7 @@ router.post('/chiro/signUp', async (req, res, next) => {
 })
 
 router.post('/chiro/login',  async (req, res, next) => {
+    console.log(req.body)
     try {
         // email & password required
 
@@ -29,6 +30,7 @@ router.post('/chiro/login',  async (req, res, next) => {
 
         //2. find the existing user from the database using the email
         let user = await User.findByEmail(email)
+        console.log(user)
         if (!user) {
             let err = new Error('incorrect username or passowrd')
             err.status = 400
