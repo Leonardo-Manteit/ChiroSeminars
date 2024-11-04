@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/Users')
 const saltRounds = 10;
 
-router.post('/api/signUp', async (req, res, next) => {
+router.post('/chiro/signUp', async (req, res, next) => {
     const { email, username, password, role } = req.body
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)
@@ -19,7 +19,7 @@ router.post('/api/signUp', async (req, res, next) => {
     }
 })
 
-router.post('/api/login',  async (req, res, next) => {
+router.post('/chiro/login',  async (req, res, next) => {
     try {
         // email & password required
 
