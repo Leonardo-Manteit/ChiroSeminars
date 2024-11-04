@@ -2,8 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { deleteSeminar } from "../../utils/seminar_api";
 import { useState } from "react";
 import EditBtn from "../EditBtn/EditBtn";
+import { getUserFromLocalStorage } from "../../utils/auth_service";
+import DeleteBtn from "../DeleteBtn/DeleteBtn";
 
 export default function ShortDisplaySeminar({ seminar }) {
+    const [user, setUser] = useState(getUserFromLocalStorage())
     const navigate = useNavigate();
     const [deleted, setDeleted] = useState('');
     const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}` : null;   //for deployed version
@@ -40,8 +43,8 @@ export default function ShortDisplaySeminar({ seminar }) {
             <p><strong>Location:</strong> {seminar.location}</p>
             <p><strong>Price:</strong> {seminar.price}</p>
             <button onClick={() => handleNavigate(seminar.id)}>Visit Seminar</button>
-            <button onClick={() => handleDelete(seminar.id)}>Delete Seminar</button>
-            <EditBtn seminar={seminar} />
+            <DeleteBtn setDeleted={setDeleted} user={user} seminar={seminar}/>
+            <EditBtn seminar={seminar} user={user} />
         </div>
     );
 }

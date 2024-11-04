@@ -19,7 +19,7 @@ export default function Featured() {
     if (loading) {
         return <p className="events" id="events">Loading featured seminars...</p>;
     }
-    console.log(featured)
+    
     return (
     <section className="events" id="events">
         <p>Featured Events</p>

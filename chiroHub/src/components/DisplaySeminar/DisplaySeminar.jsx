@@ -4,13 +4,15 @@ import { getSeminarById } from "../../utils/seminar_api";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import EditBtn from "../EditBtn/EditBtn";
+import { getUserFromLocalStorage } from "../../utils/auth_service";
+import DeleteBtn from "../DeleteBtn/DeleteBtn";
 
-export default function DisplaySeminar() {
+export default function DisplaySeminar({user=getUserFromLocalStorage()}) {
     const navigate = useNavigate();
     const {id} = useParams()
     const [seminar, setSeminar] = useState(null)
     const [loading, setLoading] = useState(true)
-
+    console.log(user)
     useEffect(() => {
         getSeminarById(id)
             .then(res => setSeminar(res))
@@ -19,7 +21,13 @@ export default function DisplaySeminar() {
     }, []);
     
     if (loading) {
-        return <p className="events" id="events">Loading selected seminar...</p>;
+        return (
+            <>
+            <Nav />
+            <p className="events" id="events">Loading selected seminar...</p>;
+            <Footer />
+            </>
+        )
     }
 
     function navSeminars() {
@@ -33,25 +41,21 @@ export default function DisplaySeminar() {
         <>
         <Nav />
         <button style={{fontWeight: "bolder"}} onClick={() => navSeminars()}>← </button>
-        {seminar ? (
-            <>
-            <h2 style={{color: 'red'}}>{seminar.title}</h2>
-                <div key={seminar.id}>
-                    <p><strong>Organizer:</strong> {seminar.organizer}</p>
-                    <p><strong>Date:</strong> {seminar.date}</p>
-                    <p><strong>Location:</strong> {seminar.location}</p>
-                    <p><strong>Description:</strong> {seminar.location}<span dangerouslySetInnerHTML={{ __html: seminar.description }} /></p>
-                    <p><strong>Price:</strong> {seminar.price}</p>
-                    <p><strong>Contact:</strong> {seminar.contact}</p>
-                    {image_url && <img src={image_url} style={{height: '100px', width: '100px'}}alt={`Image for ${seminar.title}`} />}
 
-                </div>
-            </>
-        ) : (
-            <p>No seminars available.</p>
-        )}
-        <EditBtn seminar={seminar}/>
-        <button onClick={() => navSeminars()}>Go back to Seminar List</button>
+        <h2 style={{color: 'red'}}>{seminar.title}</h2>
+            <div key={seminar.id}>
+                <p><strong>Organizer:</strong> {seminar.organizer}</p>
+                <p><strong>Date:</strong> {seminar.date}</p>
+                <p><strong>Location:</strong> {seminar.location}</p>
+                <p><strong>Description:</strong> {seminar.location}<span dangerouslySetInnerHTML={{ __html: seminar.description }} /></p>
+                <p><strong>Price:</strong> {seminar.price}</p>
+                <p><strong>Contact:</strong> {seminar.contact}</p>
+                {image_url && <img src={image_url} style={{height: '100px', width: '100px'}}alt={`Image for ${seminar.title}`} />}
+
+        </div>
+
+        <EditBtn seminar={seminar} user={user}/>
+        <DeleteBtn seminar={seminar} user={user} setDeleted={navSeminars} />
         <Footer />
     </>
     )
