@@ -7,7 +7,7 @@ export default defineConfig({
   base: '/',  
   server: {
     proxy: {
-      '/api': 'http://localhost:8000'
+      '/chiro': 'http://localhost:8000'
     } 
   }
 });
