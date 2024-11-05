@@ -23,12 +23,8 @@ router.post('/chiro/signUp', async (req, res, next) => {
 router.post('/chiro/login',  async (req, res, next) => {
     console.log(req.body)
     try {
-        // email & password required
+        const { email, username, password, role } = req.body
 
-        //1. get email and password from request
-        const { email, username, password } = req.body
-
-        //2. find the existing user from the database using the email
         let user = await User.findByEmail(email)
         console.log(user)
         if (!user) {
@@ -36,7 +32,7 @@ router.post('/chiro/login',  async (req, res, next) => {
             err.status = 400
             throw err
         }
-        //3.check the password for this user
+
         let match = await bcrypt.compare(password, user.password_digest)
         if (!match) {
             let err = new Error('incorrect username or passowrd')
@@ -44,18 +40,13 @@ router.post('/chiro/login',  async (req, res, next) => {
             throw err
         }
 
-        //4.generate a token
-        // jwt (json web token) npm i jsonwebtoken
+        //generate a token
         const token = jwt.sign (
-            { id: user.id, email: user.email},
-            'cakepudding', //should be a private string in .env
-            { expiresIn: '24h'} //expiry information here
+            { id: user.id, email: user.email, username: user.username, role: user.role},
+            'cakepudding', 
+            { expiresIn: '24h'} 
         )
-
-        //5. send the response back to the client
-        res.json({ token: token })
-            
-        // return a token (ticket required to be logged in)
+        res.json({ token: token })  
     } catch (err) {
         next(err)
     }

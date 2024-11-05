@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getUserFromLocalStorage } from '../../utils/auth_service.js';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
+import styles from './Nav.module.css'
 
 export default function Nav() {
     const navigate = useNavigate()
@@ -18,7 +19,7 @@ export default function Nav() {
     return (
         <>      
             <header>
-                <div className="logo">
+                <div className={styles.logo}>
                     <h1><Link to="/">ChiroOceaniaHub</Link></h1>
                 </div>
                 <nav>

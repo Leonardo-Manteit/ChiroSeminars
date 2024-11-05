@@ -1,6 +1,6 @@
 export default function ProfileCard({ user }) {
     // Provide default values if user properties are missing
-    const name = user?.name || "Anonymous User";
+    const name = user?.username || "Anonymous User";
     const email = user?.email || "No email available";
     const profilePic = user?.profilePic || "/home/shandakei/GAH/ChiroSeminars/chiroHub/public/blank-profile-pic.png"; // Use a default image
 
