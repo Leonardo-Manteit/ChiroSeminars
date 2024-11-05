@@ -25,7 +25,13 @@ export function getUserFromLocalStorage() {
     }
 }
 
+// function extractPayload(token) {
+//     const payload = token.split('.')[1]
+//     return JSON.parse(window.atob(payload))
+// }
+
 function extractPayload(token) {
-    const payload = token.split('.')[1]
-    return JSON.parse(window.atob(payload))
+    const payload = token.split('.')[1];
+    const decodedPayload = JSON.parse(window.atob(payload));
+    return decodedPayload;
 }
