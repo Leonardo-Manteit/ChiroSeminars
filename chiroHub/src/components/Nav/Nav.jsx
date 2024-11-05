@@ -15,7 +15,7 @@ export default function Nav() {
         localStorage.removeItem('token');
         currentLocation.pathname === '/' ? location.reload() : navigate('/')
     }
-    
+    console.log(user)
     return (
         <>      
             <header>
