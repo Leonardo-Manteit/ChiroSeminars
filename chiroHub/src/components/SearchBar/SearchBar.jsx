@@ -1,14 +1,12 @@
 
 import { Link } from 'react-router-dom';
-
+import styles from './SearchBar.module.css'
 export default function SearchBar() {
     return (
-    <section className="SearchBar">
-        <section className="hero">
-            <h2>Empowering Chiropractors in Oceania</h2>
-            <p>Find the best seminars, webinars, and coaching all in one place</p>
-            <button><Link to="/Seminars">Explore Seminars</Link></button>
-        </section>
+    <section className={styles.SearchBar}>
+        <form action="">
+            <input type="text" placeholder='search for a seminar'/>
+        </form>
     </section>
     )
 }

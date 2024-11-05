@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom';
-import Root from './components/Root/Root'
 import CreateEvents from './components/CreateEvent/CreateEvents';
 import EditEvent from './components/EditEvent/EditEvent';
 import Featured from './components/Featured/Featured';
@@ -14,11 +13,12 @@ import AboutUs from './components/AboutUs/AboutUs';
 import Login from './components/Login/Login'
 import DisplaySeminar from './components/DisplaySeminar/DisplaySeminar';
 import Dashboard from './components/Dashboard/Dashboard';
+import Homepage from './components/Homepage/Homepage';
 
 function App() {
   return (
     <Routes>
-        <Route path="/" element={<Root />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/Featured" element={<Featured />} />
         <Route path="/Seminars" element={<Seminars />} />
         <Route path="/Topics" element={<TopicFilter />} />

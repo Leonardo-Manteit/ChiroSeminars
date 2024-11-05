@@ -7,7 +7,6 @@ const User = require('../models/Users')
 const saltRounds = 10;
 
 router.post('/chiro/signUp', async (req, res, next) => {
-    console.log(req.body)
     const { email, username, password, role } = req.body
     let salt = await bcrypt.genSalt(saltRounds)
     let hash = await bcrypt.hash(password, salt)
@@ -21,12 +20,11 @@ router.post('/chiro/signUp', async (req, res, next) => {
 })
 
 router.post('/chiro/login',  async (req, res, next) => {
-    console.log(req.body)
     try {
         const { email, username, password, role } = req.body
 
         let user = await User.findByEmail(email)
-        console.log(user)
+
         if (!user) {
             let err = new Error('incorrect username or passowrd')
             err.status = 400
