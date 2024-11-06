@@ -16,7 +16,7 @@ export default function Seminars({ topicFromHome = null }) {
     const [loading, setLoading] = useState(true);
     const [selectedTopic, setSelectedTopic] = useState(topic ? topic : topicFromHome);
     const [searchedSeminar, setSearchedSeminar] = useState(searched ? searched : '');
-
+    
     useEffect(() => {
         getSeminars()
             .then(res => setSeminars(res))

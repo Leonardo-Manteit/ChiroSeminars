@@ -59,7 +59,7 @@ export default function Contact() {
         </form>
 
 
-        <img src="https://fakeimg.pl/1800x250" alt="about-us-banner" />
+        <img src="https://fakeimg.pl/1000x250" alt="about-us-banner" style={{width: '1000px'}}/>
 
         <Footer />
         </>

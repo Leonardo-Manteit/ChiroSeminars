@@ -6,6 +6,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import EditBtn from "../EditBtn/EditBtn";
 import { getUserFromLocalStorage } from "../../utils/auth_service";
 import DeleteBtn from "../DeleteBtn/DeleteBtn";
+import GetUpdates from "../GetUpdates/GetUpdates";
 
 export default function DisplaySeminar({user=getUserFromLocalStorage()}) {
     const navigate = useNavigate();
@@ -56,6 +57,7 @@ export default function DisplaySeminar({user=getUserFromLocalStorage()}) {
 
         <EditBtn seminar={seminar} user={user}/>
         <DeleteBtn seminar={seminar} user={user} setDeleted={navSeminars} />
+        <GetUpdates />
         <Footer />
     </>
     )
