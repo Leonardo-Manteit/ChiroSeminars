@@ -8,7 +8,9 @@ const seminarRouter = require('./routes/seminar_router');
 const userRouter = require('./routes/user_router');
 const errorHandler = require('./middlewares/error_hander');
 const expressListRoutes = require('express-list-routes');
+// const cors = require('cors'); 
 
+// app.use(cors());
 app.use('/uploads', express.static(path.join(__dirname, 'backend/uploads')));
 app.use('/', express.static('./public/dist'));
 app.use(express.json());
