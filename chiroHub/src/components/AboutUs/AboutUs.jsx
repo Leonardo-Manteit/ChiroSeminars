@@ -8,11 +8,11 @@ export default function AboutUs() {
 
         <h1>About Us</h1>
         
-        <img src="https://fakeimg.pl/1800x250" alt="about-us-banner" />
+        <img src="https://fakeimg.pl/1000x250" alt="about-us-banner" style={{width: '1000px'}}/>
 
         <section>
             <h2>Meet the Man</h2>
-            <img src="https://fakeimg.pl/150x250" alt="" />
+            <img src="https://fakeimg.pl/150x250" alt="the man" style={{width: '150px'}}/>
             <p>Lorem ipsum dolor sit amet consectetur adipiscing, elit at sagittis fames hac mus ultrices, interdum platea nec etiam vitae. Mus pellentesque duis facilisi senectus per curae dui purus, hac fermentum diam sollicitudin facilisis iaculis interdum phasellus elementum, tortor ad dapibus aptent malesuada est sem. Habitant conubia himenaeos porta sodales nisi eros nec lobortis, luctus hac ultrices hendrerit pretium condimentum ligula, feugiat suspendisse eget accumsan bibendum aenean mus. Auctor parturient augue phasellus bibendum vestibulum dis dapibus sollicitudin orci venenatis cras fusce scelerisque hac, turpis ultrices habitant nisl sed tellus leo in duis fermentum purus pretium. Suspendisse aliquam convallis praesent nunc leo sodales est eleifend, placerat varius molestie semper malesuada congue interdum eu, a vel pulvinar quisque per parturient sagittis. Aptent vel feugiat in sem ut posuere sagittis potenti erat pharetra, pellentesque tristique justo luctus rutrum laoreet lectus felis sapien placerat augue, nullam dui integer leo vivamus urna conubia bibendum cursus. Laoreet tempus quisque nunc ornare condimentum faucibus himenaeos, quam euismod imperdiet commodo sapien interdum.
                 Penatibus hac viverra mollis ornare quisque nec sociis nullam gravida elementum venenatis sodales porttitor cum, diam iaculis cubilia placerat dui habitasse natoque vivamus primis justo per vitae. Facilisis a feugiat convallis phasellus arcu pulvinar fames penatibus curae sagittis, augue porta ante molestie sem lectus nulla fermentum class, viverra platea quisque dictum taciti commodo nibh nunc gravida. Id eu metus vestibulum sapien dictumst dui neque aptent nostra, ligula cubilia nunc praesent volutpat donec mi porttitor, pretium parturient ultrices vulputate porta nisl feugiat laoreet. Blandit laoreet hendrerit ligula iaculis cum ullamcorper aliquet imperdiet curae dictum purus, nunc non bibendum sociis fusce cubilia sem venenatis phasellus ridiculus. Pellentesque ac dapibus ligula inceptos arcu euismod vel cursus sagittis nascetur quam feugiat, leo per semper libero etiam eu himenaeos pulvinar sem penatibus. Per praesent metus pharetra vulputate etiam vehicula urna augue nisi, malesuada facilisi aenean dictum platea fringilla nisl pellentesque.</p>
         </section>
@@ -65,7 +65,7 @@ export default function AboutUs() {
             <li><a href="">Published material</a></li>
         </ul>
         
-        <img src="https://fakeimg.pl/1800x250" alt="about-us-banner" />
+        <img src="https://fakeimg.pl/1000x250" alt="about-us-banner" style={{width: '1000px'}}/>
         <Footer />
         </>
     )

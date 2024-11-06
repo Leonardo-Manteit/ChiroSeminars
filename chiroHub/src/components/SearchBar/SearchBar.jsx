@@ -6,14 +6,17 @@ export default function SearchBar({ handleSearch }) {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
 
-    function defaultSearch(e) {
-        e.preventDefault();
-        navigate('/seminars', { state: { topic: search } });
+    function defaultSearch() {
+        navigate('/seminars', { state: { search: search } });
     }
 
     function effectiveSearchHandler(e) {
         e.preventDefault();
-        (handleSearch || defaultSearch)(search);
+        if (handleSearch) {
+            handleSearch(search)
+        } else {
+            defaultSearch()
+        }
     };
 
     return (

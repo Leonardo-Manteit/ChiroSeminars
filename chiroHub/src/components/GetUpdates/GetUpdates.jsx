@@ -1,7 +1,8 @@
 export default function GetUpdates() {
     return (
     <section className="getUpdates">
-        <button>CLick here to get updates on upcoming events</button>
+        <div>This will allow us to send you emails with updates on this seminar</div>
+        <button>Get updates!</button>
     </section>
     )
 }
