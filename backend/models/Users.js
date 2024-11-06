@@ -58,12 +58,21 @@ function deleteSeminarFromUser(seminar_id, email) {
             .then(result => result.rows)
 }
 
+function updateProfilePic(email, filePath) {
+    let sql = `
+    UPDATE chiro_users SET profile_pic_url = $1 WHERE email = $2 RETURNING *;
+    `;
+    return db.query(sql, [filePath, email])
+        .then(result => result.rows[0]);
+}
+
 const User = {
     findByEmail,
     createUser,
     findByUsername,
     saveSeminarToUser,
-    deleteSeminarFromUser
+    deleteSeminarFromUser,
+    updateProfilePic
 }
 
 module.exports = User
