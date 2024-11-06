@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
-import UserNav from "./UserNav.jsx";
-import ProfileCard from "./ProfileCard.jsx";
+import UserNav from "../DashboardNav/DashboardNav.jsx";
+import ProfileCard from "../DashboardProfileCard/ProfileCard.jsx";
 import { getUserFromLocalStorage } from '../../utils/auth_service.js';
 
 export default function Dashboard() {
     const [user, setUser] = useState(getUserFromLocalStorage());
+    const [image, setImage] = useState(null);
+
 
     useEffect(() => {
         const storedUser = getUserFromLocalStorage();
@@ -15,15 +17,39 @@ export default function Dashboard() {
         }
     }, []);
 
+
+    const handleFileChange = (e) => {
+        setImage(e.target.files[0]); // Store the selected file
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("profilePhoto", image);
+
+        // Minimal fetch request to upload the image
+        await fetch('https://chiroseminarhub-australia.onrender.com/chiro/user/uploadProfilePhoto', {
+            method: 'POST',
+            body: formData,
+        });
+    };
+
     return (
         <>
             <Nav />
-            <UserNav />
 
             {/* Profile Section */}
             <section className="profile-section">
                 <ProfileCard user={user} />
+
+                <form onSubmit={handleSubmit}>
+                    <input type="file" accept="image/*" onChange={handleFileChange} />
+                    <button type="submit">Change Profile Image</button>
+                </form>
             </section>
+
+            <UserNav />
 
             {/* Events Section */}
             <section className="events">
