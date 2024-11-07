@@ -7,6 +7,7 @@ import TopicFilter from "../TopicFilter/TopicFilter";
 import styles from '../Featured/Featured.module.css';
 import { useLocation } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
+import { getUserFromLocalStorage } from "../../utils/auth_service";
 
 export default function Seminars({ topicFromHome = null }) {
     const location = useLocation();
@@ -16,6 +17,20 @@ export default function Seminars({ topicFromHome = null }) {
     const [loading, setLoading] = useState(true);
     const [selectedTopic, setSelectedTopic] = useState(topic ? topic : topicFromHome);
     const [searchedSeminar, setSearchedSeminar] = useState(searched ? searched : '');
+    const [displayByFavourite, setDisplayByFavourite] = useState(false)
+    
+    const [user, setUser] = useState(null);
+    const [favourites, setFavourites] = useState(null)
+    
+    useEffect(() => {
+        const fetchUser = async () => {
+            const userData = await getUserFromLocalStorage();
+            setUser(userData);
+            setFavourites(userData.favouriteSeminarIds)
+        };
+        
+        fetchUser();
+    }, []);
     
     useEffect(() => {
         getSeminars()
@@ -41,13 +56,18 @@ export default function Seminars({ topicFromHome = null }) {
             <Nav />
             <SearchBar handleSearch={setSearchedSeminar} />
             <TopicFilter selectedTopic={selectedTopic} setSelectedTopic={setSelectedTopic} />
+            {displayByFavourite 
+                ? <button onClick={()=>setDisplayByFavourite(!displayByFavourite)}>Display All</button>
+                : user ? <button onClick={()=>setDisplayByFavourite(!displayByFavourite)}>Display your faviourites</button> : null
+            }
             <h2>Seminar List</h2>
             <section className={styles.display}>
                 {seminars.length > 0 ? (
                     seminars
                         .filter(seminar => !selectedTopic || seminar?.topics?.includes(selectedTopic))
-                        .filter(seminar => !searchedSeminar || seminar.title.includes(searchedSeminar))
-                        .map(seminar => <ShortDisplaySeminar key={seminar.id} seminar={seminar} />)
+                        .filter(seminar => !searchedSeminar || seminar?.title?.includes(searchedSeminar))
+                        .filter(seminar => !displayByFavourite || favourites?.includes(String(seminar.id)))
+                        .map(seminar => <ShortDisplaySeminar key={seminar.id} seminar={seminar} user={user} favourites={favourites}/>)
                 ) : (
                     <p className="events" id="events">No Seminars.</p>
                 )}

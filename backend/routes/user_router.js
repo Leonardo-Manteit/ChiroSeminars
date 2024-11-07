@@ -39,4 +39,18 @@ router.get('/chiro/user/:email', (req, res) => {
         .catch(err => res.status(500).json({ message: 'User not found', error: err }));
 });
 
+router.post('/chiro/favourite/:favSem_id/:user_id', (req, res) => {
+    const {favSem_id, user_id} = req.params
+    return User.addFavouriteSeminar(favSem_id, user_id)
+        .then(user => res.json(user))
+        .catch(err => res.status(500).json({ message: 'User not found', error: err }));
+});
+
+router.delete('/chiro/favourite/:favSem_id/:user_id', (req, res) => {
+    const {favSem_id, user_id} = req.params
+    return User.removeFavouriteSeminar(favSem_id, user_id)
+        .then(user => res.json(user))
+        .catch(err => res.status(500).json({ message: 'User not found', error: err }));
+});
+
 module.exports = router;
