@@ -2,26 +2,20 @@ import { useNavigate } from "react-router-dom";
 import { deleteSeminar } from "../../utils/seminar_api";
 import { useState } from "react";
 import EditBtn from "../EditBtn/EditBtn";
-import { getUserFromLocalStorage } from "../../utils/auth_service";
 import DeleteBtn from "../DeleteBtn/DeleteBtn";
+import FavouritesBtn from "../FavourtiesBtn/FavouritesBtn";
+import FavouritesRemoveBtn from "../FavouritesRemoveBtn/FavouritesRemoveBtn";
 
-export default function ShortDisplaySeminar({ seminar }) {
-    const [user, setUser] = useState(getUserFromLocalStorage())
+export default function ShortDisplaySeminar({ seminar, user, favourites}) {
     const navigate = useNavigate();
     const [deleted, setDeleted] = useState('');
     const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}` : null;   //for deployed version
     // const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                 //for local testing
     const [image, setImage] = useState(image_url);
-
     function handleNavigate(id) {
-        navigate(`/DisplaySeminar/${id}`);
+        navigate(`/DisplaySeminar/${id}`, { state: { user: user, favourites: favourites } });
     }
-
-    function handleDelete(id) {
-        setDeleted('none');
-        deleteSeminar(id);
-    }
-
+    const [isFavourite, setIsFavourite] = useState(favourites?.includes(String(seminar.id)))
     return (
         <div 
             key={seminar.id} 
@@ -44,6 +38,10 @@ export default function ShortDisplaySeminar({ seminar }) {
             <p><strong>Price:</strong> {seminar.price}</p>
             <button onClick={() => handleNavigate(seminar.id)}>Visit Seminar</button>
             <DeleteBtn setDeleted={setDeleted} user={user} seminar={seminar}/>
+            {/* {isFavourite 
+            ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} />
+            : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} /> : null
+            } */}
             <EditBtn seminar={seminar} user={user} />
         </div>
     );

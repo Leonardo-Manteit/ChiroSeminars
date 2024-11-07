@@ -66,13 +66,41 @@ function updateProfilePic(email, filePath) {
         .then(result => result.rows[0]);
 }
 
+function addFavouriteSeminar(seminar_id, user_id) {
+    let sql = `
+    UPDATE chiro_users
+    SET seminar_id = 
+        CASE
+            WHEN seminar_id IS NULL THEN ARRAY[$1] 
+            WHEN array_position(seminar_id, $1) IS NULL THEN seminar_id || ARRAY[$1]  
+            ELSE seminar_id 
+        END
+    WHERE id = $2;
+    `
+    return db.query(sql, [seminar_id, user_id]).then(res => res.rows);
+}
+
+
+
+function removeFavouriteSeminar(fav_id, user_id) {
+    let sql = `
+    UPDATE chiro_users
+    SET seminar_id = array_remove(seminar_id, $1)
+    WHERE id = $2 AND $1 = ANY(seminar_id);
+    `
+    return db.query(sql, [fav_id, user_id]).then(res => res.rows);
+}
+
+
 const User = {
     findByEmail,
     createUser,
     findByUsername,
     saveSeminarToUser,
     deleteSeminarFromUser,
-    updateProfilePic
+    updateProfilePic,
+    addFavouriteSeminar,
+    removeFavouriteSeminar
 }
 
 module.exports = User

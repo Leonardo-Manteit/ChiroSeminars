@@ -2,17 +2,22 @@ import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer"
 import { getSeminarById } from "../../utils/seminar_api";
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import EditBtn from "../EditBtn/EditBtn";
-import { getUserFromLocalStorage } from "../../utils/auth_service";
 import DeleteBtn from "../DeleteBtn/DeleteBtn";
 import GetUpdates from "../GetUpdates/GetUpdates";
+import FavouritesBtn from "../FavourtiesBtn/FavouritesBtn";
+import FavouritesRemoveBtn from "../FavouritesRemoveBtn/FavouritesRemoveBtn";
 
-export default function DisplaySeminar({user=getUserFromLocalStorage()}) {
+export default function DisplaySeminar() {
     const navigate = useNavigate();
     const {id} = useParams()
+    const location = useLocation();
+    const user = location.state?.user;
+    const [favourites, setFavourites] = useState(location.state?.favourites)
     const [seminar, setSeminar] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [isFavourite, setIsFavourite] = useState(favourites?.includes(id))
     console.log(user)
     useEffect(() => {
         getSeminarById(id)
@@ -20,7 +25,7 @@ export default function DisplaySeminar({user=getUserFromLocalStorage()}) {
             .then(() => setLoading(false))
             .catch(err => console.error('Direct fetch error:', err));
     }, []);
-    
+  
     if (loading) {
         return (
             <>
@@ -37,7 +42,6 @@ export default function DisplaySeminar({user=getUserFromLocalStorage()}) {
 
     const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}` : null;   //for deployed version
     // const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                 //for local testing
-
     return (
         <>
         <Nav />
@@ -54,9 +58,12 @@ export default function DisplaySeminar({user=getUserFromLocalStorage()}) {
                 {image_url && <img src={image_url} style={{height: '100px', width: '100px'}}alt={`Image for ${seminar.title}`} />}
 
         </div>
-
         <EditBtn seminar={seminar} user={user}/>
         <DeleteBtn seminar={seminar} user={user} setDeleted={navSeminars} />
+        {isFavourite 
+        ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} />
+        : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} /> : null
+        }
         <GetUpdates />
         <Footer />
     </>

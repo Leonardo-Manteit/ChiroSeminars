@@ -11,3 +11,9 @@ export async function signUp(userInfo) {
     console.log(res)
     return res.data.token
 }
+
+export async function getNewToken(userInfo) {
+    let res = await axios.post(`/chiro/updateProfile`, userInfo) 
+    console.log(res)
+    return res.data.token
+}
