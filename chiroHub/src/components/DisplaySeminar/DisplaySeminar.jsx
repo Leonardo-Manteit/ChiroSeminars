@@ -41,14 +41,14 @@ export default function DisplaySeminar() {
     }
 
     //for deployed version
-    // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}` : null; 
+    const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}` : null; 
 
     // reset cache version
     // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}?nocache=${Date.now()}` : null;
   
     
     //for local testing
-    const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                
+    // const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                
     
     // console.log('Image URL:', image_url);
 
