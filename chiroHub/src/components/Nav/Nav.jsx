@@ -30,6 +30,7 @@ export default function Nav() {
                         <li><Link to="/AboutUs">About Us</Link></li>
                         <li><Link to="/Contact">Contact</Link></li>
                         {user ? <li><Link to="/CreateEvent">Create Event</Link></li> : null }
+                        {user ? <li><Link to="/Favourites">Favourites</Link></li> : null }
                         {user ? <li><Link to="/Dashboard/:id">Dashboard</Link></li> : null }
                         {user ? (
                             <button onClick={handleLogout}>Logout</button>

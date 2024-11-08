@@ -3,20 +3,9 @@ import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 import UserNav from "../DashboardNav/DashboardNav.jsx";
 import ProfileCard from "../DashboardProfileCard/ProfileCard.jsx";
-import { getUserFromLocalStorage } from '../../utils/auth_service.js';
 
-export default function Dashboard() {
-    const [user, setUser] = useState(getUserFromLocalStorage());
+export default function Dashboard({user, favourites}) {
     const [image, setImage] = useState(null);
-
-
-    useEffect(() => {
-        const storedUser = getUserFromLocalStorage();
-        if (storedUser) {
-            setUser(storedUser);
-        }
-    }, []);
-
 
     const handleFileChange = (e) => {
         setImage(e.target.files[0]); // Store the selected file

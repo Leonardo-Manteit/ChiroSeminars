@@ -61,8 +61,8 @@ export default function DisplaySeminar() {
         <EditBtn seminar={seminar} user={user}/>
         <DeleteBtn seminar={seminar} user={user} setDeleted={navSeminars} />
         {isFavourite 
-        ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} />
-        : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} /> : null
+            ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/>
+            : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/> : null
         }
         <GetUpdates />
         <Footer />
