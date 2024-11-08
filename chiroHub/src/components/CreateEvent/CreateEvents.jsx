@@ -4,8 +4,10 @@ import Footer from '../Footer/Footer.jsx';
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { getUserFromLocalStorage } from '../../utils/auth_service.js';
+import { uploadSeminarImage } from '../../utils/image_upload';
+import { generateImagePreview } from '../../utils/image_preview';
 
-export default function Create({user=getUserFromLocalStorage()}) {
+export default function Create({ user = getUserFromLocalStorage() }) {
     const [imagePreview, setImagePreview] = useState(null); // State for image preview
     const [selectedTopics, setSelectedTopics] = useState([]); // State for selected topics
     const navigate = useNavigate();
@@ -33,44 +35,24 @@ export default function Create({user=getUserFromLocalStorage()}) {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        console.log('Submitting form with selected topics:', selectedTopics); // Debugging line
-
         const formData = new FormData(e.target);
-        formData.append('topics', JSON.stringify(selectedTopics)); // Append selected topics as JSON
-        formData.append('user_id', user.id); // Append user
-        console.log('FormData to be sent:', [...formData]); // Debugging line
+        formData.append('topics', JSON.stringify(selectedTopics)); 
+        formData.append('user_id', user.id); 
 
-        try {
-            const response = await fetch('/chiro/seminar', {
-                method: 'POST',
-                body: formData,
-            });
-            if (response.ok) {
-                e.target.reset();
-                setImagePreview(null); // Reset image preview after submission
-                setSelectedTopics([]); // Clear selected topics
-                console.log('formData SENT');
-            } else {
-                console.error('Failed to send formData:', response.statusText); // Error handling
-            }
-        } catch (error) {
-            console.error('formData could NOT send, error: ', error); // Error handling
+        const response = await uploadSeminarImage(formData);
+        if (response) {
+            e.target.reset();
+            setImagePreview(null); 
+            setSelectedTopics([]); 
+            navigate(`/Seminars`);
+        } else {
+            console.error('Failed to send formData:', response.statusText);
         }
-
-        navigate(`/Seminars`);
     }
 
     function handleImageChange(e) {
         const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result); // Set the image preview URL
-            };
-            reader.readAsDataURL(file); // Read the file as a data URL
-        } else {
-            setImagePreview(null); // Reset if no file is selected
-        }
+        if (file) generateImagePreview(file, setImagePreview); 
     }
 
     return (
@@ -113,7 +95,7 @@ export default function Create({user=getUserFromLocalStorage()}) {
                             type="file" 
                             accept="image/*" 
                             name="image" 
-                            onChange={handleImageChange} // Handle image change
+                            onChange={handleImageChange} // Handle image change for preview
                         />
                     </section>
                     {imagePreview && (
