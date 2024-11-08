@@ -1,3 +1,4 @@
+import { deleteSeminar } from "../../utils/seminar_api";
 
 export default function DeleteBtn({setDeleted, user, seminar}) {
 
@@ -5,6 +6,7 @@ export default function DeleteBtn({setDeleted, user, seminar}) {
         setDeleted('none');
         deleteSeminar(id);
     }
+
     if (user) {
         return (
             <>

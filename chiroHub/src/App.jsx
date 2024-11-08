@@ -11,17 +11,10 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Homepage from './components/Homepage/Homepage';
 import Favourites from './components/Favourites/Favourites';
 
-import { useState } from 'react';
-import { getUserFromLocalStorage } from './utils/auth_service';
-
 function App() {
-
-  const [user, setUser] = useState(getUserFromLocalStorage());
-  const [favourites, setFavourites] = useState(user.favouriteSeminarIds)
-  // passing this information ONLY works if it is the component being loaded
   return (
     <Routes>
-        <Route path="/" element={<Homepage user={user} favourites={favourites} />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/Seminars" element={<Seminars />} />
         <Route path="/CreateEvent" element={<CreateEvents />} />
         <Route path="/EditEvent/:id" element={<EditEvent />} />
@@ -29,8 +22,8 @@ function App() {
         <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/Login" element={<Login />} /> 
         <Route path="/DisplaySeminar/:id" element={<DisplaySeminar  />} /> 
-        <Route path="/Dashboard/:id" element={<Dashboard user={user} favourites={favourites} setFavourites={setFavourites}/>} />
-        <Route path="/Favourites" element={<Favourites user={user} favourites={favourites} setFavourites={setFavourites} />} />
+        <Route path="/Dashboard/:id" element={<Dashboard />} />
+        <Route path="/Favourites" element={<Favourites  />} /> 
     </Routes>
    );
 }

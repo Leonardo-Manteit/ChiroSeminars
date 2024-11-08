@@ -18,7 +18,7 @@ export default function DisplaySeminar() {
     const [seminar, setSeminar] = useState(null)
     const [loading, setLoading] = useState(true)
     const [isFavourite, setIsFavourite] = useState(favourites?.includes(id))
-    console.log(user)
+    
     useEffect(() => {
         getSeminarById(id)
             .then(res => setSeminar(res))

@@ -26,7 +26,7 @@ export default function Seminars({ topicFromHome = null }) {
         .catch(err => console.error('Direct fetch error:', err));
     }, []);
     const [user, setUser] = useState(getUserFromLocalStorage());
-    const [favourites, setFavourites] = useState(user.favouriteSeminarIds)
+    const [favourites, setFavourites] = useState(user?.favouriteSeminarIds)
     const [favourites2, setFavourites2] = useState(favourites)
     
     if (loading) {
