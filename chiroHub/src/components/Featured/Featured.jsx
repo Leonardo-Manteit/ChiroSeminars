@@ -8,7 +8,7 @@ import ShortDisplaySeminar from "../ShortDisplaySeminar/ShortDisplaySeminar";
 export default function Featured({user, favourites}) {
     const [featured, setFeatured] = useState()
     const [loading, setLoading] = useState(true)
-    console.log(user, favourites)
+    
     useEffect(() => {
         getFeatured()
             .then(res => setFeatured(res))

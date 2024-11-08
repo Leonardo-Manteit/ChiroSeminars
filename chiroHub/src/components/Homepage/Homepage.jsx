@@ -6,9 +6,13 @@ import styles from './Homepage.module.css'
 import Testimonials from '../Testimonials/Testimonials';
 import Waves from '../Waves/Waves';
 import Welcome from '../Welcome/Welcome';
+import { useState } from 'react';
+import { getUserFromLocalStorage } from '../../utils/auth_service';
 
-export default function Homepage({user, favourites}) {
-    console.log(user, favourites)
+export default function Homepage() {
+    const [user, setUser] = useState(getUserFromLocalStorage());
+    const [favourites, setFavourites] = useState(user?.favouriteSeminarIds)
+    
     return (
     <section className={styles.root} >
         <Nav />

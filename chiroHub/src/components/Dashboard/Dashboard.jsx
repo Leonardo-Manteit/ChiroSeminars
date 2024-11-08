@@ -3,8 +3,11 @@ import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 import UserNav from "../DashboardNav/DashboardNav.jsx";
 import ProfileCard from "../DashboardProfileCard/ProfileCard.jsx";
+import { getUserFromLocalStorage } from '../../utils/auth_service';
 
-export default function Dashboard({user, favourites}) {
+export default function Dashboard() {
+    const [user, setUser] = useState(getUserFromLocalStorage());
+    const [favourites, setFavourites] = useState(user?.favouriteSeminarIds)
     const [image, setImage] = useState(null);
 
     const handleFileChange = (e) => {
