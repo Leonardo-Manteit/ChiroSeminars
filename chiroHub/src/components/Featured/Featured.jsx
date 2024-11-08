@@ -5,10 +5,10 @@ import ShortDisplaySeminar from "../ShortDisplaySeminar/ShortDisplaySeminar";
 
 
 
-export default function Featured() {
+export default function Featured({user, favourites}) {
     const [featured, setFeatured] = useState()
     const [loading, setLoading] = useState(true)
-
+    console.log(user, favourites)
     useEffect(() => {
         getFeatured()
             .then(res => setFeatured(res))
@@ -26,7 +26,7 @@ export default function Featured() {
         <section className={styles.display}>
         {featured.length > 0 ? (
             <>
-                {featured.map(seminar => ( <ShortDisplaySeminar seminar={seminar} />))}
+                {featured.map(seminar => ( <ShortDisplaySeminar key={seminar.id} seminar={seminar} user={user} favourites={favourites} setFavourites={() => null}/>))}
             </>
             ) : (
                 <p>No Featured seminars.</p>

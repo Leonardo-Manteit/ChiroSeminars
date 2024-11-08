@@ -19,26 +19,16 @@ export default function Seminars({ topicFromHome = null }) {
     const [searchedSeminar, setSearchedSeminar] = useState(searched ? searched : '');
     const [displayByFavourite, setDisplayByFavourite] = useState(false)
     
-    const [user, setUser] = useState(null);
-    const [favourites, setFavourites] = useState(null)
-    
-    useEffect(() => {
-        const fetchUser = async () => {
-            const userData = await getUserFromLocalStorage();
-            setUser(userData);
-            setFavourites(userData.favouriteSeminarIds)
-        };
-        
-        fetchUser();
-    }, []);
-    
     useEffect(() => {
         getSeminars()
-            .then(res => setSeminars(res))
-            .then(() => setLoading(false))
-            .catch(err => console.error('Direct fetch error:', err));
+        .then(res => setSeminars(res))
+        .then(() => setLoading(false))
+        .catch(err => console.error('Direct fetch error:', err));
     }, []);
-
+    const [user, setUser] = useState(getUserFromLocalStorage());
+    const [favourites, setFavourites] = useState(user.favouriteSeminarIds)
+    const [favourites2, setFavourites2] = useState(favourites)
+    
     if (loading) {
         return (
             <>
@@ -66,8 +56,8 @@ export default function Seminars({ topicFromHome = null }) {
                     seminars
                         .filter(seminar => !selectedTopic || seminar?.topics?.includes(selectedTopic))
                         .filter(seminar => !searchedSeminar || seminar?.title?.includes(searchedSeminar))
-                        .filter(seminar => !displayByFavourite || favourites?.includes(String(seminar.id)))
-                        .map(seminar => <ShortDisplaySeminar key={seminar.id} seminar={seminar} user={user} favourites={favourites}/>)
+                        .filter(seminar => !displayByFavourite || favourites2?.includes(String(seminar.id)))
+                        .map(seminar => <ShortDisplaySeminar setFavourites={setFavourites2} key={seminar.id} seminar={seminar} user={user} favourites={favourites2}/>)
                 ) : (
                     <p className="events" id="events">No Seminars.</p>
                 )}

@@ -6,7 +6,7 @@ import DeleteBtn from "../DeleteBtn/DeleteBtn";
 import FavouritesBtn from "../FavourtiesBtn/FavouritesBtn";
 import FavouritesRemoveBtn from "../FavouritesRemoveBtn/FavouritesRemoveBtn";
 
-export default function ShortDisplaySeminar({ seminar, user, favourites}) {
+export default function ShortDisplaySeminar({ seminar, user, favourites, setFavourites}) {
     const navigate = useNavigate();
     const [deleted, setDeleted] = useState('');
     const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}` : null;   //for deployed version
@@ -38,10 +38,10 @@ export default function ShortDisplaySeminar({ seminar, user, favourites}) {
             <p><strong>Price:</strong> {seminar.price}</p>
             <button onClick={() => handleNavigate(seminar.id)}>Visit Seminar</button>
             <DeleteBtn setDeleted={setDeleted} user={user} seminar={seminar}/>
-            {/* {isFavourite 
-            ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} />
-            : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} /> : null
-            } */}
+            {isFavourite 
+            ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/>
+            : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/> : null
+            }
             <EditBtn seminar={seminar} user={user} />
         </div>
     );
