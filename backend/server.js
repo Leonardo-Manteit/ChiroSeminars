@@ -8,9 +8,24 @@ const seminarRouter = require('./routes/seminar_router');
 const userRouter = require('./routes/user_router');
 const errorHandler = require('./middlewares/error_hander');
 const expressListRoutes = require('express-list-routes');
-// const cors = require('cors'); 
+const cors = require('cors'); 
 
-// app.use(cors());
+app.use(cors());
+
+app.use('/uploads', (req, res, next) => {
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');  // CORP header
+  res.setHeader('Access-Control-Allow-Origin', '*');              // CORS header
+
+  // Detect file extension and set appropriate content type
+  const extension = path.extname(req.url).toLowerCase();
+  if (extension === '.png') {
+      res.setHeader('Content-Type', 'image/png');
+  } else if (extension === '.jpg' || extension === '.jpeg') {
+      res.setHeader('Content-Type', 'image/jpeg');
+  }
+  next();
+});
+
 app.use('/uploads', express.static(path.join(__dirname, 'backend/uploads')));
 app.use('/', express.static('./public/dist'));
 app.use(express.json());
