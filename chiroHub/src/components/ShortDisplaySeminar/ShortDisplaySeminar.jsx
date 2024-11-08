@@ -46,3 +46,4 @@ export default function ShortDisplaySeminar({ seminar, user, favourites, setFavo
         </div>
     );
 }
+
