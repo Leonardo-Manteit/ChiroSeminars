@@ -3,44 +3,45 @@ import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 import UserNav from "../DashboardNav/DashboardNav.jsx";
 import ProfileCard from "../DashboardProfileCard/ProfileCard.jsx";
-import { getUserFromLocalStorage } from '../../utils/auth_service';
+import { getUserFromLocalStorage } from '../../utils/auth_service.js';
+import { uploadProfilePhoto } from '../../utils/image_upload';
+import { generateImagePreview } from '../../utils/image_preview';
 
 export default function Dashboard() {
     const [user, setUser] = useState(getUserFromLocalStorage());
     const [favourites, setFavourites] = useState(user?.favouriteSeminarIds)
     const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
+
+    useEffect(() => {
+        const storedUser = getUserFromLocalStorage();
+        if (storedUser) setUser(storedUser);
+    }, []);
 
     const handleFileChange = (e) => {
-        setImage(e.target.files[0]); // Store the selected file
+        const file = e.target.files[0];
+        setImage(file);
+        generateImagePreview(file, setImagePreview); // Set image preview
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const formData = new FormData();
-        formData.append("profilePhoto", image);
-
-        // Minimal fetch request to upload the image
-        await fetch('https://chiroseminarhub-australia.onrender.com/chiro/user/uploadProfilePhoto', {
-            method: 'POST',
-            body: formData,
-        });
+        const response = await uploadProfilePhoto(image);
+        console.log('Profile photo upload response:', response);
     };
+
 
     return (
         <>
             <Nav />
-
-            {/* Profile Section */}
             <section className="profile-section">
                 <ProfileCard user={user} />
-
                 <form onSubmit={handleSubmit}>
                     <input type="file" accept="image/*" onChange={handleFileChange} />
+                    {imagePreview && <img src={imagePreview} alt="Profile Preview" style={{ width: '100px' }} />}
                     <button type="submit">Change Profile Image</button>
                 </form>
             </section>
-
             <UserNav />
 
             {/* Events Section */}
