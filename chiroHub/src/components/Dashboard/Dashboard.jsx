@@ -6,6 +6,7 @@ import ProfileCard from "../DashboardProfileCard/ProfileCard.jsx";
 import { getUserFromLocalStorage } from '../../utils/auth_service.js';
 import { uploadProfilePhoto } from '../../utils/image_upload';
 import { generateImagePreview } from '../../utils/image_preview';
+import DeleteUser from "../DeleteUser/DeleteUser.jsx";
 
 export default function Dashboard() {
     const [user, setUser] = useState(getUserFromLocalStorage());
@@ -43,7 +44,7 @@ export default function Dashboard() {
                 </form>
             </section>
             <UserNav />
-
+            <DeleteUser />
             {/* Events Section */}
             <section className="events">
                 <h3>Upcoming Events</h3>
