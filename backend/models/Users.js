@@ -1,7 +1,6 @@
 const db = require('../db')
 
 function createUser(email, username, hash, role = 'user') {
-    console.log(email, username, hash, role)
         let sql = `
         INSERT INTO chiro_users
         (email, username, password_digest, role) 
@@ -9,6 +8,14 @@ function createUser(email, username, hash, role = 'user') {
         RETURNING *;
         `
         return db.query(sql, [email, username, hash, role])
+        .then(res=>res.rows)
+}
+
+function deleteUser(id) {
+        let sql = `
+        DELETE FROM chiro_users WHERE id = $1;
+        `
+        return db.query(sql, [id])
         .then(res=>res.rows)
 }
 
@@ -100,7 +107,8 @@ const User = {
     deleteSeminarFromUser,
     updateProfilePic,
     addFavouriteSeminar,
-    removeFavouriteSeminar
+    removeFavouriteSeminar,
+    deleteUser
 }
 
 module.exports = User

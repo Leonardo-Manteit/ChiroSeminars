@@ -53,4 +53,12 @@ router.delete('/chiro/favourite/:favSem_id/:user_id', (req, res) => {
         .catch(err => res.status(500).json({ message: 'User not found', error: err }));
 });
 
+router.delete('/chiro/user/delete/:user_id', (req, res) => {
+    const {user_id} = req.params
+    return User.deleteUser(user_id)
+        .then(user => res.json(user))
+        .catch(err => res.status(500).json({ message: 'User could not be deleted', error: err }));
+});
+
+
 module.exports = router;
