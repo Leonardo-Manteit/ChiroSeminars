@@ -1,36 +1,46 @@
-require('dotenv').config();
-const express = require('express');
-const router = express.Router();
+require('dotenv').config()
+const express = require('express')
+const router = express.Router()
+const User = require('../models/Users')
 const multer = require('multer');
 const path = require('path');
-const db = require('../db');
-const User = require('../models/Users');
+const fs = require('fs');
 
-// Configure multer for file storage
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Make sure the 'uploads' directory exists
+        cb(null, 'uploads/'); 
     },
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Generate unique filename
+        const uniqueName = `${Date.now()}-${file.originalname}`;
+        cb(null, uniqueName); 
     }
 });
-const upload = multer({ storage });
+
+const upload = multer({ storage: storage });
 
 // Route to handle profile photo upload
 router.post('/chiro/user/uploadProfilePhoto', upload.single('profilePhoto'), async (req, res) => {
     try {
-        const filePath = `https://chiroseminarhub-australia.onrender.com/uploads/${req.file.filename}`; // Full URL
+        // Check if file exists in request
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
+        console.log('Received Data:', req.body);
+        console.log('Uploaded Image:', req.file);
+
+        const filePath = req.file.path; // Path to save in database
         const email = req.body.email;
 
         // Update user's profile_pic_url in the database
         const updatedUser = await User.updateProfilePic(email, filePath);
 
-        res.json({ imageUrl: filePath, user: updatedUser });
+        res.status(201).json({ imageUrl: filePath, user: updatedUser });
     } catch (err) {
+        console.log(err)
         res.status(500).json({ message: 'Image upload failed', error: err });
     }
 });
+
 
 
 // Existing route

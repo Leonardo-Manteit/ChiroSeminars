@@ -15,7 +15,7 @@ export default function ProfileCard({ user }) {
             <div className={styles.userDetails}>
                 <h2>{name}</h2>
                 <p>Email: {email}</p>
-                <button>Edit Details</button>
+                {/* <button>Edit Details</button> */}
                 <DeleteUser />
             </div>
         </div>

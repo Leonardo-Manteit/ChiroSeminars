@@ -6,11 +6,9 @@ import ProfileCard from "../DashboardProfileCard/ProfileCard.jsx";
 import { getUserFromLocalStorage } from '../../utils/auth_service.js';
 import { uploadProfilePhoto } from '../../utils/image_upload';
 import { generateImagePreview } from '../../utils/image_preview';
-import DeleteUser from "../DeleteUser/DeleteUser.jsx";
 
 export default function Dashboard() {
     const [user, setUser] = useState(getUserFromLocalStorage());
-    const [favourites, setFavourites] = useState(user?.favouriteSeminarIds)
     const [image, setImage] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
 
@@ -27,12 +25,13 @@ export default function Dashboard() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await uploadProfilePhoto(image);
-        console.log('Profile photo upload response:', response);
-    
-        if (response.imageUrl) {
-            // Update user state with new profile picture URL
-            const updatedUser = { ...user, profile_pic_url: response.imageUrl };
+       console.log('check', image.lastModified, image)
+        if (image.lastModified) {
+            const formData = new FormData();
+            formData.append('profilePhoto', image);
+            formData.append('email', user.email);
+            const response = await uploadProfilePhoto(formData);
+            const updatedUser = { ...user, profile_pic_url: image.lastModified + '-' + image.name };
             setUser(updatedUser);
     
             // Optionally, update local storage if you want to persist this change across sessions
@@ -48,13 +47,12 @@ export default function Dashboard() {
             <section className="profile-section">
                 <ProfileCard user={user} />
                 <form onSubmit={handleSubmit}>
-                    <input type="file" accept="image/*" onChange={handleFileChange} />
+                    <input type="file" accept="image/*" name="profilePhoto" onChange={handleFileChange} />
                     {imagePreview && <img src={imagePreview} alt="Profile Preview" style={{ width: '100px' }} />}
                     <button type="submit">Change Profile Image</button>
                 </form>
             </section>
             <UserNav />
-            <DeleteUser />
             {/* Events Section */}
             <section className="events">
                 <h3>Upcoming Events</h3>
