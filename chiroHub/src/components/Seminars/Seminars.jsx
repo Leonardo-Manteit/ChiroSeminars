@@ -17,18 +17,38 @@ export default function Seminars({ topicFromHome = null }) {
     const [loading, setLoading] = useState(true);
     const [selectedTopic, setSelectedTopic] = useState(topic ? topic : topicFromHome);
     const [searchedSeminar, setSearchedSeminar] = useState(searched ? searched : '');
-    const [displayByFavourite, setDisplayByFavourite] = useState(false)
-    
+    const [displayByFavourite, setDisplayByFavourite] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const seminarsPerPage = 6;
+
     useEffect(() => {
         getSeminars()
         .then(res => setSeminars(res))
         .then(() => setLoading(false))
         .catch(err => console.error('Direct fetch error:', err));
     }, []);
+
     const [user, setUser] = useState(getUserFromLocalStorage());
     const [favourites, setFavourites] = useState(user?.favouriteSeminarIds)
     const [favourites2, setFavourites2] = useState(favourites)
     
+    const handleNextPage = () => {
+        setCurrentPage(prevPage => prevPage + 1);
+    };
+
+    const handlePreviousPage = () => {
+        setCurrentPage(prevPage => (prevPage > 1 ? prevPage - 1 : prevPage));
+    };
+
+    const filteredSeminars = seminars
+        .filter(seminar => !selectedTopic || seminar?.topics?.includes(selectedTopic))
+        .filter(seminar => !searchedSeminar || seminar?.title?.includes(searchedSeminar))
+        .filter(seminar => !displayByFavourite || favourites2?.includes(String(seminar.id)));
+
+    const indexOfFirstSeminar = (currentPage - 1) * seminarsPerPage;
+    const indexOfLastSeminar = currentPage * seminarsPerPage;
+    const currentSeminars = filteredSeminars.slice(indexOfFirstSeminar, indexOfLastSeminar);
+
     if (loading) {
         return (
             <>
@@ -40,24 +60,39 @@ export default function Seminars({ topicFromHome = null }) {
             </>
         );
     }
+    console.log(currentPage, indexOfLastSeminar, filteredSeminars.length)
 
     return (
         <>
             <Nav />
             <SearchBar handleSearch={setSearchedSeminar} />
             <TopicFilter selectedTopic={selectedTopic} setSelectedTopic={setSelectedTopic} />
+            
+            <div className={styles.pagination}>
+                {currentPage > 1 && (
+                    <button onClick={handlePreviousPage}>Previous Page</button>
+                )}
+                {indexOfLastSeminar < filteredSeminars.length && (
+                    <button onClick={handleNextPage}>Next Page</button>
+                )}
+            </div>
+
             {displayByFavourite 
-                ? <button onClick={()=>setDisplayByFavourite(!displayByFavourite)}>Display All</button>
-                : user ? <button onClick={()=>setDisplayByFavourite(!displayByFavourite)}>Display your faviourites</button> : null
+                ? <button onClick={() => setDisplayByFavourite(!displayByFavourite)}>Display All</button>
+                : user ? <button onClick={() => setDisplayByFavourite(!displayByFavourite)}>Display your favourites</button> : null
             }
             <h2>Seminar List</h2>
             <section className={styles.display}>
-                {seminars.length > 0 ? (
-                    seminars
-                        .filter(seminar => !selectedTopic || seminar?.topics?.includes(selectedTopic))
-                        .filter(seminar => !searchedSeminar || seminar?.title?.includes(searchedSeminar))
-                        .filter(seminar => !displayByFavourite || favourites2?.includes(String(seminar.id)))
-                        .map(seminar => <ShortDisplaySeminar setFavourites={setFavourites2} key={seminar.id} seminar={seminar} user={user} favourites={favourites2}/>)
+                {currentSeminars.length > 0 ? (
+                    currentSeminars.map(seminar => (
+                        <ShortDisplaySeminar
+                            setFavourites={setFavourites2}
+                            key={seminar.id}
+                            seminar={seminar}
+                            user={user}
+                            favourites={favourites2}
+                        />
+                    ))
                 ) : (
                     <p className="events" id="events">No Seminars.</p>
                 )}
