@@ -60,14 +60,13 @@ export default function Seminars({ topicFromHome = null }) {
             </>
         );
     }
-    console.log(currentPage, indexOfLastSeminar, filteredSeminars.length)
 
     return (
         <>
             <Nav />
             <SearchBar handleSearch={setSearchedSeminar} />
             <TopicFilter selectedTopic={selectedTopic} setSelectedTopic={setSelectedTopic} />
-            
+
             <div className={styles.pagination}>
                 {currentPage > 1 && (
                     <button onClick={handlePreviousPage}>Previous Page</button>

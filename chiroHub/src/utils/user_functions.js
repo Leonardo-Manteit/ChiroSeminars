@@ -11,3 +11,9 @@ export async function removeFavouriteSeminar(favSem_id, user_id) {
     console.log(res)
     return res.data
 }
+    
+export async function deleteUser(user_id) {
+    let res = await axios.delete(`/chiro/user/delete/${user_id}`)
+    console.log(res)
+    return res.data
+}

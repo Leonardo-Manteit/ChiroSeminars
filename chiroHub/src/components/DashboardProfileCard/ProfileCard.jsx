@@ -1,3 +1,5 @@
+import DeleteUser from "../DeleteUser/DeleteUser";
+
 export default function ProfileCard({ user }) {
     // Provide default values if user properties are missing
     const name = user?.username || "Anonymous User";
@@ -13,6 +15,7 @@ export default function ProfileCard({ user }) {
                 <h2>{name}</h2>
                 <p>Email: {email}</p>
                 <button>Edit Details</button>
+                <DeleteUser />
             </div>
         </div>
     );
