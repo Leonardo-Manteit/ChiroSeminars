@@ -20,17 +20,18 @@ const upload = multer({ storage });
 // Route to handle profile photo upload
 router.post('/chiro/user/uploadProfilePhoto', upload.single('profilePhoto'), async (req, res) => {
     try {
-        const filePath = req.file.path;
+        const filePath = `https://chiroseminarhub-australia.onrender.com/uploads/${req.file.filename}`; // Full URL
         const email = req.body.email;
 
         // Update user's profile_pic_url in the database
-        await User.updateProfilePic(email, filePath);
+        const updatedUser = await User.updateProfilePic(email, filePath);
 
-        res.json({ imageUrl: filePath });
+        res.json({ imageUrl: filePath, user: updatedUser });
     } catch (err) {
         res.status(500).json({ message: 'Image upload failed', error: err });
     }
 });
+
 
 // Existing route
 router.get('/chiro/user/:email', (req, res) => {
