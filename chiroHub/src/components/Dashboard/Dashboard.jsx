@@ -29,7 +29,17 @@ export default function Dashboard() {
         e.preventDefault();
         const response = await uploadProfilePhoto(image);
         console.log('Profile photo upload response:', response);
+    
+        if (response.imageUrl) {
+            // Update user state with new profile picture URL
+            const updatedUser = { ...user, profile_pic_url: response.imageUrl };
+            setUser(updatedUser);
+    
+            // Optionally, update local storage if you want to persist this change across sessions
+            localStorage.setItem('user', JSON.stringify(updatedUser));
+        }
     };
+    
 
 
     return (
