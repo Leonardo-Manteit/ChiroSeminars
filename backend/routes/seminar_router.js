@@ -20,17 +20,6 @@ const upload = multer({ storage: storage });
 
 router.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
-
-// router.get('/chiro/createSeminar/:title/:organizer/:date/:location/:description/:price/:contact/:img', (req,res) => {
-//     const [title, organizer, date, location, description, price, contact, img] = [req.params.title, req.params.organizer, req.params.date, req.params.location, req.params.description, req.params.price, req.params.contact, req.params.img]
-//     return Seminar.createSeminar(title, organizer, date, location, description, price, contact, img)
-// })
-
-// router.post('/chiro/update/:id/:title/:organizer/:date/:location/:description/:price/:contact/:img', (req,res) => {
-//     const [title, organizer, date, location, description, price, contact, img, id] = [req.params.title, req.params.organizer, req.params.date, req.params.location, req.params.description, req.params.price, req.params.contact, req.params.img, req.params.id]
-//     return Seminar.updateSeminar(id, title, organizer, date, location, description, price, contact, img)
-// })
-
 router.post('/chiro/seminar', upload.single('image'), async (req,res) => {
     try {
         const { user_id, title, organizer, date, location, description, price, contact, featured, topics } = req.body

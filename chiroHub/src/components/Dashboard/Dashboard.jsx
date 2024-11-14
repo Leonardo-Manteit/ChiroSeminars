@@ -3,39 +3,31 @@ import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 import UserNav from "../DashboardNav/DashboardNav.jsx";
 import ProfileCard from "../DashboardProfileCard/ProfileCard.jsx";
-import { getUserFromLocalStorage } from '../../utils/auth_service.js';
+import { getUserFromLocalStorage, updateToken } from '../../utils/auth_service.js';
 import { uploadProfilePhoto } from '../../utils/image_upload';
 import { generateImagePreview } from '../../utils/image_preview';
 
 export default function Dashboard() {
     const [user, setUser] = useState(getUserFromLocalStorage());
-    const [image, setImage] = useState(null);
+    const [image, setImage] = useState(user?.profilePic);
     const [imagePreview, setImagePreview] = useState(null);
-
-    useEffect(() => {
-        const storedUser = getUserFromLocalStorage();
-        if (storedUser) setUser(storedUser);
-    }, []);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         setImage(file);
         generateImagePreview(file, setImagePreview); // Set image preview
     };
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
-       console.log('check', image.lastModified, image)
         if (image.lastModified) {
             const formData = new FormData();
             formData.append('profilePhoto', image);
             formData.append('email', user.email);
             const response = await uploadProfilePhoto(formData);
-            const updatedUser = { ...user, profile_pic_url: image.lastModified + '-' + image.name };
-            setUser(updatedUser);
-    
-            // Optionally, update local storage if you want to persist this change across sessions
-            localStorage.setItem('user', JSON.stringify(updatedUser));
+            await updateToken(user)
+            setUser(getUserFromLocalStorage())
+            setImagePreview(null)
         }
     };
     

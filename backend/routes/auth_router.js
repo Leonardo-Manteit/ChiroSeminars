@@ -38,7 +38,7 @@ router.post('/chiro/login',  async (req, res, next) => {
             err.status = 400
             throw err
         }
-
+        
         //generate a token
         const token = jwt.sign (
             { id: user.id, email: email, username: username, favouriteSeminarIds: seminar_id, role: role, profilePic: profile_pic_url},
