@@ -30,9 +30,16 @@ function extractPayload(token) {
     return decodedPayload;
 }
 
+
+import { getNewToken } from "./auth_api";
 // Function to update the token in localStorage
-export function updateToken(newToken) {
-    if (newToken) {
-        localStorage.setItem('token', newToken);
+
+export async function updateToken(user) {
+    try {
+        let token = await getNewToken(user)
+        localStorage.setItem('token', token)
+        console.log('token update:', token)
+    } catch (err) {
+        console.log('undable to update:',err)
     }
 }
