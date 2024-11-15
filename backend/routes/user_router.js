@@ -25,8 +25,8 @@ router.post('/chiro/user/uploadProfilePhoto', upload.single('profilePhoto'), asy
         if (!req.file) {
             return res.status(400).json({ message: 'No file uploaded' });
         }
-        console.log('Received Data:', req.body);
-        console.log('Uploaded Image:', req.file);
+        // console.log('Received Data:', req.body);
+        // console.log('Uploaded Image:', req.file);
 
         const filePath = req.file.path; // Path to save in database
         const email = req.body.email;

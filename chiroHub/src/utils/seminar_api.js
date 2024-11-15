@@ -23,3 +23,15 @@ export async function deleteSeminar(seminar_id) {
     // console.log(res)
     return res.data
 }
+
+export async function getUpdates(seminar_id, user_email) {
+    let res = await axios.post(`/chiro/get-updates/${seminar_id}/${user_email}`)
+    console.log(res)
+    return res.data
+}
+
+export async function stopUpdates(seminar_id, user_email) {
+    let res = await axios.delete(`/chiro/stop-updates/${seminar_id}/${user_email}`)
+    console.log(res)
+    return res.data
+}

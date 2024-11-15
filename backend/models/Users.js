@@ -66,7 +66,7 @@ function deleteSeminarFromUser(seminar_id, email) {
 }
 
 function updateProfilePic(email, filePath) {
-    console.log(email, filePath)
+    
     let sql = `
     UPDATE chiro_users SET profile_pic_url = $1 WHERE email = $2 RETURNING *;
     `;
