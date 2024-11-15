@@ -54,7 +54,7 @@ router.post('/chiro/login',  async (req, res, next) => {
 
 router.post('/chiro/updateProfile', async (req, res, next) => {
     try {
-        console.log(req.body)
+        
         const { email, username, password, role } = req.body
 
         let user = await User.findByEmail(email);  

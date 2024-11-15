@@ -18,14 +18,12 @@ export default function DisplaySeminar() {
     const [seminar, setSeminar] = useState(null)
     const [loading, setLoading] = useState(true)
     const [isFavourite, setIsFavourite] = useState(favourites?.includes(id))
-    
     useEffect(() => {
         getSeminarById(id)
-            .then(res => setSeminar(res))
-            .then(() => setLoading(false))
-            .catch(err => console.error('Direct fetch error:', err));
+        .then(res => setSeminar(res))
+        .then(() => setLoading(false))
+        .catch(err => console.error('Direct fetch error:', err));
     }, []);
-  
     if (loading) {
         return (
             <>
@@ -74,7 +72,7 @@ export default function DisplaySeminar() {
             ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/>
             : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/> : null
         }
-        <GetUpdates />
+        <GetUpdates seminar={seminar} user={user} />
         <Footer />
     </>
     )

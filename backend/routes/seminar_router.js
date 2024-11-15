@@ -25,8 +25,8 @@ router.post('/chiro/seminar', upload.single('image'), async (req,res) => {
         const { user_id, title, organizer, date, location, description, price, contact, featured, topics } = req.body
         const image = req.file ? req.file.path : null
         const topicsArray = JSON.parse(topics)
-        console.log('Received Data:', req.body);
-        console.log('Uploaded Image:', req.file);
+        // console.log('Received Data:', req.body);
+        // console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
         const newSeminar = await Seminar.createSeminar(user_id, title, organizer, date, location, description, price, contact, image, featured, topicsArray)
         res.status(201).json({message: 'Seminar created', seminar: newSeminar })
@@ -42,10 +42,9 @@ router.post('/chiro/seminar/update/:id', upload.single('image'), async (req,res)
         const { title, organizer, date, location, description, price, contact, featured, topics } = req.body
         const id = req.params.id
         const image = req.file ? req.file.path : req.body.image_url
-        console.log(topics)
         const topicsArray = JSON.parse(topics[1])
-        console.log('Received Data:', req.body);
-        console.log('Uploaded Image:', req.file);
+        // console.log('Received Data:', req.body);
+        // console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
         const newSeminar = await Seminar.updateSeminar(title, organizer, date, location, description, price, contact, image, featured, topicsArray, id)
         res.status(201).json({message: 'Seminar created', seminar: newSeminar })
@@ -105,6 +104,17 @@ router.get('/chiro/seminars/:id/', (req,res) => {
 router.get('/chiro/seminars/', (req,res) => {
     Seminar.getSeminars()
     .then(seminars => res.status(200).json(seminars))
+})
+
+router.post(`/chiro/get-updates/:seminar_id/:user_email`, (req, res) => {
+    const {seminar_id, user_email} = req.params
+    Seminar.getUpdates(seminar_id,user_email)
+    .then(data => res.status(200).json(data))
+})
+router.delete(`/chiro/stop-updates/:seminar_id/:user_email`, (req, res) => {
+    const {seminar_id, user_email} = req.params
+    Seminar.deleteUpdates(seminar_id,user_email)
+    .then(data => res.status(200).json(data))
 })
 
 module.exports = router

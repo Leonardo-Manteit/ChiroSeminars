@@ -62,6 +62,31 @@ function getSeminarById(seminar_id) {
     return db.query(sql, [seminar_id]).then(res => res.rows[0])
 }
 
+function getUpdates(seminar_id, user_email) {
+    console.log('model get:', seminar_id, user_email)
+    let sql = `
+    UPDATE chiro_seminars
+    SET username_list = 
+        CASE
+            WHEN username_list IS NULL THEN ARRAY[$2] 
+            WHEN array_position(username_list, $2) IS NULL THEN username_list || ARRAY[$2]  
+            ELSE username_list 
+        END
+    WHERE id = $1;
+    `
+    return db.query(sql, [seminar_id, user_email]).then(res => res.rows);
+}
+
+function deleteUpdates(seminar_id, user_email) {
+    console.log('model delete:', seminar_id, user_email)
+    let sql = `
+    UPDATE chiro_seminars
+    SET username_list = array_remove(username_list, $2)
+    WHERE id = $1 AND $2 = ANY(username_list);
+    `
+    return db.query(sql, [seminar_id, user_email]).then(res => res.rows);
+}
+
 const Seminar = {
     createSeminar,
     updateSeminar,
@@ -69,7 +94,9 @@ const Seminar = {
     featureSeminar,
     getFeaturedSeminars,
     getSeminars,
-    getSeminarById
+    getSeminarById,
+    getUpdates,
+    deleteUpdates
 }
 
 module.exports = Seminar
