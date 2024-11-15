@@ -7,7 +7,7 @@ export default function ProfileCard({ user }) {
 
     const name = user?.username || "Anonymous User";
     const email = user?.email || "No email available";
-    const profilePic = user?.profilePic || "/public/blank-profile-pic.png"; // deployed version
+    const profilePic = user?.profilePic || "https://chiroseminarhub-australia.onrender.com/public/blank-profile-pic.png"; // deployed version
     // const profilePic = `http://localhost:8000/${user?.profilePic}` || `http://localhost:8000/public/blank-profile-pic.png` // local host
 
     return (
