@@ -12,12 +12,16 @@ export default function Favourites() {
     const [favourites, setFavourites] = useState(user?.favouriteSeminarIds)
     const [favSems, setFavSems] = useState()
     const [loading, setLoading] = useState(true)
+    const [displayUpcoming, setDisplayUpcoming ] = useState(false)
+
+
     useEffect(() => {
         getSeminars()
         .then(res => setFavSems(res.filter(sem => favourites.includes(String(sem.id)))))
         .then(() => setLoading(false))
         .catch(err => console.error('Direct fetch error:', err));
     }, [favourites]);
+
     if (loading) {
         return (
         <>
@@ -26,23 +30,42 @@ export default function Favourites() {
         <Footer />
         </>)
     }
+
+    function filterUpcomingEvents () {
+        const today = new Date()
+        const nextWeek = new Date()
+        nextWeek.setDate(today.getDate() + 7)
+
+        return favSems.filter(seminar => {
+            const seminarDate = new Date(seminar.date)
+            return seminarDate >= today && seminarDate <= nextWeek
+        })
+    }
+
+    const seminarsToDisplay = displayUpcoming ? filterUpcomingEvents() : favSems
     
     return (
     <>
     <Nav />
-    <section className="events" id="events">
-        <p>Favourite Events</p>
-        <section className={styles.display}>
-        {favSems.length > 0 ? (
-            <>
-                {favSems.map(seminar => ( <ShortDisplaySeminar key={seminar.id} seminar={seminar} user={user} favourites={favourites} setFavourites={setFavourites}/>))}
-            </>
-            ) : (
-                <p>No Favourite seminars.</p>
-                )}
+        <section className="events" id="events">
+
+            <button onClick={() => setDisplayUpcoming(!displayUpcoming)}>
+                {displayUpcoming ? "Show All" : "Show Upcoming"}
+            </button>
+            
+            <p>Favourite Events</p>
+
+            <section className={styles.display}>
+                {seminarsToDisplay.length > 0 ? (
+                    <>
+                        {seminarsToDisplay.map(seminar => ( <ShortDisplaySeminar key={seminar.id} seminar={seminar} user={user} favourites={favourites} setFavourites={setFavourites}/>))}
+                    </>
+                    ) : (
+                        <p>No Favourite seminars.</p>
+                        )}
+            </section>
         </section>
-    </section>
-    <Footer />
+        <Footer />
     </>
     )
 }
