@@ -47,9 +47,6 @@ export default function Dashboard() {
             <UserNav />
             {/* Events Section */}
             <section className="events">
-                <h3>Upcoming Events</h3>
-                <p>No upcoming events</p>
-
                 <h3>Hosted Events</h3>
                 <p>No hosted events</p>
             </section>
@@ -58,12 +55,6 @@ export default function Dashboard() {
             <section className="calendar">
                 <h3>Calendar</h3>
                 <div className="calendar-widget">Calendar goes here</div>
-            </section>
-
-            {/* Activity Section */}
-            <section className="recent-activity">
-                <h3>Recent Activity</h3>
-                <p>No recent activity</p>
             </section>
 
             {/* Billing and Payments */}
