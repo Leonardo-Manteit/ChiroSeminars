@@ -23,7 +23,10 @@ export default function Seminars({ topicFromHome = null }) {
 
     useEffect(() => {
         getSeminars()
-        .then(res => setSeminars(res))
+        .then(res => {
+         const sortSeminars = res.sort((a,b) => new Date(a.date) - new Date(b.date))
+            setSeminars(sortSeminars)
+        })
         .then(() => setLoading(false))
         .catch(err => console.error('Direct fetch error:', err));
     }, []);
