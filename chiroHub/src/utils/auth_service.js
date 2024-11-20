@@ -38,7 +38,7 @@ export async function updateToken(user) {
     try {
         let token = await getNewToken(user)
         localStorage.setItem('token', token)
-        console.log('token update:', token)
+        // console.log('token update:', token)
     } catch (err) {
         console.log('undable to update:',err)
     }

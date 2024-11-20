@@ -27,3 +27,8 @@ CREATE TABLE chiro_seminars (
     featured TEXT,
     topics TEXT[]
 );
+
+ALTER TABLE chiro_users
+ADD COLUMN is_verified BOOLEAN DEFAULT false,
+ADD COLUMN verification_token VARCHAR(64),
+ADD COLUMN verification_token_expires TIMESTAMP;

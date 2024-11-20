@@ -10,6 +10,7 @@ import DisplaySeminar from './components/DisplaySeminar/DisplaySeminar';
 import Dashboard from './components/Dashboard/Dashboard';
 import Homepage from './components/Homepage/Homepage';
 import Favourites from './components/Favourites/Favourites';
+import VerifyEmail from './components/EmailVerification/EmailVerification';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/DisplaySeminar/:id" element={<DisplaySeminar  />} /> 
         <Route path="/Dashboard/:id" element={<Dashboard />} />
         <Route path="/Favourites" element={<Favourites  />} /> 
+        <Route path="/verify-email" element={<VerifyEmail />} />
     </Routes>
    );
 }

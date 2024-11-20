@@ -2,3 +2,8 @@
     text-decoration: underline;
   }
   
+.not_verified {
+  text-align: center;
+  color: white;
+  background-color: red;
+}
