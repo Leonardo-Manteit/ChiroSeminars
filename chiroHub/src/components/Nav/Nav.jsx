@@ -9,7 +9,7 @@ export default function Nav() {
     const navigate = useNavigate()
     const currentLocation = useLocation();
     const [user, setUser] = useState(getUserFromLocalStorage());
-    
+
     function handleLogout() {
         setUser(null);
         localStorage.removeItem('token');
@@ -40,6 +40,10 @@ export default function Nav() {
                     </ul>
                 </nav>
             </header> 
+            {user 
+            ? user?.is_verified 
+                ? null : <div className={styles.not_verified}>{user?.username}: you're email is not verified. Click <Link to="/verify-email">HERE</Link> to verify</div>
+            : null}
         </>
     );
 }

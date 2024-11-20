@@ -1,10 +1,8 @@
-require('dotenv').config()
 const express = require('express')
 const router = express.Router()
 const User = require('../models/Users')
+const Generate = require('../utils/Generate')
 const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -47,21 +45,21 @@ router.post('/chiro/user/uploadProfilePhoto', upload.single('profilePhoto'), asy
 router.get('/chiro/user/:email', (req, res) => {
     return User.findByEmail(req.params.email)
         .then(user => res.json(user))
-        .catch(err => res.status(500).json({ message: 'User not found', error: err }));
+        .catch(err => res.status(500).json({ message: 'User not found 1', error: err }));
 });
 
 router.post('/chiro/favourite/:favSem_id/:user_id', (req, res) => {
     const {favSem_id, user_id} = req.params
     return User.addFavouriteSeminar(favSem_id, user_id)
         .then(user => res.json(user))
-        .catch(err => res.status(500).json({ message: 'User not found', error: err }));
+        .catch(err => res.status(500).json({ message: 'User not found 2', error: err }));
 });
 
 router.delete('/chiro/favourite/:favSem_id/:user_id', (req, res) => {
     const {favSem_id, user_id} = req.params
     return User.removeFavouriteSeminar(favSem_id, user_id)
         .then(user => res.json(user))
-        .catch(err => res.status(500).json({ message: 'User not found', error: err }));
+        .catch(err => res.status(500).json({ message: 'User not found 3', error: err }));
 });
 
 router.delete('/chiro/user/delete/:user_id', (req, res) => {
@@ -71,5 +69,11 @@ router.delete('/chiro/user/delete/:user_id', (req, res) => {
         .catch(err => res.status(500).json({ message: 'User could not be deleted', error: err }));
 });
 
+
+router.get('/chiro/generate-verification-token/:id', (req, res) => {
+    return Generate.verificationToken(req.params.id)
+        .then(token => res.json(token))
+        .catch(err => res.status(500).json({ message: 'Token could not be generated', error: err }));
+})
 
 module.exports = router;
