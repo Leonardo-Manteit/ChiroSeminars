@@ -15,6 +15,10 @@ export default function Nav() {
         localStorage.removeItem('token');
         currentLocation.pathname === '/' ? location.reload() : navigate('/')
     }
+    
+    const profilePic = `https://chiroseminarhub-australia.onrender.com/${user?.profilePic}` || "https://chiroseminarhub-australia.onrender.com/public/blank-profile-pic.png"; // deployed version
+    // const profilePic = `http://localhost:8000/${user?.profilePic}` || `http://localhost:8000/public/blank-profile-pic.png` // local host
+
     return (
         <>      
             <header>
@@ -30,13 +34,19 @@ export default function Nav() {
                         <li><Link to="/AboutUs">About Us</Link></li>
                         <li><Link to="/Contact">Contact</Link></li>
                         {user ? <li><Link to="/CreateEvent">Create Event</Link></li> : null }
-                        {user ? <li><Link to="/Favourites">Favourites</Link></li> : null }
-                        {user ? <li><Link to="/Dashboard/:id">Dashboard</Link></li> : null }
-                        {user ? (
-                            <button onClick={handleLogout}>Logout</button>
-                        ) : (
-                            <li><Link to="/Login">Login</Link></li>
-                        )}
+                        {user ? 
+                        <li className={styles.Dashboard}><Link to="/Dashboard/:id"><img src={profilePic} alt="" /></Link>
+                            <div className={styles.dropDown}>
+                                <ul>
+                                    <li><Link to="/Dashboard/:id">Dashboard</Link></li>
+                                    <li><Link to="/Favourites">Favourites</Link></li> 
+                                    <li>settings</li>
+                                    <li>light / dark mode</li>
+                                    <li onClick={handleLogout}>Logout</li>
+                                </ul>
+                            </div>
+                        </li> 
+                        : <li><Link to="/Login">Login</Link></li> }
                     </ul>
                 </nav>
             </header> 
