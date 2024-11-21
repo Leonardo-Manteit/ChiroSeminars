@@ -40,7 +40,7 @@ export default function Nav() {
                                 <ul>
                                     <li><Link to="/Dashboard/:id">Dashboard</Link></li>
                                     <li><Link to="/Favourites">Favourites</Link></li> 
-                                    <li>settings</li>
+                                    <li><Link to="/Settings">Settings</Link></li> 
                                     <li>light / dark mode</li>
                                     <li onClick={handleLogout}>Logout</li>
                                 </ul>

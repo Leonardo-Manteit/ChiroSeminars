@@ -61,12 +61,6 @@ export default function Dashboard() {
                 <p>Billing information not available</p>
             </section>
 
-            {/* Advanced Settings */}
-            <section className="advanced-settings">
-                <h3>Advanced Settings</h3>
-                <p>Configure your settings here</p>
-            </section>
-
             <Footer />
         </>
     );

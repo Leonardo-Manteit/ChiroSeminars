@@ -11,7 +11,7 @@
 //     await client.connect();
 
 //     const sql = `
-//         INSERT INTO seminars (title, username_list, featured)
+//         INSERT INTO seminars (title, email_list, featured)
 //         VALUES
 //         ('Chiropractic Basics', '{"user1", "user2"}', NULL),
 //         ('Advanced Spine Seminar', '{"user3", "user4"}', NULL),

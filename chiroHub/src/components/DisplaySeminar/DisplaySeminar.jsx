@@ -66,13 +66,18 @@ export default function DisplaySeminar() {
                 {image_url && <img src={image_url} style={{height: '100px', width: '100px'}}alt={`Image for ${seminar.title}`} />}
 
         </div>
-        <EditBtn seminar={seminar} user={user}/>
-        <DeleteBtn seminar={seminar} user={user} setDeleted={navSeminars} />
+        {user 
+        ? <>
+            <EditBtn seminar={seminar} user={user}/>
+            <DeleteBtn seminar={seminar} user={user} setDeleted={navSeminars} />
+            <GetUpdates seminar={seminar} user={user} />
+        </>
+        : null
+        }
         {isFavourite 
             ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/>
             : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/> : null
         }
-        <GetUpdates seminar={seminar} user={user} />
         <Footer />
     </>
     )
