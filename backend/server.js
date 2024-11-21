@@ -41,6 +41,14 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'public/dist', 'index.html'));
 });
 
+
+const cron = require('node-cron'); // Ensure the correct module is imported
+const { checkAndSendReminders } = require('./utils/getUpdated');
+cron.schedule('0 12 * * *', () => {
+  console.log("Running the reminder check...");
+  checkAndSendReminders()
+});
+
 app.listen(port, () => {
   console.log('server listening on port', port);
 });
