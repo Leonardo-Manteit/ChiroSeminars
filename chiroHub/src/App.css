@@ -105,3 +105,35 @@ footer {
 h1, h2, h3, p, a, button, input {
   font-family: 'Nunito', sans-serif;
 }
+
+.filter-container {
+  text-align: center;
+}
+
+.topics-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.topic-item {
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  border: 0;
+  text-align: center;
+  flex: 1 0 21%; /* Allows four items per row */
+  background-color: #f0f0f0;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.topic-item:hover {
+  background-color: #007BFF;
+  color: white;
+}
+
+.topic-item.selected {
+  background-color: #003c7c;
+  color: white;
+}

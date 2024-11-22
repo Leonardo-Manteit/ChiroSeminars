@@ -1,9 +1,6 @@
 import GooglePayButton from '@google-pay/button-react'
 
-
 export default function GooglePay() {
-
-
     return (
         <>
             <GooglePayButton 
