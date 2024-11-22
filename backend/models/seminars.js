@@ -66,11 +66,12 @@ function getUpdates(seminar_id, user_email) {
     console.log('model get:', seminar_id, user_email)
     let sql = `
     UPDATE chiro_seminars
-    SET username_list = 
+
+    SET email_list = 
         CASE
-            WHEN username_list IS NULL THEN ARRAY[$2] 
-            WHEN array_position(username_list, $2) IS NULL THEN username_list || ARRAY[$2]  
-            ELSE username_list 
+            WHEN email_list IS NULL THEN ARRAY[$2] 
+            WHEN array_position(email_list, $2) IS NULL THEN email_list || ARRAY[$2]  
+            ELSE email_list 
         END
     WHERE id = $1;
     `
@@ -81,8 +82,8 @@ function deleteUpdates(seminar_id, user_email) {
     console.log('model delete:', seminar_id, user_email)
     let sql = `
     UPDATE chiro_seminars
-    SET username_list = array_remove(username_list, $2)
-    WHERE id = $1 AND $2 = ANY(username_list);
+    SET email_list = array_remove(email_list, $2)
+    WHERE id = $1 AND $2 = ANY(email_list);
     `
     return db.query(sql, [seminar_id, user_email]).then(res => res.rows);
 }

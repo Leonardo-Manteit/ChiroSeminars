@@ -9,7 +9,8 @@ async function checkAndSendReminders() {
         const seminars = await Seminar.getSeminars();
 
         for (let seminar of seminars) {
-            const emailList = seminar.username_list; // Assume it's already an array
+
+            const emailList = seminar.email_list; // Assume it's already an array
             const seminarDate = new Date(seminar.date);
 
             if (seminarDate >= now && seminarDate <= soon) {

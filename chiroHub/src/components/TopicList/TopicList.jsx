@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './TopicList.module.css'
-
 export default function TopicList() {
     const navigate = useNavigate();
     const topics = [
@@ -48,5 +47,3 @@ export default function TopicList() {
         </div>
     );
 }
-
-

@@ -3,8 +3,7 @@ import { getUpdates, stopUpdates } from "../../utils/seminar_api"
 import { updateToken } from "../../utils/auth_service"
 
 export default function GetUpdates({user, seminar}) {
-    console.log(seminar)
-    const [beingUpdated, setBeingUpdated] = useState(seminar?.username_list?.includes(user.email))
+    const [beingUpdated, setBeingUpdated] = useState(seminar?.email_list?.includes(user.email))
     
     function handleUpdate() {
         beingUpdated ? stopUpdates(seminar.id, user.email) : getUpdates(seminar.id, user.email)

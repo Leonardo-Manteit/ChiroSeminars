@@ -5,7 +5,9 @@ VALUES
     ('user2@example.com', 'user_two', 'passwordhash2', ARRAY['9', '11', '16'], 'org'),
     ('user3@example.com', 'user_three', 'passwordhash3', ARRAY['8', '14', '18'], 'user');
 
-INSERT INTO chiro_seminars (user_id, title, organizer, date, location, description, price, contact, username_list, featured, topics)
+
+INSERT INTO chiro_seminars (user_id, title, organizer, date, location, description, price, contact, email_list, featured, topics)
+
 VALUES
     (11, 'Advanced Chiropractic Techniques', 'Chiro Group', '64644-04-14T06:09', 'New York, NY', 'A seminar on advanced chiropractic techniques.', '$150', 'contact@chirogroup.com', ARRAY['user_one', 'user_two'], 'yes', ARRAY['Adjustment Technique', 'General Chiropractic']),
     (9, 'Pediatric Chiropractic Care', 'Health Experts Inc.', '64644-05-20T10:30', 'Los Angeles, CA', 'Focus on chiropractic care for children.', '$100', 'info@healthexperts.com', ARRAY['user_two'], 'no', ARRAY['Paediatric', 'Neurology']),

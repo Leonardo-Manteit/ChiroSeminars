@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Homepage from './components/Homepage/Homepage';
 import Favourites from './components/Favourites/Favourites';
 import VerifyEmail from './components/EmailVerification/EmailVerification';
+import Settings from './components/Settings/Settings';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/Dashboard/:id" element={<Dashboard />} />
         <Route path="/Favourites" element={<Favourites  />} /> 
         <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/Settings" element={<Settings />} 
     </Routes>
    );
 }

@@ -60,15 +60,9 @@ export default function Dashboard() {
             <section className="billing">
                 <h3>Billing and Payments</h3>
                 <p>Billing information not available</p>
+
                 <GooglePay />
             </section>
-
-            {/* Advanced Settings */}
-            <section className="advanced-settings">
-                <h3>Advanced Settings</h3>
-                <p>Configure your settings here</p>
-            </section>
-
             <Footer />
         </>
     );
