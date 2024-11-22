@@ -20,10 +20,17 @@ export default function Nav() {
     // const profilePic = `http://localhost:8000/${user?.profilePic}` || `http://localhost:8000/public/blank-profile-pic.png` // local host
 
     return (
-        <>      
+        <div className={styles.navWrapper}>      
             <header>
                 <div className={styles.logo}>
-                    <h1><Link to="/">ChiroOceaniaHub</Link></h1>
+                    <h1>
+                        <Link to="/">
+                            <span style= {{ fontSize: '125%'}}>C</span>hiro
+                            <span style= {{ fontSize: '125%'}}>O</span>ceania
+                            <span style= {{ fontSize: '125%'}}>Hub</span>
+                            <span style={{ color: 'goldenrod' }}>●</span>
+                        </Link>
+                    </h1>
                 </div>
                 <nav>
                     <ul>
@@ -54,6 +61,6 @@ export default function Nav() {
             ? user?.is_verified 
                 ? null : <div className={styles.not_verified}>{user?.username}: you're email is not verified. Click <Link to="/verify-email">HERE</Link> to verify</div>
             : null}
-        </>
+        </div>
     );
 }

@@ -70,7 +70,7 @@ export default function Seminars({ topicFromHome = null }) {
             <SearchBar handleSearch={setSearchedSeminar} />
             <TopicFilter selectedTopic={selectedTopic} setSelectedTopic={setSelectedTopic} />
 
-            <div className={styles.pagination}>
+            <div className={styles.pagination}
                 <div>Page: {currentPage}</div>
                 {currentPage > 1 ? (
                     <><button onClick={handlePreviousPage}>Previous Page</button><button style={{backgroundColor: 'grey'}}>Next Page</button></>

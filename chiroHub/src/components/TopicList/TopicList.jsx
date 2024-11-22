@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import styles from './TopicList.module.css'
 export default function TopicList() {
     const navigate = useNavigate();
     const topics = [
@@ -29,14 +30,14 @@ export default function TopicList() {
     }
 
     return (
-        <div className="filter-container">
-            <h4>Select a Topic to Search</h4>
-            <p>We offer a wide variety of topics/subjects.</p>
-            <div className="topics-container">
+        <div className={styles.filterContainer}>
+            <h2>Select a Topic to Search</h2>
+            <h4>We offer a wide variety of topics/subjects.</h4>
+            <div className={styles.topicsContainer}>
                 {topics.map((topic) => (
                     <button
                         key={topic}
-                        className={`topic-item ${selectedTopic === topic ? 'selected' : ''}`}
+                        className={`${styles.topicItem} ${selectedTopic === topic ? styles.selected : ''}`}
                         onClick={() => handleTopicClick(topic)}
                     >
                         {topic}

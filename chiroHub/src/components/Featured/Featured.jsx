@@ -21,8 +21,8 @@ export default function Featured({user, favourites}) {
     }
     
     return (
-    <section className="events" id="events">
-        <p>Featured Events</p>
+    <section className={styles.events} id="events">
+        <h2>Featured Events</h2>
         <section className={styles.display}>
         {featured.length > 0 ? (
             <>
@@ -35,3 +35,4 @@ export default function Featured({user, favourites}) {
     </section>
     )
 }
+

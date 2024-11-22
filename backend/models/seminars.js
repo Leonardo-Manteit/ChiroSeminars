@@ -66,6 +66,7 @@ function getUpdates(seminar_id, user_email) {
     console.log('model get:', seminar_id, user_email)
     let sql = `
     UPDATE chiro_seminars
+
     SET email_list = 
         CASE
             WHEN email_list IS NULL THEN ARRAY[$2] 
