@@ -8,3 +8,17 @@
     border: 1px solid black;
     width: fit-content;
 }
+
+.events {
+    padding: 40px 20px;
+}
+
+.events button {
+    border: none;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+}
+

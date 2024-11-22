@@ -1,15 +1,17 @@
 :root {
-  background-color: #f8f3e4;
+  background: linear-gradient(140deg, #f8f3e4, #f8fdb7);
   color: black;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f3e4;
+  background: inherit; 
   color: black;
 }
+
 
 header {
   color: darkgreen;
@@ -34,13 +36,6 @@ a {
   color: white;
   font-size: 1.15rem;
   text-decoration: none;
-}
-
-.Welcome {
-  background: url('hero-image.jpg') no-repeat center center/cover;
-  height: 400px;
-  text-align: center;
-  padding-top: 150px;
 }
 
 .btn {
@@ -102,35 +97,13 @@ footer {
   text-align: center;
 }
 
-.topics-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.topic-item {
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 5px;
-  border: 0;
-  text-align: center;
-  flex: 1 0 21%; /* Allows four items per row */
-  background-color: #f0f0f0;
-  color: black;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.topic-item:hover {
-  background-color: #007BFF;
-  color: white;
-}
-
-.topic-item.selected {
-  background-color: #003c7c;
-  color: white;
-}
-
 #seminar_list {
   display: flex;
   flex-wrap: wrap;
 }
+
+h1, h2, h3, p, a, button, input {
+  font-family: 'Nunito', sans-serif;
+}
+
+

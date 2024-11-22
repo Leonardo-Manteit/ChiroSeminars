@@ -6,6 +6,7 @@ import ProfileCard from "../DashboardProfileCard/ProfileCard.jsx";
 import { getUserFromLocalStorage, updateToken } from '../../utils/auth_service.js';
 import { uploadProfilePhoto } from '../../utils/image_upload';
 import { generateImagePreview } from '../../utils/image_preview';
+import GooglePay from "../GooglePay/GooglePay.jsx";
 
 export default function Dashboard() {
     const [user, setUser] = useState(getUserFromLocalStorage());
@@ -59,6 +60,7 @@ export default function Dashboard() {
             <section className="billing">
                 <h3>Billing and Payments</h3>
                 <p>Billing information not available</p>
+                <GooglePay />
             </section>
 
             {/* Advanced Settings */}
