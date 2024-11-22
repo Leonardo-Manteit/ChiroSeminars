@@ -27,7 +27,7 @@ function App() {
         <Route path="/Dashboard/:id" element={<Dashboard />} />
         <Route path="/Favourites" element={<Favourites  />} /> 
         <Route path="/verify-email" element={<VerifyEmail />} />
-        <Route path="/Settings" element={<Settings />} 
+        <Route path="/Settings" element={<Settings />} />
     </Routes>
    );
 }

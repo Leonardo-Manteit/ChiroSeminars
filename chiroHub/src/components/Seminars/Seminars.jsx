@@ -69,22 +69,30 @@ export default function Seminars({ topicFromHome = null }) {
             <Nav />
             <SearchBar handleSearch={setSearchedSeminar} />
             <TopicFilter selectedTopic={selectedTopic} setSelectedTopic={setSelectedTopic} />
-
-            <div className={styles.pagination}
+    
+            <div className={styles.pagination}>
                 <div>Page: {currentPage}</div>
                 {currentPage > 1 ? (
-                    <><button onClick={handlePreviousPage}>Previous Page</button><button style={{backgroundColor: 'grey'}}>Next Page</button></>
-                
-                )
-                : (   
-                    <><button style={{backgroundColor: 'grey'}}>Previous Page</button><button onClick={handleNextPage}>Next Page</button></>
+                    <>
+                        <button onClick={handlePreviousPage}>Previous Page</button>
+                        <button style={{ backgroundColor: 'grey' }}>Next Page</button>
+                    </>
+                ) : (
+                    <>
+                        <button style={{ backgroundColor: 'grey' }}>Previous Page</button>
+                        <button onClick={handleNextPage}>Next Page</button>
+                    </>
                 )}
             </div>
-
-            {displayByFavourite 
-                ? <button onClick={() => setDisplayByFavourite(!displayByFavourite)}>Display All</button>
-                : user ? <button onClick={() => setDisplayByFavourite(!displayByFavourite)}>Display your favourites</button> : null
-            }
+    
+            {displayByFavourite ? (
+                <button onClick={() => setDisplayByFavourite(!displayByFavourite)}>Display All</button>
+            ) : user ? (
+                <button onClick={() => setDisplayByFavourite(!displayByFavourite)}>
+                    Display your favourites
+                </button>
+            ) : null}
+    
             <h2>Seminar List</h2>
             <section className={styles.display}>
                 {currentSeminars.length > 0 ? (
