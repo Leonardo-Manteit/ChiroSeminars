@@ -5,9 +5,9 @@ import styles from './Testimonials.module.css';
 export default function Testimonials() {
 
     const sliderRef = useRef(null);
-    const mouseDownRef = useRef(false); // Track if the mouse is pressed
-    const startXRef = useRef(0); // Store the initial mouse position
-    const scrollLeftRef = useRef(0); // Store the initial scroll position
+    const mouseDownRef = useRef(false);
+    const startXRef = useRef(0);
+    const scrollLeftRef = useRef(0); 
 
     const startDragging = (e) => {
         e.preventDefault()
@@ -21,11 +21,11 @@ export default function Testimonials() {
     };
 
     const handleMouseMove = (e) => {
-        if (!mouseDownRef.current) return; // Only move when mouse is down
+        if (!mouseDownRef.current) return; 
         e.preventDefault();
         const x = e.pageX - sliderRef.current.offsetLeft;
-        const walk = (x - startXRef.current) * 2; // Distance moved
-        sliderRef.current.scrollLeft = scrollLeftRef.current - walk; // Adjust scroll
+        const walk = (x - startXRef.current) * 2; 
+        sliderRef.current.scrollLeft = scrollLeftRef.current - walk; 
     };
 
 
