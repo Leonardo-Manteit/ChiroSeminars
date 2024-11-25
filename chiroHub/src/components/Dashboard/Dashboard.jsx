@@ -7,6 +7,7 @@ import { getUserFromLocalStorage, updateToken } from '../../utils/auth_service.j
 import { uploadProfilePhoto } from '../../utils/image_upload';
 import { generateImagePreview } from '../../utils/image_preview';
 import GooglePay from "../GooglePay/GooglePay.jsx";
+import Calendar from "../Calender/Calender.jsx";
 import DashboardHostedEvents from "../DashboardHostedEvents/DashboardHostedEvents.jsx";
 
 export default function Dashboard() {
@@ -48,8 +49,7 @@ export default function Dashboard() {
             <DashboardHostedEvents user={user}/>
             {/* Calendar */}
             <section className="calendar">
-                <h3>Calendar</h3>
-                <div className="calendar-widget">Calendar goes here</div>
+                <Calendar />
             </section>
 
             {/* Billing and Payments */}
