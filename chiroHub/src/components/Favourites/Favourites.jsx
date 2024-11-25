@@ -17,7 +17,7 @@ export default function Favourites() {
 
     useEffect(() => {
         getSeminars()
-        .then(res => setFavSems(res.filter(sem => favourites.includes(String(sem.id)))))
+        .then(res => setFavSems(res.filter(sem => favourites?.includes(String(sem.id)))))
         .then(() => setLoading(false))
         .catch(err => console.error('Direct fetch error:', err));
     }, [favourites]);
@@ -58,7 +58,7 @@ export default function Favourites() {
             <section className={styles.display}>
                 {seminarsToDisplay.length > 0 ? (
                     <>
-                        {seminarsToDisplay.map(seminar => ( <ShortDisplaySeminar key={seminar.id} seminar={seminar} user={user} favourites={favourites} setFavourites={setFavourites}/>))}
+                        {seminarsToDisplay.map(seminar => ( <ShortDisplaySeminar previousLocation={'/Favourites'} key={seminar.id} seminar={seminar} user={user} favourites={favourites} setFavourites={setFavourites}/>))}
                     </>
                     ) : (
                         <p>No Favourite seminars.</p>

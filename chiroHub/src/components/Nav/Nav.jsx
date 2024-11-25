@@ -16,8 +16,13 @@ export default function Nav() {
         currentLocation.pathname === '/' ? location.reload() : navigate('/')
     }
     
-    const profilePic = `https://chiroseminarhub-australia.onrender.com/${user?.profilePic}` || "https://chiroseminarhub-australia.onrender.com/public/blank-profile-pic.png"; // deployed version
-    // const profilePic = `http://localhost:8000/${user?.profilePic}` || `http://localhost:8000/public/blank-profile-pic.png` // local host
+    const profilePic = user?.profilePic 
+    ? `https://chiroseminarhub-australia.onrender.com/${user.profilePic}` 
+    : "https://chiroseminarhub-australia.onrender.com/uploads/blank-profile-pic.png";
+    // const profilePic = user?.profilePic 
+    // ? `http://localhost:8000/${user.profilePic}` 
+    // : `http://localhost:8000/uploads/blank-profile-pic.png`; // local host
+
 
     return (
         <div className={styles.navWrapper}>      

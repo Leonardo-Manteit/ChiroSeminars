@@ -14,6 +14,7 @@ export default function DisplaySeminar() {
     const {id} = useParams()
     const location = useLocation();
     const user = location.state?.user;
+    const previousLocation = location.state?.previousLocation
     const [favourites, setFavourites] = useState(location.state?.favourites)
     const [seminar, setSeminar] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -35,7 +36,7 @@ export default function DisplaySeminar() {
     }
 
     function navSeminars() {
-        navigate(`/Seminars`);
+        navigate(previousLocation);
     }
 
     //for deployed version

@@ -24,17 +24,17 @@ export default function Seminars({ topicFromHome = null }) {
     useEffect(() => {
         getSeminars()
         .then(res => {
-         const sortSeminars = res.sort((a,b) => new Date(a.date) - new Date(b.date))
-            setSeminars(sortSeminars)
+            const sortSeminars = res.sort((a, b) => new Date(a.date) - new Date(b.date));
+            setSeminars(sortSeminars);
         })
         .then(() => setLoading(false))
         .catch(err => console.error('Direct fetch error:', err));
     }, []);
 
     const [user, setUser] = useState(getUserFromLocalStorage());
-    const [favourites, setFavourites] = useState(user?.favouriteSeminarIds)
-    const [favourites2, setFavourites2] = useState(favourites)
-    
+    const [favourites, setFavourites] = useState(user?.favouriteSeminarIds);
+    const [favourites2, setFavourites2] = useState(favourites);
+
     const handleNextPage = () => {
         setCurrentPage(prevPage => prevPage + 1);
     };
@@ -47,6 +47,15 @@ export default function Seminars({ topicFromHome = null }) {
         .filter(seminar => !selectedTopic || seminar?.topics?.includes(selectedTopic))
         .filter(seminar => !searchedSeminar || seminar?.title?.includes(searchedSeminar))
         .filter(seminar => !displayByFavourite || favourites2?.includes(String(seminar.id)));
+
+    const totalPages = Math.ceil(filteredSeminars.length / seminarsPerPage); // Calculate total pages
+
+    // Check if the currentPage is greater than totalPages, if so reset to 1
+    useEffect(() => {
+        if (currentPage > totalPages && totalPages > 0) {
+            setCurrentPage(1);
+        }
+    }, [filteredSeminars, totalPages, currentPage]); // Depend on filteredSeminars and totalPages to trigger update
 
     const indexOfFirstSeminar = (currentPage - 1) * seminarsPerPage;
     const indexOfLastSeminar = currentPage * seminarsPerPage;
@@ -69,22 +78,31 @@ export default function Seminars({ topicFromHome = null }) {
             <Nav />
             <SearchBar handleSearch={setSearchedSeminar} />
             <TopicFilter selectedTopic={selectedTopic} setSelectedTopic={setSelectedTopic} />
-    
+
             <div className={styles.pagination}>
-                <div>Page: {currentPage}</div>
-                {currentPage > 1 ? (
+                <div>Page: {currentPage} of {totalPages}</div>
+                {totalPages > 1 ? (
                     <>
-                        <button onClick={handlePreviousPage}>Previous Page</button>
-                        <button style={{ backgroundColor: 'grey' }}>Next Page</button>
+                        {currentPage > 1 ? (
+                            <button onClick={handlePreviousPage}>Previous Page</button>
+                        ) : (
+                            <button style={{ backgroundColor: 'grey' }} disabled>Previous Page</button>
+                        )}
+                        {currentPage < totalPages ? (
+                            <button onClick={handleNextPage}>Next Page</button>
+                        ) : (
+                            <button style={{ backgroundColor: 'grey' }} disabled>Next Page</button>
+                        )}
                     </>
                 ) : (
                     <>
-                        <button style={{ backgroundColor: 'grey' }}>Previous Page</button>
-                        <button onClick={handleNextPage}>Next Page</button>
+                        <button style={{ backgroundColor: 'grey' }} disabled>Previous Page</button>
+                        <button style={{ backgroundColor: 'grey' }} disabled>Next Page</button>
                     </>
                 )}
             </div>
-    
+
+
             {displayByFavourite ? (
                 <button onClick={() => setDisplayByFavourite(!displayByFavourite)}>Display All</button>
             ) : user ? (
@@ -92,12 +110,13 @@ export default function Seminars({ topicFromHome = null }) {
                     Display your favourites
                 </button>
             ) : null}
-    
+
             <h2>Seminar List</h2>
             <section className={styles.display}>
                 {currentSeminars.length > 0 ? (
                     currentSeminars.map(seminar => (
                         <ShortDisplaySeminar
+                            previousLocation={'/Seminars'}
                             setFavourites={setFavourites2}
                             key={seminar.id}
                             seminar={seminar}
@@ -113,3 +132,4 @@ export default function Seminars({ topicFromHome = null }) {
         </>
     );
 }
+

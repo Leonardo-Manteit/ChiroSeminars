@@ -6,14 +6,14 @@ import DeleteBtn from "../DeleteBtn/DeleteBtn";
 import FavouritesBtn from "../FavourtiesBtn/FavouritesBtn";
 import FavouritesRemoveBtn from "../FavouritesRemoveBtn/FavouritesRemoveBtn";
 
-export default function ShortDisplaySeminar({ seminar, user, favourites, setFavourites}) {
+export default function ShortDisplaySeminar({ seminar, user, favourites, setFavourites, previousLocation}) {
     const navigate = useNavigate();
     const [deleted, setDeleted] = useState('');
     const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}` : null;   //for deployed version
     // const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                 //for local testing
     const [image, setImage] = useState(image_url);
     function handleNavigate(id) {
-        navigate(`/DisplaySeminar/${id}`, { state: { user: user, favourites: favourites } });
+        navigate(`/DisplaySeminar/${id}`, { state: { user: user, favourites: favourites, previousLocation } });
     }
     const [isFavourite, setIsFavourite] = useState(favourites?.includes(String(seminar.id)))
     return (

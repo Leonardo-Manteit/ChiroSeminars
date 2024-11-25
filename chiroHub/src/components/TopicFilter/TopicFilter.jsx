@@ -18,18 +18,8 @@ export default function topicFilter({selectedTopic, setSelectedTopic}) {
 
     function handleTopicClick(topic) {
         setSelectedTopic(prevSelected => (prevSelected === topic ? null : topic));
-        searchByTopic()
     }
-
-    function searchByTopic() {
-        if (selectedTopic) {
-            console.log('Searching seminars for topic:', selectedTopic);
-            // Add your search logic here
-        } else {
-            console.log('No topic selected');
-        }
-    }
-
+    
     return (
         <div className={styles.filterContainer}>
             <h4>Select a Topic to Search</h4>

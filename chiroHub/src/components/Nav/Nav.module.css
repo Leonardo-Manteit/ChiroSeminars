@@ -28,7 +28,8 @@
   z-index: 1000; 
   min-width: 150px; 
   border-radius: 4px; 
-  right: 1rem;
+  right: 0.9rem;
+  top: 3.6rem;
 }
 
 .dropDown ul {
