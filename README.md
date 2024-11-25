@@ -15,7 +15,7 @@ ChiroSeminars is an initiative to connect and empower individuals with knowledge
 - **Frontend**: React.js, CSS, FullCalendar, GooglePay, Axios, framer-motion, react-router-dom, tsparticles. 
 - **Backend**: Node.js, Express, sendgrid/mail, bcrypt, cron, cors, multer. 
 - **Database**: PostgreSQL
-- **Tools**: Git, GitHub, MIro, Trello
+- **Tools**: Git, GitHub, Miro, Trello
 
 ## Installation & Usage
 This project is proprietary and not available for public use or installation.
