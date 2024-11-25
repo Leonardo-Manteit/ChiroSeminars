@@ -2,16 +2,20 @@ import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 import React, {useState, useEffect} from "react";
 import styles from './Contact.module.css'
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [status, setStatus] = useState(null)
 
+    // let secrets = import.meta.env // local host
+    // const [serviceId, templateId, publicKey] = [secrets.VITE_REACT_SERVICE_ID, secrets.VITE_REACT_YOUR_TEMPLATE_ID, secrets.VITE_REACT_PUBLIC_KEY]
 
-    const [formData, setFormData] = useState({
-        name: '',
-        message: '',
-        subject: '',
-        email: ''
-    });
+    // ----- deployed version -----
+    const [serviceId, templateId, publicKey] = [process.env.VITE_REACT_SERVICE_ID, process.env.VITE_REACT_YOUR_TEMPLATE_ID, process.env.VITE_REACT_PUBLIC_KEY]
+    console.log(serviceId, templateId, publicKey)
 
     useEffect(() => {
         const userEmail = localStorage.getItem('email');
@@ -20,14 +24,30 @@ export default function Contact() {
         }
         }, []);
 
-    function handleSubmit() {
-        //
-    }
-
-    function handleChange(e) {
-        setFormData({...formData, [e.target.name] : e.target.value})
-    }
-
+        const handleSubmit = (e) => {
+            e.preventDefault();
+            const templateParams = {
+                name,
+                email,
+                message,
+                to_name: 'ChiroOceaniaHub'
+              }
+            emailjs.send(serviceId, templateId, templateParams, publicKey)
+            .then((response) => {
+              console.log('Message sent successfully!', response.status, response.text);
+              setStatus('Message sent successfully!');
+              alert(status);
+              // Clear the form
+              setName('');
+              setEmail('');
+              setMessage('');
+            })
+            .catch((err) => {
+              console.error('Failed to send message:', err);
+              setStatus('Failed to send message. Please try again later.');
+              alert(status);
+            });
+          };
 
 
 
@@ -43,19 +63,28 @@ export default function Contact() {
         <p>If your message is Urgent, please begin the message with "URGENT"</p>
 
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-
-            <label>Name : </label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="username or email"required/>
-        
-            <label>Subject : </label>
-            <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="subject" />
-        
-            <label>Message : </label>
-            <textarea name="message" value={formData.message} onChange={handleChange} placeholder="your message"required></textarea>
-
-            <button type="submit">Submit</button>
-
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Your Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            />
+          <input
+            type="email"
+            placeholder="Your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            />
+          <textarea
+            placeholder="Your Message"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+            ></textarea>
+          <button type="submit">Send Message</button>
         </form>
 
 
