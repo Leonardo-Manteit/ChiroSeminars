@@ -1,0 +1,37 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.seminarImg {
+    max-height: 300px;
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.info_header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.pricing, .title {
+    text-align: center;
+}
+
+hr {
+    border: none; /* Remove default border */
+    height: 1px; /* Set the height */
+    background-color: black; /* Set the color */
+    margin: 0 auto; /* Optional: Adjust spacing */
+    width: 70%;
+}

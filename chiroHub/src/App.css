@@ -105,4 +105,8 @@ footer {
 h1, h2, h3, p, a, button, input {
   font-family: 'Nunito', sans-serif;
 }
+button {
+  /* background-color: blueviolet; */
+  font-size: 1.05rem;
+}
 

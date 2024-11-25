@@ -7,7 +7,7 @@ export default function Welcome() {
     <section className={styles.Welcome}>
         <h2>Empowering Chiropractors in Oceania</h2>
         <p>Find the best seminars, webinars, and coaching all in one place</p>
-        <button><Link to="/Seminars">Explore All Seminars</Link></button>
+        <button ><Link to="/Seminars">Explore All Seminars</Link></button>
         <p>Or</p>
         <SearchBar />
     </section>

@@ -6,7 +6,7 @@ export default function DashboardNav() {
                 <li>Favourites</li>
                 <li>Notifications</li>
                 <li>Privacy</li>
-                <li>Dark mode</li>
+                {/* <li>Dark mode</li> */}
                 <li>Logout</li>
             </ul>
         </nav>

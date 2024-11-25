@@ -10,7 +10,7 @@ export default function Calendar() {
   useEffect(() => {
     fetch('/chiro/seminars/')
       .then(response => response.json())
-      .then(data => setEvents(data))
+      .then(data => {console.log(data); return setEvents(data)})
       .catch(err => console.error('Error fetching events:', err));
   }, []);
 

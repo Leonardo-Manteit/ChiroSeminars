@@ -52,7 +52,6 @@ export default function VerifyEmail() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('attempting to check code...', verificationCode.join(''))
         setLoading(true);
         await fetch(`/chiro/verify-email/${user.email}/${verificationCode.join('')}`)
             .then(res => res.json())

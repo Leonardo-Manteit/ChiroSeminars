@@ -55,7 +55,7 @@ export default function Contact() {
         <form onSubmit={handleSubmit} className={styles.form}>
 
             <label>Conatct name : </label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Jane Doe"required/>
+            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Jane Smith"required/>
         
             <label>Subject : </label>
             <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Subject of email" />

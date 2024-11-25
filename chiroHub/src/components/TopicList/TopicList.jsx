@@ -20,7 +20,6 @@ export default function TopicList() {
 
     useEffect(() => {
         if (selectedTopic) {
-            console.log('Searching seminars for topic:', selectedTopic);
             navigate('/seminars', { state: { topic: selectedTopic } });
         }
     }, [selectedTopic, navigate]);

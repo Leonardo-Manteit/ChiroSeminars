@@ -12,9 +12,6 @@ export default function GetUpdates({user, seminar}) {
     }
 
     return (
-    <section className="getUpdates">
-        <div>This will allow us to send you emails with updates on this seminar</div>
         <button onClick={handleUpdate}>{beingUpdated ? 'Stop Updates' : 'Get updates!'}</button>
-    </section>
     )
 }

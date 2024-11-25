@@ -11,7 +11,6 @@ export default function DashboardHostedEvents({user}) {
         setFavourites(user?.favouriteSeminarIds)
         getUserHostedSeminars(user.id)
         .then((res) => {
-            console.log(res)
             const sortSeminars = res.sort((a, b) => new Date(a.date) - new Date(b.date));
             setHostedEvents(sortSeminars);
         })

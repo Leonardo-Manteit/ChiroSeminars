@@ -8,6 +8,7 @@ import DeleteBtn from "../DeleteBtn/DeleteBtn";
 import GetUpdates from "../GetUpdates/GetUpdates";
 import FavouritesBtn from "../FavourtiesBtn/FavouritesBtn";
 import FavouritesRemoveBtn from "../FavouritesRemoveBtn/FavouritesRemoveBtn";
+import styles from './DisplaySeminar.module.css'
 
 export default function DisplaySeminar() {
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function DisplaySeminar() {
         return (
             <>
             <Nav />
-            <p className="events" id="events">Loading selected seminar...</p>;
+            <p>Loading selected seminar...</p>;
             <Footer />
             </>
         )
@@ -45,40 +46,47 @@ export default function DisplaySeminar() {
     // reset cache version
     // const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}?nocache=${Date.now()}` : null;
   
-    
     //for local testing
-    // const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;                
-    
-    // console.log('Image URL:', image_url);
+    // const image_url = seminar?.image_url ? `http://localhost:8000/${seminar.image_url}` : null;     
 
     return (
         <>
         <Nav />
-        <button style={{fontWeight: "bolder"}} onClick={() => navSeminars()}>← </button>
-
-        <h2 style={{color: 'red'}}>{seminar.title}</h2>
-            <div key={seminar.id}>
-                <p><strong>Organizer:</strong> {seminar.organizer}</p>
-                <p><strong>Date:</strong> {seminar.date}</p>
-                <p><strong>Location:</strong> {seminar.location}</p>
-                <p><strong>Description:</strong> {seminar.location}<span dangerouslySetInnerHTML={{ __html: seminar.description }} /></p>
-                <p><strong>Price:</strong> {seminar.price}</p>
-                <p><strong>Contact:</strong> {seminar.contact}</p>
-                {image_url && <img src={image_url} style={{height: '100px', width: '100px'}}alt={`Image for ${seminar.title}`} />}
-
+        <div className={styles.buttons}>
+            <button style={{fontWeight: "bolder"}} onClick={() => navSeminars()}>← </button>
+            {user 
+            ? <>
+                <EditBtn seminar={seminar} user={user}/>
+                <DeleteBtn seminar={seminar} user={user} setDeleted={navSeminars} />
+                <GetUpdates seminar={seminar} user={user} />
+            </>
+            : null
+            }
+            {isFavourite 
+                ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/>
+                : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/> : null
+            }
         </div>
-        {user 
-        ? <>
-            <EditBtn seminar={seminar} user={user}/>
-            <DeleteBtn seminar={seminar} user={user} setDeleted={navSeminars} />
-            <GetUpdates seminar={seminar} user={user} />
-        </>
-        : null
-        }
-        {isFavourite 
-            ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/>
-            : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites}/> : null
-        }
+        <br />
+        <br />
+        <div className={styles.container} key={seminar.id}> 
+            <h2 className={styles.title}>{seminar.title}</h2>
+            <hr />
+            {image_url && <img src={image_url} className={styles.seminarImg} alt={`Image for ${seminar.title}`} />}
+            <hr />
+            <div className={styles.info_header}>
+                <p><strong>Organizer:</strong> {seminar.organizer}</p>
+                <p><strong>Location:</strong> {seminar.location}</p>
+                <p><strong>Date:</strong> {seminar.date}</p>
+            </div>
+            <hr />
+            <p className={styles.pricing}>{seminar.location}<span dangerouslySetInnerHTML={{ __html: seminar.description }} /></p>
+            <div className={styles.info_header}>
+                <p><strong>Contact:</strong> {seminar.contact}</p>
+                <p className={styles.pricing}><strong>Price:</strong> {seminar.price}</p>
+            </div>
+        </div>
+        <br />
         <Footer />
     </>
     )
