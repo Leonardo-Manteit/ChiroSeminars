@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
-import UserNav from "../DashboardNav/DashboardNav.jsx";
+import DashboardNav from "../DashboardNav/DashboardNav.jsx";
 import ProfileCard from "../DashboardProfileCard/ProfileCard.jsx";
 import { getUserFromLocalStorage, updateToken } from '../../utils/auth_service.js';
 import { uploadProfilePhoto } from '../../utils/image_upload';
 import { generateImagePreview } from '../../utils/image_preview';
 import GooglePay from "../GooglePay/GooglePay.jsx";
+import DashboardHostedEvents from "../DashboardHostedEvents/DashboardHostedEvents.jsx";
 
 export default function Dashboard() {
     const [user, setUser] = useState(getUserFromLocalStorage());
@@ -35,6 +36,7 @@ export default function Dashboard() {
     return (
         <>
             <Nav />
+            <DashboardNav />
             <section className="profile-section">
                 <ProfileCard user={user} />
                 <form onSubmit={handleSubmit}>
@@ -43,13 +45,7 @@ export default function Dashboard() {
                     <button type="submit">Change Profile Image</button>
                 </form>
             </section>
-            <UserNav />
-            {/* Events Section */}
-            <section className="events">
-                <h3>Hosted Events</h3>
-                <p>No hosted events</p>
-            </section>
-
+            <DashboardHostedEvents user={user}/>
             {/* Calendar */}
             <section className="calendar">
                 <h3>Calendar</h3>
@@ -61,7 +57,7 @@ export default function Dashboard() {
                 <h3>Billing and Payments</h3>
                 <p>Billing information not available</p>
 
-                <GooglePay />
+            <GooglePay />
             </section>
             <Footer />
         </>

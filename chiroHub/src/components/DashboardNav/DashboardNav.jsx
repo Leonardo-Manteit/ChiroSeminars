@@ -1,12 +1,13 @@
-export default function UserNav() {
+export default function DashboardNav() {
     return (
         <nav className="user-nav">
             <ul>
-                <li>Profile Settings</li>
-                <li>Account Settings</li>
+                <li>Settings</li>
+                <li>Favourites</li>
                 <li>Notifications</li>
                 <li>Privacy</li>
-                <li>Help</li>
+                <li>Dark mode</li>
+                <li>Logout</li>
             </ul>
         </nav>
     );

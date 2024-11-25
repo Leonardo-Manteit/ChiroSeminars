@@ -62,6 +62,12 @@ function getSeminarById(seminar_id) {
     return db.query(sql, [seminar_id]).then(res => res.rows[0])
 }
 
+function getSeminarByUserId(user_id) {
+    let sql = `
+    SELECT * FROM chiro_seminars WHERE user_id = $1;`
+    return db.query(sql, [user_id]).then(res => res.rows)
+}
+
 function getUpdates(seminar_id, user_email) {
     console.log('model get:', seminar_id, user_email)
     let sql = `
@@ -97,7 +103,8 @@ const Seminar = {
     getSeminars,
     getSeminarById,
     getUpdates,
-    deleteUpdates
+    deleteUpdates,
+    getSeminarByUserId
 }
 
 module.exports = Seminar

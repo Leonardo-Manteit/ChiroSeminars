@@ -106,6 +106,12 @@ router.get('/chiro/seminars/', (req,res) => {
     .then(seminars => res.status(200).json(seminars))
 })
 
+router.get('/chiro/user-hosted-events/:user_id', (req,res) => {
+    const user_id = req.params.user_id
+    Seminar.getSeminarByUserId(user_id)
+    .then(data => res.status(200).json(data))
+})
+
 router.post(`/chiro/get-updates/:seminar_id/:user_email`, (req, res) => {
     const {seminar_id, user_email} = req.params
     Seminar.getUpdates(seminar_id,user_email)

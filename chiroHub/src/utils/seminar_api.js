@@ -35,3 +35,9 @@ export async function stopUpdates(seminar_id, user_email) {
     console.log(res)
     return res.data
 }
+
+export async function getUserHostedSeminars(user_id) {
+    let res = await axios.get(`/chiro/user-hosted-events/${user_id}`)
+    console.log(res)
+    return res.data
+}
