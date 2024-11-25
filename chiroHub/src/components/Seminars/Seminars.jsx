@@ -45,7 +45,7 @@ export default function Seminars({ topicFromHome = null }) {
 
     const filteredSeminars = seminars
         .filter(seminar => !selectedTopic || seminar?.topics?.includes(selectedTopic))
-        .filter(seminar => !searchedSeminar || seminar?.title?.includes(searchedSeminar))
+        .filter(seminar => !searchedSeminar || seminar?.title?.toLowerCase()?.includes(searchedSeminar.toLowerCase()))          
         .filter(seminar => !displayByFavourite || favourites2?.includes(String(seminar.id)));
 
     const totalPages = Math.ceil(filteredSeminars.length / seminarsPerPage); // Calculate total pages

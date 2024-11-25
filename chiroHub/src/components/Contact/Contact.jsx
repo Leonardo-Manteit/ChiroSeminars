@@ -2,20 +2,16 @@ import Footer from "../Footer/Footer";
 import Nav from "../Nav/Nav";
 import React, {useState, useEffect} from "react";
 import styles from './Contact.module.css'
-import { getUserFromLocalStorage } from "../../utils/auth_service";
 
 export default function Contact() {
-    const user = getUserFromLocalStorage()
-
     const [formData, setFormData] = useState({
-        name: '',
+        email: '',
         subject: '',
         message: ''
     });
 
     async function handleSubmit(e) {
         e.preventDefault();
-        setFormData({ ...formData, email: user.email });
         
         try {
             const response = await fetch(`/chiro/contact-us/`, {
@@ -29,11 +25,15 @@ export default function Contact() {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-
-            const result = await response.json();
-            console.log('Form submitted successfully', result);
+            alert('Form submitted successfully')
+            setFormData({
+                email: '',
+                subject: '',
+                message: ''
+            });
         } catch (error) {
             console.error('There was an error submitting the form:', error);
+            alert('Error sending Email')
         }
     }
 
@@ -54,8 +54,8 @@ export default function Contact() {
 
         <form onSubmit={handleSubmit} className={styles.form}>
 
-            <label>Conatct name : </label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Jane Smith"required/>
+            <label>Contact email : </label>
+            <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Jane.Smith@example.com"required/>
         
             <label>Subject : </label>
             <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Subject of email" />

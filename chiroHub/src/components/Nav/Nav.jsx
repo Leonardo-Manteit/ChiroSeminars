@@ -44,8 +44,8 @@ export default function Nav() {
                         {/* <li><Link to="#">Online Courses</Link></li> */}
                         {/* <li><Link to="#">Coaching</Link></li> */}
                         <li><Link to="/AboutUs">About Us</Link></li>
-                        <li><Link to="/Contact">Contact</Link></li>
-                        {user ? <li><Link to="/CreateEvent">Create Event</Link></li> : null }
+                        <li><Link to="/Contact">Contact</Link></li>     
+                        {user && user.is_verified? <li><Link to="/CreateEvent">Create Event</Link></li> : null }
                         {user ? 
                         <li className={styles.Dashboard}><Link to="/Dashboard/:id"><img src={profilePic} alt="" /></Link>
                             <div className={styles.dropDown}>
