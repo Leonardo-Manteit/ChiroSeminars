@@ -12,10 +12,10 @@ ChiroSeminars is an initiative to connect and empower individuals with knowledge
 
 ## Tech Stack
 
-- **Frontend**: React.js, CSS
-- **Backend**: Node.js, Express
+- **Frontend**: React.js, CSS, FullCalendar, GooglePay, Axios, framer-motion, react-router-dom, tsparticles. 
+- **Backend**: Node.js, Express, sendgrid/mail, bcrypt, cron, cors, multer. 
 - **Database**: PostgreSQL
-- **Tools**: Git
+- **Tools**: Git, GitHub
 
 ## Installation & Usage
 This project is proprietary and not available for public use or installation.
@@ -26,6 +26,12 @@ We welcome contributions to improve chiroseminars! Here's how you can contribute
 - Fork the repository.
 - Create a new branch for your feature or bug fix.
 - Open a pull request and describe your changes.
+
+![image](https://github.com/user-attachments/assets/55e68abd-87b7-4e49-8fde-48896311a82a)
+
+![image](https://github.com/user-attachments/assets/f61375d2-3157-4a9b-8d1e-03a1dc42bbb4)
+
+![image](https://github.com/user-attachments/assets/8b099546-9bcd-4d17-9672-1977fad8b280)
 
 ## License
 
@@ -38,7 +44,9 @@ Special thanks to all contributors and seminar participants for making this init
 ---
 
 *"The pursuit of knowledge is a journey without end. Seek it tirelessly, and you shall grow endlessly."*
+
 ```
+
 
 ## Legal Disclaimer
 
