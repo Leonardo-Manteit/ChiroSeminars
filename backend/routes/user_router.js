@@ -3,6 +3,7 @@ const router = express.Router()
 const User = require('../models/Users')
 const Generate = require('../utils/Generate')
 const multer = require('multer');
+const { contactUs } = require('../utils/Contact');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -73,6 +74,13 @@ router.delete('/chiro/user/delete/:user_id', (req, res) => {
 router.get('/chiro/generate-verification-token/:id', (req, res) => {
     return Generate.verificationToken(req.params.id)
         .then(token => res.json(token))
+        .catch(err => res.status(500).json({ message: 'Token could not be generated', error: err }));
+})
+
+router.post('/chiro/contact-us/', (req, res) => {
+    const formData = req.body
+    return contactUs(formData)
+        .then(data => res.json(data))
         .catch(err => res.status(500).json({ message: 'Token could not be generated', error: err }));
 })
 
