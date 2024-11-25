@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styles from './TopicFilter.module.css'
 
 export default function topicFilter({selectedTopic, setSelectedTopic}) {
     const topics = [
@@ -30,14 +31,14 @@ export default function topicFilter({selectedTopic, setSelectedTopic}) {
     }
 
     return (
-        <div className="filter-container">
+        <div className={styles.filterContainer}>
             <h4>Select a Topic to Search</h4>
             <p>We offer a wide variety of topics/subjects.</p>
-            <div className="topics-container">
+            <div className={styles.topicContainer}>
                 {topics.map((topic) => (
                     <div
                         key={topic}
-                        className={`topic-item ${selectedTopic === topic ? 'selected' : ''}`}
+                        className={`${styles.topicItem} ${selectedTopic === topic ? styles.selected : ''}`}
                         onClick={() => handleTopicClick(topic)}
                     >
                         {topic}
