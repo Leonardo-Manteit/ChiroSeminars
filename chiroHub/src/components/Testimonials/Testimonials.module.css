@@ -8,7 +8,25 @@
     padding: 40px 20px;
     overflow-x: auto; 
     scroll-behavior: smooth;
+
+    scrollbar-width: thin; 
+    scrollbar-color: transparent transparent; 
 }
+
+.testimonialsSection:active,
+.testimonialsSection:hover {
+    cursor: grab; /* Show grab cursor on hover */
+}
+
+/* .testimonialsSection::-webkit-scrollbar-track {
+    background: rgb(255, 0, 0); 
+}
+
+.testimonialsSection::-webkit-scrollbar-thumb {
+    background: rgb(30, 255, 0); 
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.5); 
+} */
 
 .testimonialCard {
     background-color: #f9f9f9;
