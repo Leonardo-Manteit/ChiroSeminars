@@ -1,8 +1,34 @@
-
+import { useRef } from 'react';
 import styles from './Testimonials.module.css';
 
 
 export default function Testimonials() {
+
+    const sliderRef = useRef(null);
+    const mouseDownRef = useRef(false); // Track if the mouse is pressed
+    const startXRef = useRef(0); // Store the initial mouse position
+    const scrollLeftRef = useRef(0); // Store the initial scroll position
+
+    const startDragging = (e) => {
+        e.preventDefault()
+        mouseDownRef.current = true;
+        startXRef.current = e.pageX - sliderRef.current.offsetLeft;
+        scrollLeftRef.current = sliderRef.current.scrollLeft;
+    };
+
+    const stopDragging = () => {
+        mouseDownRef.current = false;
+    };
+
+    const handleMouseMove = (e) => {
+        if (!mouseDownRef.current) return; // Only move when mouse is down
+        e.preventDefault();
+        const x = e.pageX - sliderRef.current.offsetLeft;
+        const walk = (x - startXRef.current) * 2; // Distance moved
+        sliderRef.current.scrollLeft = scrollLeftRef.current - walk; // Adjust scroll
+    };
+
+
     const testimonials = [
         { text: "Finding the perfect seminar was easier than I imagined. The variety offered is amazing!", author: "Dr. Jane Doe, Chiropractor" },
         { text: "I attended a sports therapy seminar, and it completely transformed my practice!", author: "Dr. John Smith, Sports Specialist" },
@@ -19,13 +45,21 @@ export default function Testimonials() {
     ];
 
     return (
-        <section className={styles.testimonialsSection}>
+        <section className={styles.testimonialsSection}
+            ref={sliderRef}
+            onMouseDown={startDragging}
+            onMouseLeave={stopDragging}
+            onMouseUp={stopDragging}
+            onMouseMove={handleMouseMove}
+            >
+
             {testimonials.map((testimonial, index) => (
                 <div key={index} className={styles.testimonialCard}>
                     <p className={styles.testimonialText}>"{testimonial.text}"</p>
                     <p className={styles.testimonialAuthor}>- {testimonial.author}</p>
                 </div>
             ))}
+
         </section>
     );
 }
