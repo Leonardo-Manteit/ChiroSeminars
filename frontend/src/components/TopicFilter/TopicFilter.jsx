@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './TopicFilter.module.css'
 
-export default function topicFilter({selectedTopic, setSelectedTopic}) {
+export default function TopicFilter({selectedTopic, setSelectedTopic}) {
     const topics = [
         'Adjustment Technique',
         'Communication',

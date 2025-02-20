@@ -10,14 +10,14 @@ button {
   
 .topicItem {
     cursor: pointer;
-    padding: 10px;
     border-radius: 5px;
     border: 0;
     text-align: center;
-    /* flex: 1 0 21%; Allows four items per row */
+    flex: 0 1 calc(33.33% - 10px);
     background-color: #f0f0f0;
     color: black;
     transition: background-color 0.3s, color 0.3s;
+    /* max-width: min-content; */
 }
   
 .topicItem:hover {
@@ -32,6 +32,7 @@ button {
 
 .filterContainer {
     padding-bottom: 25px;
+    margin-right: 50px;
 }
 
 h3, h4 {
