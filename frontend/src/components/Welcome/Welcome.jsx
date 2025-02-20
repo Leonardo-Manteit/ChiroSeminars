@@ -7,7 +7,7 @@ export default function Welcome() {
     return (
         <div className={styles.container}>
             
-            <section >
+            <section className={styles.leftWelcome}>
                 <h2>Empowering Chiropractors in Oceania</h2>
                 <p>Find the best seminars, webinars, and coaching all in one place</p>
                 <button ><Link to="/Seminars">Explore All Seminars</Link></button>

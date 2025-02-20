@@ -14,9 +14,10 @@
   height: 2rem;
 }
 
-.Dashboard * {
+.Dashboard {
   color: black;
   font-size: 1.15rem;
+  margin-right: 50px;
 }
 
 .dropDown {
@@ -60,8 +61,3 @@
   z-index: 3;
 }
 
-/* #nav-search  {     // DEBUGGING
-  color: red !important;
-  background-color: red !important;
-  border: 3px black !important;
-} */

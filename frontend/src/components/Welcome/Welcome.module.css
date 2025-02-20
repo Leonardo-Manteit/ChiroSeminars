@@ -11,4 +11,16 @@
   text-align: center;
   align-items: center;
   padding-top: 80px;
+  z-index: 1;
 }
+
+/* .leftWelcome {
+  display: block;
+  justify-content: center;
+  width: fit-content;
+} */
+
+/* .leftWelcome h2, p {
+  background-color: antiquewhite;
+  /* margin: 0 auto; 
+} */

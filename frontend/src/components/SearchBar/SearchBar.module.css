@@ -2,7 +2,8 @@
     width: fit-content;
     margin: 20px auto; 
     display: flex;
-    justify-content: center; 
+    justify-content: flex-start; 
+    /* align-self: flex-start; */
 }
 
 .SearchBar form {
@@ -38,4 +39,10 @@
 
 .SearchBar button:hover {
     background-color: #0056b3; 
+}
+
+select {
+    width: 70px;
+    text-align: center;
+    align-items: center;
 }
