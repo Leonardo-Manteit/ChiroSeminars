@@ -16,13 +16,13 @@ export default function EditEvent() {
     const [selectedTopics, setSelectedTopics] = useState(seminar.topics || []);
 
     // Function to toggle topic selection
-    function toggleTopic(topic) {
-        setSelectedTopics((prevTopics) =>
-            prevTopics.includes(topic)
-                ? prevTopics.filter((t) => t !== topic)
-                : [...prevTopics, topic]
-        );
-    }
+    // function toggleTopic(topic) {
+    //     setSelectedTopics((prevTopics) =>
+    //         prevTopics.includes(topic)
+    //             ? prevTopics.filter((t) => t !== topic)
+    //             : [...prevTopics, topic]
+    //     );
+    // }
 
     function handleChange(e) {
         const { name, value, files, checked } = e.target;
@@ -101,15 +101,27 @@ export default function EditEvent() {
                     </section>
                     <section>
                         <label>Date and Time</label>
-                        <input type="datetime-local" name="date" value={formData.date} onChange={handleChange} required />
+                        <input type="datetime-local" name="start_date" value={formData.start_date} onChange={handleChange} required />
+                    </section>
+                    <section>
+                        <label>Finish Date and Time</label>
+                        <input type="datetime-local" name="finish_date" value={formData.finish_date} onChange={handleChange} requiredrequired />
                     </section>
                     <section>
                         <label>Location</label> 
                         <input type="text" name="location" placeholder="Address or URL" value={formData.location} onChange={handleChange} required />
                     </section>
                     <section>
-                        <label>Price ($AUD)</label>
-                        <input type="number" name="price" value={formData.price} onChange={handleChange} required />
+                        <label>Price for Standard Ticket ($AUD)</label>
+                        <input type="number" name="standard_price" placeholder="Enter price" value={formData.standard_price} onChange={handleChange} required />
+                    </section>
+                    <section>
+                        <label>Price for Student Ticket ($AUD)</label>
+                        <input type="number" name="student_price" placeholder="Enter price" value={formData.student_price} onChange={handleChange} required />
+                    </section>
+                    <section>
+                        <label>Price for Chiropractic Assistant Ticket ($AUD)</label>
+                        <input type="number" name="assistant_price" placeholder="Enter price" value={formData.assistant_price} onChange={handleChange} required />
                     </section>
                     <section>
                         <label>Contact</label>
@@ -135,7 +147,7 @@ export default function EditEvent() {
                                 <div
                                     key={topic}
                                     className={`${styles.topicItem} ${selectedTopics.includes(topic) ? styles.selected : ''}`}
-                                    onClick={() => toggleTopic(topic)}
+                                    onClick={() => setSelectedTopics(topic)}
                                 >
                                     {topic}
                                 </div>

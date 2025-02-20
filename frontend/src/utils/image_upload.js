@@ -7,6 +7,7 @@ export async function uploadProfilePhoto(formData) {
 }
 
 export async function uploadSeminarImage(formData) {
+    console.log(formData)
     const response = await fetch('/chiro/seminar', {
         method: 'POST',
         body: formData,

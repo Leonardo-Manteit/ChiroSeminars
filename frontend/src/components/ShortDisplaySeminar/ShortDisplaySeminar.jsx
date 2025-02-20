@@ -10,12 +10,11 @@ export default function ShortDisplaySeminar({ seminar, user, favourites, setFavo
     const [deleted, setDeleted] = useState('');
     const image_url = seminar?.image_url ? `https://chiroseminarhub-australia.onrender.com/${seminar.image_url}` : null;
     const [image, setImage] = useState(image_url);
-
+    console.log(seminar)
     function handleNavigate(id) {
         navigate(`/DisplaySeminar/${id}`, { state: { user, favourites, previousLocation } });
     }
     const [isFavourite, setIsFavourite] = useState(favourites?.includes(String(seminar.id)));
-
     return (
         <div 
             key={seminar.id} 
@@ -27,18 +26,15 @@ export default function ShortDisplaySeminar({ seminar, user, favourites, setFavo
             style={{ backgroundImage: `url(${image})` }}
             >
             <div className={styles.cardHeader}>    
-                {seminar.topics.map((topic, id) => {
-                    return (
-                        <div className={styles.topic}>{topic}</div>
-                    )
-                })}
+            <div className={styles.topic}>{seminar.topics}</div>
                 {isFavourite 
                     ? <FavouritesRemoveBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites} />
                     : user ? <FavouritesBtn seminar_id={seminar.id} user={user} setIsFavourite={setIsFavourite} favourites={favourites} setFavourites={setFavourites} /> : null
                 }
             </div>
             <div className={styles.text}>
-                <p><strong>Start date:</strong> {seminar.date}</p>
+                <p><strong>Start date:</strong> {seminar.start_date}</p>
+                <p><strong>Finish date:</strong> {seminar.finish_date}</p>
                 <p><strong>Location:</strong> {seminar.location}</p>
                 {/* <p className={styles.text}><strong>Price:</strong> {seminar.price}</p> */}
             </div>

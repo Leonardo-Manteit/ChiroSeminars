@@ -77,13 +77,16 @@ export default function DisplaySeminar() {
             <div className={styles.info_header}>
                 <p><strong>Organizer:</strong> {seminar.organizer}</p>
                 <p><strong>Location:</strong> {seminar.location}</p>
-                <p><strong>Date:</strong> {seminar.date}</p>
+                <p><strong>Start date:</strong> {seminar.start_date}</p>
+                <p><strong>Finish date:</strong> {seminar.finish_date}</p>
             </div>
             <hr />
             <p className={styles.pricing}>{seminar.location}<span dangerouslySetInnerHTML={{ __html: seminar.description }} /></p>
             <div className={styles.info_header}>
                 <p><strong>Contact:</strong> {seminar.contact}</p>
-                <p className={styles.pricing}><strong>Price:</strong> {seminar.price}</p>
+                <p className={styles.pricing}><strong>Standard Price:</strong> {seminar.standard_price}</p>
+                <p className={styles.pricing}><strong>Student Price:</strong> {seminar.student_price}</p>
+                <p className={styles.pricing}><strong>Assistant Price:</strong> {seminar.assistant_price}</p>
             </div>
         </div>
         <br />

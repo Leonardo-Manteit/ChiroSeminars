@@ -20,15 +20,18 @@ CREATE TABLE chiro_seminars (
     user_id INT REFERENCES chiro_users(id) ON DELETE CASCADE,
     title VARCHAR(150),
     organizer TEXT,
-    date TEXT,
+    start_date TEXT,
+    finish_date TEXT,
     location TEXT,
     description TEXT,
-    price TEXT,
+    standard_price TEXT,
+    student_price TEXT,
+    assistant_price TEXT,
     contact TEXT,
     email_list TEXT[],
     image_url TEXT,
     featured TEXT,
-    topics TEXT[]
+    topics TEXT
 );
 
 CREATE OR REPLACE FUNCTION remove_seminar_from_users()

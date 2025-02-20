@@ -1,34 +1,36 @@
 const db = require('../db')
 
-function createSeminar(user_id, title, organizer, date, location, description, price, contact, image, featured, topics) {
-    
+function createSeminar(user_id, title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, image, featured, topics) {
     let sql = `INSERT INTO chiro_seminars   
-    (user_id, title, organizer, date, location, description, price, contact, image_url, featured, topics)
+    (user_id, title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, image_url, featured, topics)
     VALUES 
-    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+    ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)
     RETURNING *;
     `
-    return db.query(sql, [user_id, title, organizer, date, location, description, price, contact, image, featured, topics])
+    return db.query(sql, [user_id, title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, image, featured, topics])
     .then(res => res.rows)
 }
 
-function updateSeminar(title, organizer, date, location, description, price, contact, image, featured, topics, id) {
+function updateSeminar(title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, image, featured, topics, id) {
     let sql = `UPDATE chiro_seminars
     SET 
         title = $1,
         organizer = $2,
-        date = $3,
-        location = $4,
-        description = $5,
-        price = $6,
-        contact = $7,
-        image_url = $8,
-        featured = $9,
-        topics = $10
-    WHERE id = $11
+        start_date = $3,
+        finish_date = $4,
+        location = $5,
+        description = $6,
+        standard_price = $7,
+        student_price = $8,
+        assistant_price = $9,
+        contact = $10,
+        image_url = $11,
+        featured = $12,
+        topics = $13
+    WHERE id = $14
     RETURNING *;
     `
-    return db.query(sql, [title, organizer, date, location, description, price, contact, image, featured, topics, id])
+    return db.query(sql, [title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, image, featured, topics, id])
             .then(res => res.rows)
 }
 

@@ -22,13 +22,14 @@ router.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 router.post('/chiro/seminar', upload.single('image'), async (req,res) => {
     try {
-        const { user_id, title, organizer, date, location, description, price, contact, featured, topics } = req.body
+        const { user_id, title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, featured, topics } = req.body
+        console.log(req.body)
         const image = req.file ? req.file.path : null
         const topicsArray = JSON.parse(topics)
         // console.log('Received Data:', req.body);
         // console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
-        const newSeminar = await Seminar.createSeminar(user_id, title, organizer, date, location, description, price, contact, image, featured, topicsArray)
+        const newSeminar = await Seminar.createSeminar(user_id, title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, image, featured, topicsArray)
         res.status(201).json({message: 'Seminar created', seminar: newSeminar })
         
     } catch(error) {
@@ -39,14 +40,15 @@ router.post('/chiro/seminar', upload.single('image'), async (req,res) => {
 
 router.post('/chiro/seminar/update/:id', upload.single('image'), async (req,res) => {
     try {
-        const { title, organizer, date, location, description, price, contact, featured, topics } = req.body
+        const { title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, featured, topics } = req.body
+        console.log(req.body)
         const id = req.params.id
         const image = req.file ? req.file.path : req.body.image_url
         const topicsArray = JSON.parse(topics[1])
         // console.log('Received Data:', req.body);
         // console.log('Uploaded Image:', req.file);
         // req.file.path is the path to the unique image
-        const newSeminar = await Seminar.updateSeminar(title, organizer, date, location, description, price, contact, image, featured, topicsArray, id)
+        const newSeminar = await Seminar.updateSeminar(title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, image, featured, topicsArray, id)
         res.status(201).json({message: 'Seminar created', seminar: newSeminar })
         
     } catch(error) {

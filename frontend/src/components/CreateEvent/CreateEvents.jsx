@@ -25,20 +25,20 @@ export default function Create({ user = getUserFromLocalStorage() }) {
         'Other'
     ];
 
-    function toggleTopic(topic) {
-        setSelectedTopics((prevTopics) =>
-            prevTopics.includes(topic)
-                ? prevTopics.filter((t) => t !== topic)
-                : [...prevTopics, topic]
-        );
-    }
+    // function toggleTopic(topic) {
+    //     setSelectedTopics((prevTopics) =>
+    //         prevTopics.includes(topic)
+    //             ? prevTopics.filter((t) => t !== topic)
+    //             : [...prevTopics, topic]
+    //     );
+    // }
 
     async function handleSubmit(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
         formData.append('topics', JSON.stringify(selectedTopics)); 
         formData.append('user_id', user.id); 
-
+        console.log(formData)
         const response = await uploadSeminarImage(formData);
         if (response) {
             e.target.reset();
@@ -70,16 +70,28 @@ export default function Create({ user = getUserFromLocalStorage() }) {
                         <input type="text" name="organizer" placeholder="Enter organizer name" required />
                     </section>
                     <section>
-                        <label>Date and Time</label>
-                        <input type="datetime-local" name="date" required />
+                        <label>Start Date and Time</label>
+                        <input type="datetime-local" name="start_date" required />
+                    </section>
+                    <section>
+                        <label>Finish Date and Time</label>
+                        <input type="datetime-local" name="finish_date" required />
                     </section>
                     <section>
                         <label>Location</label>
                         <input type="text" name="location" placeholder="Address or URL" required />
                     </section>
                     <section>
-                        <label>Price ($AUD)</label>
-                        <input type="number" name="price" placeholder="Enter price" required />
+                        <label>Price for Standard Ticket ($AUD)</label>
+                        <input type="number" name="standard_price" placeholder="Enter price" required />
+                    </section>
+                    <section>
+                        <label>Price for Student Ticket ($AUD)</label>
+                        <input type="number" name="student_price" placeholder="Enter price" required />
+                    </section>
+                    <section>
+                        <label>Price for Chiropractic Assistant Ticket ($AUD)</label>
+                        <input type="number" name="assistant_price" placeholder="Enter price" required />
                     </section>
                     <section>
                         <label>Contact</label>
@@ -95,7 +107,7 @@ export default function Create({ user = getUserFromLocalStorage() }) {
                             type="file" 
                             accept="image/*" 
                             name="image" 
-                            onChange={handleImageChange} // Handle image change for preview
+                            onChange={handleImageChange}
                         />
                     </section>
                     {imagePreview && (
@@ -105,7 +117,6 @@ export default function Create({ user = getUserFromLocalStorage() }) {
                         </section>
                     )}
 
-                    {/* Topic selection section */}
                     <section>
                         <label>Select Topics</label>
                         <div className={styles.topicsContainer}>
@@ -113,7 +124,7 @@ export default function Create({ user = getUserFromLocalStorage() }) {
                                 <div
                                     key={topic}
                                     className={`${styles.topicItem} ${selectedTopics.includes(topic) ? styles.selected : ''}`}
-                                    onClick={() => toggleTopic(topic)}
+                                    onClick={() => setSelectedTopics(topic)}
                                 >
                                     {topic}
                                 </div>

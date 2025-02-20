@@ -6,7 +6,7 @@ VALUES
     ('user3@example.com', 'user_three', 'passwordhash3', ARRAY['8', '14', '18'], 'user');
 
 
-INSERT INTO chiro_seminars (user_id, title, organizer, date, location, description, price, contact, email_list, featured, topics)
+INSERT INTO chiro_seminars (user_id, title, organizer, start_date, finish_date, location, description, standard_price, student_price, assistant_price, contact, email_list, featured, topics)
 
 VALUES
     (11, 'Advanced Chiropractic Techniques', 'Chiro Group', '64644-04-14T06:09', 'New York, NY', 'A seminar on advanced chiropractic techniques.', '$150', 'contact@chirogroup.com', ARRAY['user_one', 'user_two'], 'yes', ARRAY['Adjustment Technique', 'General Chiropractic']),
