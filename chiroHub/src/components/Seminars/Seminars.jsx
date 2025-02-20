@@ -4,7 +4,7 @@ import { getSeminars } from "../../utils/seminar_api";
 import { useEffect, useState } from "react";
 import ShortDisplaySeminar from "../ShortDisplaySeminar/ShortDisplaySeminar";
 import TopicFilter from "../TopicFilter/TopicFilter";
-import styles from '../Featured/Featured.module.css';
+import styles from './Seminars.module.css';
 import { useLocation } from "react-router-dom";
 import SearchBar from "../SearchBar/SearchBar";
 import { getUserFromLocalStorage } from "../../utils/auth_service";
@@ -19,7 +19,7 @@ export default function Seminars({ topicFromHome = null }) {
     const [searchedSeminar, setSearchedSeminar] = useState(searched ? searched : '');
     const [displayByFavourite, setDisplayByFavourite] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const seminarsPerPage = 6;
+    const seminarsPerPage = 9;
 
     useEffect(() => {
         getSeminars()
