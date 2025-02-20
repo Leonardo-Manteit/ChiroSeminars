@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './SearchBar.module.css';
 import { useNavigate } from 'react-router-dom';
+import { IoSearchOutline  } from "react-icons/io5"
 
-export default function SearchBar({ handleSearch }) {
+export default function SearchBar({ handleSearch, placeholder = "", id, className }) {
     const navigate = useNavigate();
     const [search, setSearch] = useState('');
 
@@ -20,15 +21,15 @@ export default function SearchBar({ handleSearch }) {
     };
 
     return (
-        <section className={styles.SearchBar}>
+        <section className={`${styles.SearchBar} ${className || ""}`} id={id}>
             <form onSubmit={effectiveSearchHandler}>
                 <input
                     type="text"
-                    placeholder="Search for a specific seminar"
+                    placeholder={placeholder}
                     onChange={(e) => setSearch(e.target.value)}
                     value={search}
                 />
-                <button>Search</button>
+                <button><IoSearchOutline /></button>
             </form>
         </section>
     );

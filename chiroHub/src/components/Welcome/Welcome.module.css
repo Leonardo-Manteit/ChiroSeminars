@@ -1,13 +1,14 @@
-.Welcome {
-    background: url('hero-image.jpg') no-repeat center center/cover;
-    height: 400px;
-    text-align: center;
-    padding-top: 150px;
-  }
+.Welcome button {
+  border: none;
+  margin: 0;
+}
 
-  .Welcome button {
-    border: none;
-    margin: 0;
-  }
-
-  
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: url('hero-image.jpg') no-repeat center center/cover;
+  height: auto;
+  text-align: center;
+  align-items: center;
+  padding-top: 80px;
+}

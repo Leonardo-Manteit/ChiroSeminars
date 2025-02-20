@@ -14,7 +14,7 @@ button {
     border-radius: 5px;
     border: 0;
     text-align: center;
-    flex: 1 0 21%; /* Allows four items per row */
+    /* flex: 1 0 21%; Allows four items per row */
     background-color: #f0f0f0;
     color: black;
     transition: background-color 0.3s, color 0.3s;

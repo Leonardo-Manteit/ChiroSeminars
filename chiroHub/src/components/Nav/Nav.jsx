@@ -4,6 +4,7 @@ import { getUserFromLocalStorage } from '../../utils/auth_service.js';
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import styles from './Nav.module.css'
+import SearchBar from '../SearchBar/SearchBar.jsx';
 
 export default function Nav() {
     const navigate = useNavigate()
@@ -37,7 +38,8 @@ export default function Nav() {
                         </Link>
                     </h1>
                 </div>
-                <nav>
+                    <SearchBar placeholder="Search" id="nav-search" />
+                <nav className={styles.navbar}>
                     <ul>
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/Seminars">Seminars</Link></li>
