@@ -26,7 +26,17 @@ export default function Featured({user, favourites}) {
         <section className={styles.display}>
         {featured.length > 0 ? (
             <>
-                {featured.map(seminar => ( <ShortDisplaySeminar previousLocation={'/'} key={seminar.id} seminar={seminar} user={user} favourites={favourites} setFavourites={() => null}/>))}
+                {featured.map(seminar => ( 
+                    <ShortDisplaySeminar 
+                        previousLocation={'/'} 
+                        key={seminar.id} 
+                        seminar={seminar} 
+                        user={user} 
+                        favourites={favourites} 
+                        setFavourites={() => null
+                        }
+                    />
+                ))}
             </>
             ) : (
                 <p>No Featured seminars.</p>
