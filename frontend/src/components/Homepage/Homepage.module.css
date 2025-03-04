@@ -11,8 +11,8 @@
   width: auto;
   height: 250px;
   object-fit: cover;
-  background-image: url('./welcome-banner.png');
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
+  /* image background in component: homepage */
 }
 
 .landing {

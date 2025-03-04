@@ -44,8 +44,11 @@
 .dropDown ul li {
   padding: 10px 15px; 
   cursor: pointer;
-  color: black; 
   transition: background-color 0.2s ease; 
+}
+
+.dropDown ul li a {
+  color: black;
 }
 
 .dropDown ul li:hover {

@@ -6,7 +6,7 @@ import ShortDisplaySeminar from "../ShortDisplaySeminar/ShortDisplaySeminar";
 import TopicFilter from "../TopicFilter/TopicFilter";
 import styles from './Seminars.module.css';
 import { useLocation } from "react-router-dom";
-import SearchBar from "../SearchBar/SearchBar";
+// import SearchBar from "../SearchBar/SearchBar";
 import { getUserFromLocalStorage } from "../../utils/auth_service";
 
 export default function Seminars({ topicFromHome = null }) {
@@ -76,9 +76,9 @@ export default function Seminars({ topicFromHome = null }) {
     return (
         <>
             <Nav />
-            <SearchBar handleSearch={setSearchedSeminar} />
+            {/* <SearchBar handleSearch={setSearchedSeminar} /> */}
             <TopicFilter selectedTopic={selectedTopic} setSelectedTopic={setSelectedTopic} />
-
+        {/* need to be able to quickly filter by location */}
             <div className={styles.pagination}>
                 <div>Page: {currentPage} of {totalPages}</div>
                 {totalPages > 1 ? (
